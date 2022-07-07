@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &317151724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1696470301810324, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  m_PrefabInstance: {fileID: 1065393784}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &317151728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317151724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2465cbcf720451f9530a9895183460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material_On: {fileID: 2100000, guid: 8895ff1fec0790d4f98871584b431ad3, type: 2}
+  m_Material_Off: {fileID: 2100000, guid: ec8c31228f9327d4ba615ec92ef78b85, type: 2}
+  m_GameObject_Left: {fileID: 1688234522}
+  m_GameObject_Right: {fileID: 1065393785}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,17 +402,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1583718312871142, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
   m_PrefabInstance: {fileID: 1065393784}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1065393786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!1 &1688234522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1981898801794918, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  m_PrefabInstance: {fileID: 1065393784}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065393785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db2465cbcf720451f9530a9895183460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material_On: {fileID: 2100000, guid: 8895ff1fec0790d4f98871584b431ad3, type: 2}
-  m_Material_Off: {fileID: 2100000, guid: ec8c31228f9327d4ba615ec92ef78b85, type: 2}
