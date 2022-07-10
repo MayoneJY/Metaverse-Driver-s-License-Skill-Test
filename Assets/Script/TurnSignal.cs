@@ -9,6 +9,10 @@ public class TurnSignal : MonoBehaviour
     public Material m_Material_Off;
     public GameObject m_GameObject_Left;
     public GameObject m_GameObject_Right;
+    public GameObject m_GameObject_Light_Left_Front;
+    public GameObject m_GameObject_Light_Left_Rear;
+    public GameObject m_GameObject_Light_Right_Front;
+    public GameObject m_GameObject_Light_Right_Rear;
     private Renderer m_Renderer_Left;
     private Renderer m_Renderer_Right;
     private float timer;
