@@ -13,14 +13,29 @@ public class WiperAction : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.A)) //자동
         {
-            animator.SetBool("New Bool", true);
+            animator.SetBool("New Bool", true);             
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.S)) //정지
         {
             animator.SetBool("New Bool", false);
+        }
+
+        if (Input.GetKey(KeyCode.M)) //1회
+        {
+          
+        }
+
+            if (Input.GetKeyDown(KeyCode.H)) //고속
+        {
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.L)) //저속
+        {
+
         }
     }
 }
