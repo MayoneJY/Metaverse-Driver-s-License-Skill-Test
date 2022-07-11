@@ -202,13 +202,13 @@ AnimatorStateMachine:
     m_Position: {x: -40, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7117588502756106254}
-    m_Position: {x: -40, y: 300, z: 0}
+    m_Position: {x: -40, y: 310, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 200, y: 0, z: 0}
+  m_AnyStatePosition: {x: 250, y: 0, z: 0}
   m_EntryPosition: {x: -20, y: -80, z: 0}
   m_ExitPosition: {x: -20, y: 400, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -303,7 +303,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 4
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: GearState
+    m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 4
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: GearReverse
+    m_Type: 1
+    m_DefaultFloat: -1
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: animePtoD
@@ -390,13 +402,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 9c3fc340cd971924ab61659f66d5ed7e, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: GearReverse
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
