@@ -5,7 +5,9 @@ using UnityEngine;
 public class WiperAction : MonoBehaviour
 {
     Animator animator;
-    
+    bool WiperM = false;
+
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -15,27 +17,51 @@ public class WiperAction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A)) //자동
         {
-            animator.SetBool("New Bool", true);             
+            animator.SetBool("WiperA", true);
+            animator.SetBool("WiperH", false);
+            animator.SetBool("WiperL", false);
         }
 
         if (Input.GetKeyDown(KeyCode.S)) //정지
         {
-            animator.SetBool("New Bool", false);
+            animator.SetBool("WiperA", false);
+            animator.SetBool("WiperH", false);
+            animator.SetBool("WiperL", false);
         }
 
-        if (Input.GetKey(KeyCode.M)) //1회
+        if (Input.GetKeyDown(KeyCode.M)) //1회
         {
-          
+            animator.Play("WiperRightH", -1, 0f);
+            animator.Play("WiperLeftH", -1, 0f);
+            animator.SetBool("WiperA", false);
+            animator.SetBool("WiperH", false);
+            animator.SetBool("WiperL", false);
         }
 
-            if (Input.GetKeyDown(KeyCode.H)) //고속
+
+       /* if (Input.GetKey(KeyCode.M))
         {
-            
+            animator.SetTrigger("WiperRightM");
+            animator.SetTrigger("WiperLeftM");
+        }
+
+
+
+        */
+
+
+        if (Input.GetKeyDown(KeyCode.H)) //고속
+        {
+            animator.SetBool("WiperH", true);
+            animator.SetBool("WiperA", false);
+            animator.SetBool("WiperL", false);
         }
 
         if (Input.GetKeyDown(KeyCode.L)) //저속
         {
-
+            animator.SetBool("WiperL", true);
+            animator.SetBool("WiperA", false);
+            animator.SetBool("WiperH", false);
         }
     }
 }
