@@ -20,7 +20,7 @@ public class CarSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //시동걸기
         if (Input.GetKeyDown(KeyCode.M))
         {
             m_StartUp_Car = !m_StartUp_Car;
@@ -34,6 +34,20 @@ public class CarSystem : MonoBehaviour
             {
                 m_GameObject_RearSideLights.GetComponent<Renderer>().material = m_Material_Off;
                 m_GameObject_DayTimeLight.GetComponent<Renderer>().material = m_Material_Off;
+            }
+        }
+
+        //시동걸렸을 때
+        if (m_StartUp_Car)
+        {
+            //브레이크를 밟았을 때
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.S))
+            {
+                m_GameObject_BrakeLights.GetComponent<Renderer>().material = m_Material_On;
+            }
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.S))
+            {
+                m_GameObject_BrakeLights.GetComponent<Renderer>().material = m_Material_Off;
             }
         }
     }
