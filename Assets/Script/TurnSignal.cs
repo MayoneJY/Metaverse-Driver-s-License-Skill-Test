@@ -24,9 +24,11 @@ public class TurnSignal : MonoBehaviour
     private bool rightTurnSignal = false;
     private bool rightLightBool = false;
     private bool doubleTurnSignal = false;
+    private bool m_StartUp_Car;
     // Start is called before the first frame update
     void Start()
     {
+        m_StartUp_Car = CarSystem.get_m_StartUp_Car();
         timer = 0.0f;
         waitingTime = 1;
         m_Renderer_Left = m_GameObject_Left.GetComponent<Renderer>();
@@ -38,36 +40,43 @@ public class TurnSignal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Q))
+        m_StartUp_Car = CarSystem.get_m_StartUp_Car();
+        if (m_StartUp_Car)
         {
-            turnSignalOnOff("LEFT");
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            turnSignalOnOff("RIGHT");
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            turnSignalOnOff("DOUBLE");
-        }
-        timer += Time.deltaTime;
-        if (timer > waitingTime)
-        {
-            timer = 0;
-            if (leftTurnSignal)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                turnSignal(m_Renderer_Left, ref leftLightBool, m_GameObject_Lights_Left);
+                turnSignalOnOff("LEFT");
             }
-            if (rightTurnSignal)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                turnSignal(m_Renderer_Right, ref rightLightBool, m_GameObject_Lights_Right);
+                turnSignalOnOff("RIGHT");
             }
-            if (doubleTurnSignal)
+            if (Input.GetKeyDown(KeyCode.R))
             {
-                turnSignal(m_Renderer_Right, ref rightLightBool, m_GameObject_Lights_Right);
-                turnSignal(m_Renderer_Left, ref leftLightBool, m_GameObject_Lights_Left);
+                turnSignalOnOff("DOUBLE");
             }
+            timer += Time.deltaTime;
+            if (timer > waitingTime)
+            {
+                timer = 0;
+                if (leftTurnSignal)
+                {
+                    turnSignal(m_Renderer_Left, ref leftLightBool, m_GameObject_Lights_Left);
+                }
+                if (rightTurnSignal)
+                {
+                    turnSignal(m_Renderer_Right, ref rightLightBool, m_GameObject_Lights_Right);
+                }
+                if (doubleTurnSignal)
+                {
+                    turnSignal(m_Renderer_Right, ref rightLightBool, m_GameObject_Lights_Right);
+                    turnSignal(m_Renderer_Left, ref leftLightBool, m_GameObject_Lights_Left);
+                }
+            }
+        }
+        else
+        {
+            turnSignalOffAll();
         }
         
 
@@ -106,6 +115,21 @@ public class TurnSignal : MonoBehaviour
         rightLightBool = false;
         if (signal == "DOUBLE") doubleTurnSignal = !doubleTurnSignal;
         else doubleTurnSignal = false;
+        m_GameObject_Light_Left_Front.SetActive(false);
+        m_GameObject_Light_Left_Rear.SetActive(false);
+        m_GameObject_Light_Right_Front.SetActive(false);
+        m_GameObject_Light_Right_Rear.SetActive(false);
+        m_Renderer_Left.material = m_Material_Off;
+        m_Renderer_Right.material = m_Material_Off;
+    }
+
+    private void turnSignalOffAll()
+    {
+        leftTurnSignal = false;
+        leftLightBool = false;
+        rightTurnSignal = false;
+        rightLightBool = false;
+        doubleTurnSignal = false;
         m_GameObject_Light_Left_Front.SetActive(false);
         m_GameObject_Light_Left_Rear.SetActive(false);
         m_GameObject_Light_Right_Front.SetActive(false);
