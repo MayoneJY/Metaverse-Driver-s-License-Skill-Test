@@ -33,6 +33,11 @@ public class Scroll : MonoBehaviour
         }
     }
 
+    private string scroll()
+    {
+        throw new NotImplementedException();
+    }
+
     public void Left()
     {
         if (List.rect.xMax + List.rect.xMax / count == movepos)
