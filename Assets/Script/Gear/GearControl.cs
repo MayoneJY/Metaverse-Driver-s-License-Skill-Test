@@ -6,10 +6,8 @@ public class GearControl : MonoBehaviour
 
     public GameObject Gear;
 
-    private bool ParkingLocation = false;
-    private bool ReturnLocation = false;
-    private bool NatureLocation = false;
-    private bool DriveLocation = false;
+    private string[] m_GearStates = { "Parking", "Return", "Nature", "Driver" };
+    private int m_GearState_Now = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -21,83 +19,26 @@ public class GearControl : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
-        {
-            GearLocationControl("Parking");
-            
-        }
+            GearLocationControl(0); // Parking
 
         if (Input.GetKeyDown(KeyCode.R))
-        {
-            GearLocationControl("Return");
-        }
+            GearLocationControl(1); // Return
 
         if (Input.GetKeyDown(KeyCode.N))
-        {
-            GearLocationControl("Nature");
-        }
+            GearLocationControl(2); // Nature
 
         if (Input.GetKeyDown(KeyCode.D))
-        {
-            GearLocationControl("Drive");
-        }
+            GearLocationControl(3); // Drive
     }
 
     private void CarMove()
     {
-        if(ParkingLocation == true)
-        {
-           
-        }
 
-        if (ReturnLocation == true)
-        {
-
-        }
-
-        if (NatureLocation == true)
-        {
-
-        }
-
-        if (DriveLocation == true)
-        {
-
-        }
     }
 
-    private void GearLocationControl(string gear) 
-    { 
-        if(gear == "Parking")
-        {
-            ParkingLocation = true;
-            ReturnLocation = false;
-            NatureLocation = false;
-            DriveLocation = false;
-        }
-
-        if (gear == "Return")
-        {
-            ReturnLocation = true;
-            ParkingLocation = false;
-            NatureLocation = false;
-            DriveLocation = false;
-        }
-
-        if (gear == "Nature")
-        {
-            NatureLocation = true;
-            ReturnLocation = false;
-            ParkingLocation = false;
-            DriveLocation = false;
-        }
-
-        if (gear == "Drive")
-        {
-            DriveLocation = true;
-            ReturnLocation = false;
-            NatureLocation = false;
-            ParkingLocation = false;
-        }
+    private void GearLocationControl(int gear) 
+    {
+        m_GearState_Now = gear;
     }
 
 
