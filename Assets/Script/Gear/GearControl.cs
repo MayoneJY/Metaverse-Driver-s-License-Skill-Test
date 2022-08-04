@@ -6,8 +6,8 @@ public class GearControl : MonoBehaviour
 
     public GameObject Gear;
 
-    private string[] m_GearStates = { "Parking", "Return", "Nature", "Driver" };
-    private int m_GearState_Now = 0;
+    //private string[] m_GearStates = { "Parking", "Return", "Nature", "Driver" };
+    public int m_GearState_Now = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -19,24 +19,19 @@ public class GearControl : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
-            GearLocationControl(0); // Parking
+            setGearLocationControl(0); // Parking
 
         if (Input.GetKeyDown(KeyCode.R))
-            GearLocationControl(1); // Return
+            setGearLocationControl(1); // Return
 
         if (Input.GetKeyDown(KeyCode.N))
-            GearLocationControl(2); // Nature
+            setGearLocationControl(2); // Nature
 
         if (Input.GetKeyDown(KeyCode.D))
-            GearLocationControl(3); // Drive
+            setGearLocationControl(3); // Drive
     }
 
-    private void CarMove()
-    {
-
-    }
-
-    private void GearLocationControl(int gear) 
+    private void setGearLocationControl(int gear) 
     {
         m_GearState_Now = gear;
     }
