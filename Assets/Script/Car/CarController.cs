@@ -22,10 +22,22 @@ public class CarController : MonoBehaviour
     [SerializeField] private WheelCollider rearLeftWheelCollider;
     [SerializeField] private WheelCollider rearRightWheelCollider;
 
-    [SerializeField] private Transform frontLeftWheelTransform;
-    [SerializeField] private Transform frontRightWheeTransform;
-    [SerializeField] private Transform rearLeftWheelTransform;
-    [SerializeField] private Transform rearRightWheelTransform;
+    [SerializeField] private Transform frontLeftWheelTransform_LOD0;
+    [SerializeField] private Transform frontRightWheeTransform_LOD0;
+    [SerializeField] private Transform rearLeftWheelTransform_LOD0;
+    [SerializeField] private Transform rearRightWheelTransform_LOD0;
+    [SerializeField] private Transform frontLeftWheelTransform_LOD1;
+    [SerializeField] private Transform frontRightWheeTransform_LOD1;
+    [SerializeField] private Transform rearLeftWheelTransform_LOD1;
+    [SerializeField] private Transform rearRightWheelTransform_LOD1;
+    [SerializeField] private Transform frontLeftWheelTransform_LOD2;
+    [SerializeField] private Transform frontRightWheeTransform_LOD2;
+    [SerializeField] private Transform rearLeftWheelTransform_LOD2;
+    [SerializeField] private Transform rearRightWheelTransform_LOD2;
+    [SerializeField] private Transform frontLeftWheelTransform_LOD3;
+    [SerializeField] private Transform frontRightWheeTransform_LOD3;
+    [SerializeField] private Transform rearLeftWheelTransform_LOD3;
+    [SerializeField] private Transform rearRightWheelTransform_LOD3;
 
     private void FixedUpdate()
     {
@@ -68,10 +80,22 @@ public class CarController : MonoBehaviour
 
     private void UpdateWheels()
     {
-        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheeTransform);
-        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
-        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
+        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform_LOD0);
+        UpdateSingleWheel(frontRightWheelCollider, frontRightWheeTransform_LOD0);
+        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform_LOD0);
+        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform_LOD0);
+        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform_LOD1);
+        UpdateSingleWheel(frontRightWheelCollider, frontRightWheeTransform_LOD1);
+        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform_LOD1);
+        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform_LOD1);
+        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform_LOD2);
+        UpdateSingleWheel(frontRightWheelCollider, frontRightWheeTransform_LOD2);
+        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform_LOD2);
+        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform_LOD2);
+        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform_LOD3);
+        UpdateSingleWheel(frontRightWheelCollider, frontRightWheeTransform_LOD3);
+        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform_LOD3);
+        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform_LOD3);
     }
 
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)

@@ -2663,10 +2663,22 @@ MonoBehaviour:
   frontRightWheelCollider: {fileID: 1449161819036324945}
   rearLeftWheelCollider: {fileID: 767669087042024470}
   rearRightWheelCollider: {fileID: 4620681117924331318}
-  frontLeftWheelTransform: {fileID: 4540704980393436}
-  frontRightWheeTransform: {fileID: 4856137467488454}
-  rearLeftWheelTransform: {fileID: 4815018361693144}
-  rearRightWheelTransform: {fileID: 4111949238173318}
+  frontLeftWheelTransform_LOD0: {fileID: 4540704980393436}
+  frontRightWheeTransform_LOD0: {fileID: 4856137467488454}
+  rearLeftWheelTransform_LOD0: {fileID: 4815018361693144}
+  rearRightWheelTransform_LOD0: {fileID: 4111949238173318}
+  frontLeftWheelTransform_LOD1: {fileID: 4856688040710088}
+  frontRightWheeTransform_LOD1: {fileID: 4834172209979126}
+  rearLeftWheelTransform_LOD1: {fileID: 4620815971360412}
+  rearRightWheelTransform_LOD1: {fileID: 4215464365016996}
+  frontLeftWheelTransform_LOD2: {fileID: 4455917417720780}
+  frontRightWheeTransform_LOD2: {fileID: 4572602927509382}
+  rearLeftWheelTransform_LOD2: {fileID: 4925070311500742}
+  rearRightWheelTransform_LOD2: {fileID: 4171158682346056}
+  frontLeftWheelTransform_LOD3: {fileID: 4097443810439334}
+  frontRightWheeTransform_LOD3: {fileID: 4270667298038418}
+  rearLeftWheelTransform_LOD3: {fileID: 4266923178459462}
+  rearRightWheelTransform_LOD3: {fileID: 4063632702266372}
 --- !u!65 &5159431273952186995
 BoxCollider:
   m_ObjectHideFlags: 0
