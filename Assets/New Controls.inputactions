@@ -1,0 +1,67 @@
+{
+    "name": "New Controls",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "b89d08e5-e949-4eed-b97d-5e08253e0016",
+            "actions": [
+                {
+                    "name": "actiontest",
+                    "type": "Value",
+                    "id": "efa41e0b-3c18-4769-b3fa-008915e6d9cb",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "cf3df829-46a2-4d98-b16c-94b86d76c2b1",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "actiontest",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "6bdf6ca9-0e6f-4e98-901c-4b79913fea1a",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/stick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "actiontest",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "836f8067-1791-46e0-b016-7a112661d306",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/stick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "actiontest",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": [
+                {
+                    "devicePath": "<HID::Arduino LLC Arduino Leonardo>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

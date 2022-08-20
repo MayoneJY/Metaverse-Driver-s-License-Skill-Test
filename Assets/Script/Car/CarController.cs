@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
@@ -50,9 +51,18 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
-        horizontalInput = Input.GetAxis(HORIZONTAL);
-        verticalInput = Input.GetAxis(VERTICAL);
-        isBreaking = Input.GetKey(KeyCode.Space);
+
+        if (Joystick.all[0].stick.x.ReadValue() == -1 || Joystick.all[0].stick.x.ReadValue() == 1)
+            horizontalInput = 0;
+        if (Joystick.all[0].stick.x.ReadValue() < 0)
+            horizontalInput = 1 - Joystick.all[0].stick.x.ReadValue() * (-1);
+        //horizontalInput = (1 - Joystick.all[0].stick.x.ReadValue()) * (-1);
+        if (Joystick.all[0].stick.x.ReadValue() > 0)
+            horizontalInput = (1 - Joystick.all[0].stick.x.ReadValue()) * (-1);
+        //horizontalInput = Input.GetAxis(HORIZONTAL);
+        //verticalInput = Input.GetAxis(VERTICAL);
+        //isBreaking = Input.GetKey(KeyCode.Space);
+        Debug.Log(horizontalInput);
     }
 
     private void HandleMotor()
