@@ -80,10 +80,10 @@ public class CarController : MonoBehaviour
 
         verticalInput = verticalInput / 2;
 
-        if (Joystick.all[0].stick.y.ReadValue() > 0.5)
+        if (Joystick.all[0].stick.y.ReadValue() * -1 > 0.5)
             breakingInput = 0.5f;
         else
-            breakingInput = Joystick.all[0].stick.y.ReadValue();
+            breakingInput = Joystick.all[0].stick.y.ReadValue() * -1;
 
         breakingInput *= 2;
         //horizontalInput = Input.GetAxis(HORIZONTAL);
@@ -103,7 +103,7 @@ public class CarController : MonoBehaviour
                 Debug.Log(Joystick.all[0].allControls[i].name);
             }
         }*/
-        //Debug.Log(breakingInput);
+        Debug.Log("axel : " + verticalInput + ", break : " +  breakingInput);
     }
 
     private void HandleMotor()
