@@ -26,6 +26,6 @@ public class Controller : MonoBehaviour
 
     public void asdasd(InputAction.CallbackContext context)
     {
-        //Debug.Log(context.ReadValue<Vector2>());
+        //Debug.Log(context.ReadValue<float>());
     }
 }
