@@ -3,16 +3,13 @@ using UnityEngine;
 
 public class GearControl : MonoBehaviour
 {
-
-    public GameObject Gear;
-
-    //private string[] m_GearStates = { "Parking", "Return", "Nature", "Driver" };
+    //private string[] m_GearStates = { "Parking", "Reverse", "Nature", "Driver" };
     public int m_GearState_Now = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -22,7 +19,7 @@ public class GearControl : MonoBehaviour
             setGearLocationControl(0); // Parking
 
         if (Input.GetKeyDown(KeyCode.R))
-            setGearLocationControl(1); // Return
+            setGearLocationControl(1); // Reverse
 
         if (Input.GetKeyDown(KeyCode.N))
             setGearLocationControl(2); // Nature
@@ -31,10 +28,9 @@ public class GearControl : MonoBehaviour
             setGearLocationControl(3); // Drive
     }
 
-    private void setGearLocationControl(int gear) 
+    public void setGearLocationControl(int gear) 
     {
         m_GearState_Now = gear;
     }
-
 
 }
