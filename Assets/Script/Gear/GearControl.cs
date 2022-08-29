@@ -18,6 +18,7 @@ public class GearControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.P))
             setGearLocationControl(0); // Parking
 
@@ -29,6 +30,7 @@ public class GearControl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D))
             setGearLocationControl(3); // Drive
+        */
     }
 
     private void setGearLocationControl(int gear) 
