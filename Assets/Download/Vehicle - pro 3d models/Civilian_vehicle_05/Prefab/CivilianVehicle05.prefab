@@ -2450,7 +2450,7 @@ GameObject:
   - component: {fileID: 2881107000693890504}
   - component: {fileID: 5159431273952186995}
   m_Layer: 0
-  m_Name: CivilianVehicle051
+  m_Name: CivilianVehicle05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
