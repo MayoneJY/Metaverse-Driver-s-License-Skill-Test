@@ -792,7 +792,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1223002772083156, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
       propertyPath: m_Name
-      value: CivilianVehicle05
+      value: CivilianVehicle051
       objectReference: {fileID: 0}
     - target: {fileID: 1956168922167150, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
       propertyPath: m_IsActive
