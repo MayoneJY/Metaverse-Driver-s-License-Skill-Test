@@ -2446,7 +2446,6 @@ GameObject:
   - component: {fileID: 4407244999693362}
   - component: {fileID: 95706739926863790}
   - component: {fileID: 205575112928326686}
-  - component: {fileID: 3545937026577944976}
   m_Layer: 0
   m_Name: CivilianVehicle05
   m_TagString: Untagged
@@ -2627,23 +2626,6 @@ LODGroup:
     - renderer: {fileID: 23336902522696644}
     - renderer: {fileID: 23659578745141036}
   m_Enabled: 1
---- !u!114 &3545937026577944976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223002772083156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 753b962b101763f4aa8c326629df5a78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nightBeamLight: {fileID: 5900728090145427177}
-  _highBeamLight: {fileID: 1399862904837118525}
-  _renderer: {fileID: 23925900080171586}
-  _lightOn: {fileID: 2100000, guid: 8895ff1fec0790d4f98871584b431ad3, type: 2}
-  _lightOff: {fileID: 2100000, guid: ec8c31228f9327d4ba615ec92ef78b85, type: 2}
 --- !u!1 &1229904327595818
 GameObject:
   m_ObjectHideFlags: 0
