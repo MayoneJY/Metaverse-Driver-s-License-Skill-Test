@@ -39,6 +39,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontRightWheeTransform_LOD3;
     [SerializeField] private Transform rearLeftWheelTransform_LOD3;
     [SerializeField] private Transform rearRightWheelTransform_LOD3;
+    [SerializeField] private Transform m_StearingWheel;
 
     private void Start()
     {
@@ -103,7 +104,13 @@ public class CarController : MonoBehaviour
                 Debug.Log(Joystick.all[0].allControls[i].name);
             }
         }*/
-        Debug.Log("axel : " + verticalInput + ", break : " +  breakingInput);
+        Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
+        HandleRotation();
+    }
+
+    private void HandleRotation()
+    {
+        m_StearingWheel.rotation = Quaternion.Euler(new Vector3(15, 0, horizontalInput * -1 * 450));
     }
 
     private void HandleMotor()
