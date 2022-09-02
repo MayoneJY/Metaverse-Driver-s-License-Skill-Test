@@ -417,6 +417,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4754648728455698, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98946565
+      objectReference: {fileID: 0}
+    - target: {fileID: 4754648728455698, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.14476784
+      objectReference: {fileID: 0}
     - target: {fileID: 766034118725854519, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
       propertyPath: m_Mass
       value: 3000
@@ -429,6 +437,10 @@ PrefabInstance:
       propertyPath: motorForce
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 2881107000693890504, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+      propertyPath: m_StearingWheel
+      value: 
+      objectReference: {fileID: 1815540738}
     - target: {fileID: 2901144697882956366, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -1046,3 +1058,8 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!4 &1815540738 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4754648728455698, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  m_PrefabInstance: {fileID: 497364559}
+  m_PrefabAsset: {fileID: 0}
