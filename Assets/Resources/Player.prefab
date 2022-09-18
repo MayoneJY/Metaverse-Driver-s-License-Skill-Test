@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 2824882747714124588}
   - component: {fileID: 2834262029107346812}
   - component: {fileID: 2841874228006945898}
+  - component: {fileID: 5204211022036212470}
   m_Layer: 0
   m_Name: WheelRearLeft_LOD1
   m_TagString: Untagged
@@ -308,6 +309,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5204211022036212470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819265328487244682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2819288963922115100
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,6 +2321,7 @@ GameObject:
   - component: {fileID: 2822928708267301686}
   - component: {fileID: 2836108293487707172}
   - component: {fileID: 2842118781265379182}
+  - component: {fileID: 1684204479384574533}
   m_Layer: 0
   m_Name: WheelRearRight_LOD0
   m_TagString: Untagged
@@ -2375,6 +2393,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1684204479384574533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820762255258805792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2820768445524013270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2919,6 +2953,7 @@ GameObject:
   - component: {fileID: 2824524255934380870}
   - component: {fileID: 2834123933570399774}
   - component: {fileID: 2842099196591613146}
+  - component: {fileID: 7965455859515523445}
   m_Layer: 0
   m_Name: WheelFrontRight_LOD1
   m_TagString: Untagged
@@ -2990,6 +3025,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7965455859515523445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820808555146225446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2820816552474701682
 GameObject:
   m_ObjectHideFlags: 0
@@ -6802,6 +6853,7 @@ GameObject:
   - component: {fileID: 2824476339965494888}
   - component: {fileID: 2834028490668628964}
   - component: {fileID: 2841801815987659306}
+  - component: {fileID: 4394564300189312978}
   m_Layer: 0
   m_Name: WheelRearLeft_LOD0
   m_TagString: Untagged
@@ -6873,6 +6925,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4394564300189312978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821212448280298076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2821216869197431804
 GameObject:
   m_ObjectHideFlags: 0
@@ -7298,6 +7366,7 @@ GameObject:
   - component: {fileID: 2824553417150114424}
   - component: {fileID: 2833942026455374656}
   - component: {fileID: 2842095114780784642}
+  - component: {fileID: 4092944950770093865}
   m_Layer: 0
   m_Name: WheelFrontLeft_LOD1
   m_TagString: Untagged
@@ -7369,6 +7438,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4092944950770093865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821260503474746056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2821262796889898178
 GameObject:
   m_ObjectHideFlags: 0
@@ -7716,6 +7801,7 @@ GameObject:
   - component: {fileID: 2824555067780124022}
   - component: {fileID: 2834554199120817788}
   - component: {fileID: 2841810969990699300}
+  - component: {fileID: 1103230629989222880}
   m_Layer: 0
   m_Name: WheelFrontRight_LOD0
   m_TagString: Untagged
@@ -7787,6 +7873,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1103230629989222880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821292195305305652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2821301693537439102
 GameObject:
   m_ObjectHideFlags: 0
@@ -7798,6 +7900,7 @@ GameObject:
   - component: {fileID: 2824800130841475180}
   - component: {fileID: 2833987080364665764}
   - component: {fileID: 2842291892590439746}
+  - component: {fileID: 1742517160054585823}
   m_Layer: 0
   m_Name: WheelFrontLeft_LOD0
   m_TagString: Untagged
@@ -7869,6 +7972,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1742517160054585823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821301693537439102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2821302905141995598
 GameObject:
   m_ObjectHideFlags: 0
@@ -9992,28 +10111,32 @@ MonoBehaviour:
   motorForce: 3000
   breakForce: 3000
   maxSteerAngle: 30
-  frontLeftWheelCollider: {fileID: 8225357856776694688}
-  frontRightWheelCollider: {fileID: 3692918163610186209}
-  rearLeftWheelCollider: {fileID: 3279987807088185766}
-  rearRightWheelCollider: {fileID: 7438927891810134662}
-  frontLeftWheelTransform_LOD0: {fileID: 2824800130841475180}
-  frontRightWheeTransform_LOD0: {fileID: 2824555067780124022}
-  rearLeftWheelTransform_LOD0: {fileID: 2824476339965494888}
-  rearRightWheelTransform_LOD0: {fileID: 2822928708267301686}
-  frontLeftWheelTransform_LOD1: {fileID: 2824553417150114424}
-  frontRightWheeTransform_LOD1: {fileID: 2824524255934380870}
-  rearLeftWheelTransform_LOD1: {fileID: 2824882747714124588}
-  rearRightWheelTransform_LOD1: {fileID: 2823031901309166100}
-  frontLeftWheelTransform_LOD2: {fileID: 2822703488025120380}
-  frontRightWheeTransform_LOD2: {fileID: 2824790223791835702}
-  rearLeftWheelTransform_LOD2: {fileID: 2824577393719742070}
-  rearRightWheelTransform_LOD2: {fileID: 2822988246214674424}
-  frontLeftWheelTransform_LOD3: {fileID: 2822943214240290070}
-  frontRightWheeTransform_LOD3: {fileID: 2822834862055638818}
-  rearLeftWheelTransform_LOD3: {fileID: 2822839705555215606}
-  rearRightWheelTransform_LOD3: {fileID: 2823188131709057460}
-  m_StearingWheel: {fileID: 2824725825207103394}
-  m_Camera: {fileID: 1193227324476857575}
+  frontLeftWheelCollider: {fileID: 6126516293497392656, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  frontRightWheelCollider: {fileID: 1449161819036324945, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  rearLeftWheelCollider: {fileID: 767669087042024470, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  rearRightWheelCollider: {fileID: 4620681117924331318, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  frontLeftWheelTransform:
+  - {fileID: 4540704980393436, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4856688040710088, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4455917417720780, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4097443810439334, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  frontRightWheelTransform:
+  - {fileID: 4856137467488454, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4834172209979126, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4572602927509382, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4270667298038418, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  rearLeftWheelTransform:
+  - {fileID: 4815018361693144, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4620815971360412, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4925070311500742, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4266923178459462, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  rearRightWheelTransform:
+  - {fileID: 4111949238173318, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4215464365016996, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4171158682346056, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 4063632702266372, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  m_StearingWheel: {fileID: 4754648728455698, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  m_Camera: {fileID: 4011762315330402647, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
 --- !u!65 &6970004420752619459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10047,6 +10170,14 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6816395176401187117}
+  - {fileID: 4092944950770093865}
+  - {fileID: 7965455859515523445}
+  - {fileID: 5204211022036212470}
+  - {fileID: 593614837668343216}
+  - {fileID: 1684204479384574533}
+  - {fileID: 4394564300189312978}
+  - {fileID: 1103230629989222880}
+  - {fileID: 1742517160054585823}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -10495,6 +10626,7 @@ GameObject:
   - component: {fileID: 2823031901309166100}
   - component: {fileID: 2834478792042746258}
   - component: {fileID: 2843695485031986108}
+  - component: {fileID: 593614837668343216}
   m_Layer: 0
   m_Name: WheelRearRight_LOD1
   m_TagString: Untagged
@@ -10566,6 +10698,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &593614837668343216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821500701169606652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2821502064418886506
 GameObject:
   m_ObjectHideFlags: 0

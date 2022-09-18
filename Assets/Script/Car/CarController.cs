@@ -15,6 +15,11 @@ public class CarController : MonoBehaviourPunCallbacks
     private float currentbreakForce;
     private float breakingInput;
 
+    private Vector3 currFrontLeftWheelRotation;
+    private Vector3 currFrontRightWheelRotation;
+    private Vector3 currRearLeftWheelRotation;
+    private Vector3 currRearRightWheelRotation;
+
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
     [SerializeField] private float maxSteerAngle;
@@ -24,22 +29,10 @@ public class CarController : MonoBehaviourPunCallbacks
     [SerializeField] private WheelCollider rearLeftWheelCollider;
     [SerializeField] private WheelCollider rearRightWheelCollider;
 
-    [SerializeField] private Transform frontLeftWheelTransform_LOD0;
-    [SerializeField] private Transform frontRightWheeTransform_LOD0;
-    [SerializeField] private Transform rearLeftWheelTransform_LOD0;
-    [SerializeField] private Transform rearRightWheelTransform_LOD0;
-    [SerializeField] private Transform frontLeftWheelTransform_LOD1;
-    [SerializeField] private Transform frontRightWheeTransform_LOD1;
-    [SerializeField] private Transform rearLeftWheelTransform_LOD1;
-    [SerializeField] private Transform rearRightWheelTransform_LOD1;
-    [SerializeField] private Transform frontLeftWheelTransform_LOD2;
-    [SerializeField] private Transform frontRightWheeTransform_LOD2;
-    [SerializeField] private Transform rearLeftWheelTransform_LOD2;
-    [SerializeField] private Transform rearRightWheelTransform_LOD2;
-    [SerializeField] private Transform frontLeftWheelTransform_LOD3;
-    [SerializeField] private Transform frontRightWheeTransform_LOD3;
-    [SerializeField] private Transform rearLeftWheelTransform_LOD3;
-    [SerializeField] private Transform rearRightWheelTransform_LOD3;
+    [SerializeField] private Transform[] frontLeftWheelTransform;
+    [SerializeField] private Transform[] frontRightWheelTransform;
+    [SerializeField] private Transform[] rearLeftWheelTransform;
+    [SerializeField] private Transform[] rearRightWheelTransform;
     [SerializeField] private Transform m_StearingWheel;
     [SerializeField] private GameObject m_Camera;
 
@@ -152,24 +145,22 @@ public class CarController : MonoBehaviourPunCallbacks
 
     private void UpdateWheels()
     {
-        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform_LOD0);
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheeTransform_LOD0);
-        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform_LOD0);
-        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform_LOD0);
-        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform_LOD1);
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheeTransform_LOD1);
-        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform_LOD1);
-        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform_LOD1);
-        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform_LOD2);
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheeTransform_LOD2);
-        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform_LOD2);
-        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform_LOD2);
-        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform_LOD3);
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheeTransform_LOD3);
-        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform_LOD3);
-        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform_LOD3);
+        for(int i = 0; i < frontLeftWheelTransform.Length; i++){
+            if(photonView.IsMine){
+                UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform[i]);
+                UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform[i]);
+                UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform[i]);
+                UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform[i]);
+            }
+            else{
+                frontLeftWheelTransform[i].eulerAngles = currFrontRightWheelRotation;
+                frontRightWheelTransform[i].eulerAngles = currFrontRightWheelRotation;
+                rearRightWheelTransform[i].eulerAngles = currFrontRightWheelRotation;
+                rearLeftWheelTransform[i].eulerAngles = currFrontRightWheelRotation;
+            }
+        }
     }
-
+    
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
     {
         Vector3 pos;
@@ -177,5 +168,20 @@ public class CarController : MonoBehaviourPunCallbacks
         wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info){
+        if(stream.IsWriting){
+            stream.SendNext(frontLeftWheelTransform[0].eulerAngles);
+            stream.SendNext(frontRightWheelTransform[0].eulerAngles);
+            stream.SendNext(rearRightWheelTransform[0].eulerAngles);
+            stream.SendNext(rearLeftWheelTransform[0].eulerAngles);
+        }
+        else{
+            currFrontLeftWheelRotation = (Vector3) stream.ReceiveNext();
+            currFrontRightWheelRotation = (Vector3) stream.ReceiveNext();
+            currRearLeftWheelRotation = (Vector3) stream.ReceiveNext();
+            currRearRightWheelRotation = (Vector3) stream.ReceiveNext();
+        }
     }
 }
