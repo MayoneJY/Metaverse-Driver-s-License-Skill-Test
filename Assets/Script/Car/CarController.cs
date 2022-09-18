@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
-public class CarController : MonoBehaviour
+public class CarController : MonoBehaviourPunCallbacks
 {
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
@@ -40,21 +41,30 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform_LOD3;
     [SerializeField] private Transform rearRightWheelTransform_LOD3;
     [SerializeField] private Transform m_StearingWheel;
+    [SerializeField] private GameObject m_Camera;
 
     private void Start()
     {
-        if (Input.GetAxis("axel") < 0)
-            verticalInput = 1 - (Input.GetAxis("axel") * (-1));
-        else if (Input.GetAxis("axel") == 0)
-            verticalInput = 1;
-        else if (Input.GetAxis("axel") > 0)
-            verticalInput = 1 + Input.GetAxis("axel");
-
+        if(Controller.isController){
+            if(Controller.isController){
+                if (Input.GetAxis("axel") < 0)
+                    verticalInput = 1 - (Input.GetAxis("axel") * (-1));
+                else if (Input.GetAxis("axel") == 0)
+                    verticalInput = 1;
+                else if (Input.GetAxis("axel") > 0)
+                    verticalInput = 1 + Input.GetAxis("axel");
+            }
+        }
+        if(!photonView.IsMine){
+            m_Camera.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
     {
-        GetInput();
+        if(photonView.IsMine){
+            GetInput();
+        }
         HandleMotor();
         HandleSteering();
         UpdateWheels();
@@ -63,33 +73,36 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
+        if(Controller.isController){
+            if (Joystick.all[0].stick.x.ReadValue() == -1 || Joystick.all[0].stick.x.ReadValue() == 1)
+                horizontalInput = 0;
+            else if (Joystick.all[0].stick.x.ReadValue() < 0)
+                horizontalInput = 1 - Joystick.all[0].stick.x.ReadValue() * (-1);
+            else if (Joystick.all[0].stick.x.ReadValue() > 0)
+                horizontalInput = (1 - Joystick.all[0].stick.x.ReadValue()) * (-1);
 
-        if (Joystick.all[0].stick.x.ReadValue() == -1 || Joystick.all[0].stick.x.ReadValue() == 1)
-            horizontalInput = 0;
-        else if (Joystick.all[0].stick.x.ReadValue() < 0)
-            horizontalInput = 1 - Joystick.all[0].stick.x.ReadValue() * (-1);
-        else if (Joystick.all[0].stick.x.ReadValue() > 0)
-            horizontalInput = (1 - Joystick.all[0].stick.x.ReadValue()) * (-1);
 
+            if (Input.GetAxis("axel") < 0)
+                verticalInput = 1 - (Input.GetAxis("axel") * (-1));
+            else if (Input.GetAxis("axel") == 0)
+                verticalInput = 1;
+            else if (Input.GetAxis("axel") > 0)
+                verticalInput = 1 + Input.GetAxis("axel");
 
-        if (Input.GetAxis("axel") < 0)
-            verticalInput = 1 - (Input.GetAxis("axel") * (-1));
-        else if (Input.GetAxis("axel") == 0)
-            verticalInput = 1;
-        else if (Input.GetAxis("axel") > 0)
-            verticalInput = 1 + Input.GetAxis("axel");
+            verticalInput = verticalInput / 2;
 
-        verticalInput = verticalInput / 2;
+            if (Joystick.all[0].stick.y.ReadValue() * -1 > 0.5)
+                breakingInput = 0.5f;
+            else
+                breakingInput = Joystick.all[0].stick.y.ReadValue() * -1;
 
-        if (Joystick.all[0].stick.y.ReadValue() * -1 > 0.5)
-            breakingInput = 0.5f;
-        else
-            breakingInput = Joystick.all[0].stick.y.ReadValue() * -1;
-
-        breakingInput *= 2;
-        //horizontalInput = Input.GetAxis(HORIZONTAL);
-        //verticalInput = Input.GetAxis(VERTICAL);
-        //isBreaking = Input.GetKey(KeyCode.Space);
+            breakingInput *= 2;
+        }
+        else{
+            horizontalInput = Input.GetAxis(HORIZONTAL);
+            verticalInput = Input.GetAxis(VERTICAL);
+            //isBreaking = Input.GetKey(KeyCode.Space);
+        }
         /*for (int i = 0; i < Joystick.all[0].allControls.Count; i++)
             Debug.Log(Joystick.all[0].allControls[i].name);*/
         //Debug.Log(Input.GetAxis("axel"));
@@ -104,7 +117,7 @@ public class CarController : MonoBehaviour
                 Debug.Log(Joystick.all[0].allControls[i].name);
             }
         }*/
-        Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
+        //Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
         HandleRotation();
     }
 
