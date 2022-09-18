@@ -15,10 +15,10 @@ public class CarController : MonoBehaviourPunCallbacks
     private float currentbreakForce;
     private float breakingInput;
 
-    private Vector3 currFrontLeftWheelRotation;
-    private Vector3 currFrontRightWheelRotation;
-    private Vector3 currRearLeftWheelRotation;
-    private Vector3 currRearRightWheelRotation;
+    private Quaternion[] currFrontLeftWheelRotation = new Quaternion[4];
+    private Quaternion[] currFrontRightWheelRotation = new Quaternion[4];
+    private Quaternion[] currRearLeftWheelRotation = new Quaternion[4];
+    private Quaternion[] currRearRightWheelRotation = new Quaternion[4];
 
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
@@ -110,7 +110,7 @@ public class CarController : MonoBehaviourPunCallbacks
                 Debug.Log(Joystick.all[0].allControls[i].name);
             }
         }*/
-        //Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
+        Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
         HandleRotation();
     }
 
@@ -121,6 +121,7 @@ public class CarController : MonoBehaviourPunCallbacks
 
     private void HandleMotor()
     {
+        Debug.Log(verticalInput * motorForce);
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
         currentbreakForce = breakingInput * breakForce;
@@ -153,10 +154,10 @@ public class CarController : MonoBehaviourPunCallbacks
                 UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform[i]);
             }
             else{
-                frontLeftWheelTransform[i].eulerAngles = currFrontRightWheelRotation;
-                frontRightWheelTransform[i].eulerAngles = currFrontRightWheelRotation;
-                rearRightWheelTransform[i].eulerAngles = currFrontRightWheelRotation;
-                rearLeftWheelTransform[i].eulerAngles = currFrontRightWheelRotation;
+                frontLeftWheelTransform[i].rotation = currFrontRightWheelRotation[i];
+                frontRightWheelTransform[i].rotation = currFrontRightWheelRotation[i];
+                rearRightWheelTransform[i].rotation = currFrontRightWheelRotation[i];
+                rearLeftWheelTransform[i].rotation = currFrontRightWheelRotation[i];
             }
         }
     }
@@ -172,16 +173,22 @@ public class CarController : MonoBehaviourPunCallbacks
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info){
         if(stream.IsWriting){
-            stream.SendNext(frontLeftWheelTransform[0].eulerAngles);
-            stream.SendNext(frontRightWheelTransform[0].eulerAngles);
-            stream.SendNext(rearRightWheelTransform[0].eulerAngles);
-            stream.SendNext(rearLeftWheelTransform[0].eulerAngles);
+
+            for(int i = 0; i < frontLeftWheelTransform.Length; i++){
+                stream.SendNext(frontLeftWheelTransform[i].rotation);
+                stream.SendNext(frontRightWheelTransform[i].rotation);
+                stream.SendNext(rearRightWheelTransform[i].rotation);
+                stream.SendNext(rearLeftWheelTransform[i].rotation);
+            }
         }
         else{
-            currFrontLeftWheelRotation = (Vector3) stream.ReceiveNext();
-            currFrontRightWheelRotation = (Vector3) stream.ReceiveNext();
-            currRearLeftWheelRotation = (Vector3) stream.ReceiveNext();
-            currRearRightWheelRotation = (Vector3) stream.ReceiveNext();
+
+            for(int i = 0; i < frontLeftWheelTransform.Length; i++){
+                currFrontLeftWheelRotation[i] = (Quaternion) stream.ReceiveNext();
+                currFrontRightWheelRotation[i] = (Quaternion) stream.ReceiveNext();
+                currRearLeftWheelRotation[i] = (Quaternion) stream.ReceiveNext();
+                currRearRightWheelRotation[i] = (Quaternion) stream.ReceiveNext();
+            }
         }
     }
 }

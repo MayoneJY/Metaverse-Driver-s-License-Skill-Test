@@ -10111,32 +10111,32 @@ MonoBehaviour:
   motorForce: 3000
   breakForce: 3000
   maxSteerAngle: 30
-  frontLeftWheelCollider: {fileID: 6126516293497392656, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  frontRightWheelCollider: {fileID: 1449161819036324945, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  rearLeftWheelCollider: {fileID: 767669087042024470, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  rearRightWheelCollider: {fileID: 4620681117924331318, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  frontLeftWheelCollider: {fileID: 8225357856776694688}
+  frontRightWheelCollider: {fileID: 3692918163610186209}
+  rearLeftWheelCollider: {fileID: 3279987807088185766}
+  rearRightWheelCollider: {fileID: 7438927891810134662}
   frontLeftWheelTransform:
-  - {fileID: 4540704980393436, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4856688040710088, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4455917417720780, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4097443810439334, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 2824800130841475180}
+  - {fileID: 2824553417150114424}
+  - {fileID: 2822703488025120380}
+  - {fileID: 2822943214240290070}
   frontRightWheelTransform:
-  - {fileID: 4856137467488454, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4834172209979126, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4572602927509382, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4270667298038418, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 2824555067780124022}
+  - {fileID: 2824524255934380870}
+  - {fileID: 2824790223791835702}
+  - {fileID: 2822834862055638818}
   rearLeftWheelTransform:
-  - {fileID: 4815018361693144, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4620815971360412, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4925070311500742, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4266923178459462, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 2824476339965494888}
+  - {fileID: 2824882747714124588}
+  - {fileID: 2824577393719742070}
+  - {fileID: 2822839705555215606}
   rearRightWheelTransform:
-  - {fileID: 4111949238173318, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4215464365016996, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4171158682346056, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  - {fileID: 4063632702266372, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  m_StearingWheel: {fileID: 4754648728455698, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
-  m_Camera: {fileID: 4011762315330402647, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  - {fileID: 2822928708267301686}
+  - {fileID: 2823031901309166100}
+  - {fileID: 2822988246214674424}
+  - {fileID: 2823188131709057460}
+  m_StearingWheel: {fileID: 2824725825207103394}
+  m_Camera: {fileID: 1193227324476857575}
 --- !u!65 &6970004420752619459
 BoxCollider:
   m_ObjectHideFlags: 0
