@@ -36,20 +36,30 @@ public class CarController : MonoBehaviourPunCallbacks
     [SerializeField] private Transform m_StearingWheel;
     [SerializeField] private GameObject m_Camera;
 
+    // 타플레이어 투명
+    private Shader TransparentShader;
+
+
     private void Start()
     {
+        TransparentShader = Shader.Find("Legacy Shaders/Transparent/Diffuse");
         if(Controller.isController){
-            if(Controller.isController){
-                if (Input.GetAxis("axel") < 0)
-                    verticalInput = 1 - (Input.GetAxis("axel") * (-1));
-                else if (Input.GetAxis("axel") == 0)
-                    verticalInput = 1;
-                else if (Input.GetAxis("axel") > 0)
-                    verticalInput = 1 + Input.GetAxis("axel");
-            }
+            if (Input.GetAxis("axel") < 0)
+                verticalInput = 1 - (Input.GetAxis("axel") * (-1));
+            else if (Input.GetAxis("axel") == 0)
+                verticalInput = 1;
+            else if (Input.GetAxis("axel") > 0)
+                verticalInput = 1 + Input.GetAxis("axel");
         }
         if(!photonView.IsMine){
             m_Camera.SetActive(false);
+
+            foreach(MeshRenderer rr in gameObject.GetComponentsInChildren<MeshRenderer>()){
+                rr.material.shader = TransparentShader;
+                Color c = rr.material.color;
+                c.a = 0.5f;
+                rr.material.SetColor("_Color", c);
+            }
         }
     }
 
@@ -94,7 +104,12 @@ public class CarController : MonoBehaviourPunCallbacks
         else{
             horizontalInput = Input.GetAxis(HORIZONTAL);
             verticalInput = Input.GetAxis(VERTICAL);
-            //isBreaking = Input.GetKey(KeyCode.Space);
+            if(Input.GetKey(KeyCode.Space)){
+                breakingInput = 1;
+            }
+            else{
+                breakingInput = 0;
+            }
         }
         /*for (int i = 0; i < Joystick.all[0].allControls.Count; i++)
             Debug.Log(Joystick.all[0].allControls[i].name);*/
