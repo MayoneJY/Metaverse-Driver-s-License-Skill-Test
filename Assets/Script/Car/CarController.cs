@@ -15,10 +15,10 @@ public class CarController : MonoBehaviourPunCallbacks
     private float currentbreakForce;
     private float breakingInput;
 
-    private Quaternion[] currFrontLeftWheelRotation = new Quaternion[4];
-    private Quaternion[] currFrontRightWheelRotation = new Quaternion[4];
-    private Quaternion[] currRearLeftWheelRotation = new Quaternion[4];
-    private Quaternion[] currRearRightWheelRotation = new Quaternion[4];
+    private WheelCollider currFrontLeftWheelCollider;
+    private WheelCollider currFrontRightWheelCollider;
+    private WheelCollider currRearLeftWheelCollider;
+    private WheelCollider currRearRightWheelCollider;
 
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
@@ -110,7 +110,7 @@ public class CarController : MonoBehaviourPunCallbacks
                 Debug.Log(Joystick.all[0].allControls[i].name);
             }
         }*/
-        Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
+        //Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
         HandleRotation();
     }
 
@@ -121,7 +121,6 @@ public class CarController : MonoBehaviourPunCallbacks
 
     private void HandleMotor()
     {
-        Debug.Log(verticalInput * motorForce);
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
         currentbreakForce = breakingInput * breakForce;
@@ -153,12 +152,6 @@ public class CarController : MonoBehaviourPunCallbacks
                 UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform[i]);
                 UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform[i]);
             }
-            else{
-                frontLeftWheelTransform[i].rotation = currFrontRightWheelRotation[i];
-                frontRightWheelTransform[i].rotation = currFrontRightWheelRotation[i];
-                rearRightWheelTransform[i].rotation = currFrontRightWheelRotation[i];
-                rearLeftWheelTransform[i].rotation = currFrontRightWheelRotation[i];
-            }
         }
     }
     
@@ -173,21 +166,21 @@ public class CarController : MonoBehaviourPunCallbacks
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info){
         if(stream.IsWriting){
-
-            for(int i = 0; i < frontLeftWheelTransform.Length; i++){
-                stream.SendNext(frontLeftWheelTransform[i].rotation);
-                stream.SendNext(frontRightWheelTransform[i].rotation);
-                stream.SendNext(rearRightWheelTransform[i].rotation);
-                stream.SendNext(rearLeftWheelTransform[i].rotation);
-            }
+            stream.SendNext(frontLeftWheelCollider);
+            stream.SendNext(frontRightWheelCollider);
+            stream.SendNext(rearRightWheelCollider);
+            stream.SendNext(rearLeftWheelCollider);
         }
         else{
-
+            currFrontLeftWheelCollider = (WheelCollider) stream.ReceiveNext();
+            currFrontRightWheelCollider = (WheelCollider) stream.ReceiveNext();
+            currRearRightWheelCollider = (WheelCollider) stream.ReceiveNext();
+            currRearLeftWheelCollider = (WheelCollider) stream.ReceiveNext();
             for(int i = 0; i < frontLeftWheelTransform.Length; i++){
-                currFrontLeftWheelRotation[i] = (Quaternion) stream.ReceiveNext();
-                currFrontRightWheelRotation[i] = (Quaternion) stream.ReceiveNext();
-                currRearLeftWheelRotation[i] = (Quaternion) stream.ReceiveNext();
-                currRearRightWheelRotation[i] = (Quaternion) stream.ReceiveNext();
+                UpdateSingleWheel(currFrontLeftWheelCollider, frontLeftWheelTransform[i]);
+                UpdateSingleWheel(currFrontRightWheelCollider, frontRightWheelTransform[i]);
+                UpdateSingleWheel(currRearRightWheelCollider, rearRightWheelTransform[i]);
+                UpdateSingleWheel(currRearLeftWheelCollider, rearLeftWheelTransform[i]);
             }
         }
     }
