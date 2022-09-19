@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
+    public static bool isController = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +20,12 @@ public class Controller : MonoBehaviour
     {
         if ( Joystick.all.Count > 0)
         {
+            isController = true;
             //Debug.Log(Joystick.current.stick.ReadValue());
             //Debug.Log(Joystick.all[0].stick.x.ReadValue());
+        }
+        else{
+            isController = false;
         }
     }
 
