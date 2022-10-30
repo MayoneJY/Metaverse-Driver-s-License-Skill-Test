@@ -9,15 +9,18 @@ public class TrafficLightController : MonoBehaviour
         GREEN,
         YELLOW,
         RED,
+        ARROW,
+        YELLOW_2,
         MAX
     }
 
+    [SerializeField] private LIGHT_TYPE _startType = LIGHT_TYPE.RED;
     [SerializeField] private GameObject[] _objectLights = new GameObject[(int)LIGHT_TYPE.MAX];
 
     [SerializeField] private float _redLightChangeSecond = 30.0f;
     [SerializeField] private float _yellowLightChangeSecond = 10.0f;
     [SerializeField] private float _greenLightChangeSecond = 30.0f;
-
+    [SerializeField] private float _arrowLightChangeSecond = 30.0f;
 
     private float _deltaLight = 0.0f;
 
@@ -30,13 +33,16 @@ public class TrafficLightController : MonoBehaviour
             _objectLights[i].SetActive(false);
         }
 
+        if (type == LIGHT_TYPE.ARROW)
+            _objectLights[(int)LIGHT_TYPE.RED].SetActive(true);
+
         _objectLights[(int)type].SetActive(true);
         _currentLightType = type;
     }
 
     private void Start()
     {
-        SetState(_currentLightType);
+        SetState(_startType);
     }
 
     // Update is called once per frame
@@ -44,18 +50,23 @@ public class TrafficLightController : MonoBehaviour
     {
         _deltaLight += Time.deltaTime;
         float limitLightSeconds = 0.0f;
-        
+
         switch (_currentLightType)
         {
             case LIGHT_TYPE.RED:
                 limitLightSeconds = _redLightChangeSecond;
                 break;
             case LIGHT_TYPE.YELLOW:
+            case LIGHT_TYPE.YELLOW_2:
                 limitLightSeconds = _yellowLightChangeSecond;
                 break;
             case LIGHT_TYPE.GREEN:
                 limitLightSeconds = _greenLightChangeSecond;
                 break;
+            case LIGHT_TYPE.ARROW:
+                limitLightSeconds = _arrowLightChangeSecond;
+                break;
+
         }
 
         if (_deltaLight >= limitLightSeconds)
