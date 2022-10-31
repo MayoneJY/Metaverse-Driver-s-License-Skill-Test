@@ -43,12 +43,14 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
-        if (Input.GetAxis("axel") < 0)
-            verticalInput = 1 - (Input.GetAxis("axel") * (-1));
-        else if (Input.GetAxis("axel") == 0)
-            verticalInput = 1;
-        else if (Input.GetAxis("axel") > 0)
-            verticalInput = 1 + Input.GetAxis("axel");
+        if(Controller.isController){
+            if (Input.GetAxis("axel") < 0)
+                verticalInput = 1 - (Input.GetAxis("axel") * (-1));
+            else if (Input.GetAxis("axel") == 0)
+                verticalInput = 1;
+            else if (Input.GetAxis("axel") > 0)
+                verticalInput = 1 + Input.GetAxis("axel");
+        }
 
     }
 
@@ -63,33 +65,39 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
+        if(Controller.isController){
+            // if (Joystick.all[0].stick.x.ReadValue() == -1 || Joystick.all[0].stick.x.ReadValue() == 1)
+            //     horizontalInput = 0;
+            // else if (Joystick.all[0].stick.x.ReadValue() < 0)
+            //     horizontalInput = 1 - Joystick.all[0].stick.x.ReadValue() * (-1);
+            // else if (Joystick.all[0].stick.x.ReadValue() > 0)
+            //     horizontalInput = (1 - Joystick.all[0].stick.x.ReadValue()) * (-1);
+            horizontalInput = Input.GetAxis(HORIZONTAL);
 
-        if (Joystick.all[0].stick.x.ReadValue() == -1 || Joystick.all[0].stick.x.ReadValue() == 1)
-            horizontalInput = 0;
-        else if (Joystick.all[0].stick.x.ReadValue() < 0)
-            horizontalInput = 1 - Joystick.all[0].stick.x.ReadValue() * (-1);
-        else if (Joystick.all[0].stick.x.ReadValue() > 0)
-            horizontalInput = (1 - Joystick.all[0].stick.x.ReadValue()) * (-1);
+            if (Input.GetAxis("axel") < 0)
+                verticalInput = 1 - (Input.GetAxis("axel") * (-1));
+            else if (Input.GetAxis("axel") == 0)
+                verticalInput = 1;
+            else if (Input.GetAxis("axel") > 0)
+                verticalInput = 1 + Input.GetAxis("axel");
+
+            verticalInput = verticalInput / 2;
 
 
-        if (Input.GetAxis("axel") < 0)
-            verticalInput = 1 - (Input.GetAxis("axel") * (-1));
-        else if (Input.GetAxis("axel") == 0)
-            verticalInput = 1;
-        else if (Input.GetAxis("axel") > 0)
-            verticalInput = 1 + Input.GetAxis("axel");
-
-        verticalInput = verticalInput / 2;
-
-        if (Joystick.all[0].stick.y.ReadValue() * -1 > 0.5)
-            breakingInput = 0.5f;
-        else
-            breakingInput = Joystick.all[0].stick.y.ReadValue() * -1;
-
-        breakingInput *= 2;
-        //horizontalInput = Input.GetAxis(HORIZONTAL);
-        //verticalInput = Input.GetAxis(VERTICAL);
-        //isBreaking = Input.GetKey(KeyCode.Space);
+            breakingInput = Input.GetAxis("break");
+            if(breakingInput < 0.1) breakingInput = 0;
+            if(verticalInput < 0.1) verticalInput = 0;
+        }
+        else{
+            horizontalInput = Input.GetAxis(HORIZONTAL);
+            verticalInput = Input.GetAxis(VERTICAL);
+            if(Input.GetKey(KeyCode.Space)){
+                breakingInput = 1;
+            }
+            else{
+                breakingInput = 0;
+            }
+        }
         /*for (int i = 0; i < Joystick.all[0].allControls.Count; i++)
             Debug.Log(Joystick.all[0].allControls[i].name);*/
         //Debug.Log(Input.GetAxis("axel"));
@@ -118,6 +126,7 @@ public class CarController : MonoBehaviour
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
         currentbreakForce = breakingInput * breakForce;
+        Debug.Log("" + verticalInput * motorForce + ", " + currentbreakForce);
         ApplyBreaking();
     }
 
