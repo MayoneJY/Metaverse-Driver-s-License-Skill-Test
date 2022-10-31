@@ -66,13 +66,13 @@ public class CarController : MonoBehaviour
     private void GetInput()
     {
         if(Controller.isController){
-            if (Joystick.all[0].stick.x.ReadValue() == -1 || Joystick.all[0].stick.x.ReadValue() == 1)
-                horizontalInput = 0;
-            else if (Joystick.all[0].stick.x.ReadValue() < 0)
-                horizontalInput = 1 - Joystick.all[0].stick.x.ReadValue() * (-1);
-            else if (Joystick.all[0].stick.x.ReadValue() > 0)
-                horizontalInput = (1 - Joystick.all[0].stick.x.ReadValue()) * (-1);
-
+            // if (Joystick.all[0].stick.x.ReadValue() == -1 || Joystick.all[0].stick.x.ReadValue() == 1)
+            //     horizontalInput = 0;
+            // else if (Joystick.all[0].stick.x.ReadValue() < 0)
+            //     horizontalInput = 1 - Joystick.all[0].stick.x.ReadValue() * (-1);
+            // else if (Joystick.all[0].stick.x.ReadValue() > 0)
+            //     horizontalInput = (1 - Joystick.all[0].stick.x.ReadValue()) * (-1);
+            horizontalInput = Input.GetAxis(HORIZONTAL);
 
             if (Input.GetAxis("axel") < 0)
                 verticalInput = 1 - (Input.GetAxis("axel") * (-1));
@@ -83,12 +83,9 @@ public class CarController : MonoBehaviour
 
             verticalInput = verticalInput / 2;
 
-            if (Joystick.all[0].stick.y.ReadValue() * -1 > 0.5)
-                breakingInput = 0.5f;
-            else
-                breakingInput = Joystick.all[0].stick.y.ReadValue() * -1;
-
-            breakingInput *= 2;
+            breakingInput = Input.GetAxis("break");
+            if(breakingInput < 0.1) breakingInput = 0;
+            if(verticalInput < 0.1) verticalInput = 0;
         }
         else{
             horizontalInput = Input.GetAxis(HORIZONTAL);
@@ -128,6 +125,7 @@ public class CarController : MonoBehaviour
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
         currentbreakForce = breakingInput * breakForce;
+        Debug.Log("" + verticalInput * motorForce + ", " + currentbreakForce);
         ApplyBreaking();
     }
 
