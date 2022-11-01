@@ -85,7 +85,6 @@ public class CarController : MonoBehaviour
 
                 verticalInput = verticalInput / 2;
 
-
                 breakingInput = Input.GetAxis("break");
                 if(breakingInput < 0.1) breakingInput = 0;
                 if(verticalInput < 0.1) verticalInput = 0;
