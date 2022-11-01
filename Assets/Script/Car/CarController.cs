@@ -112,7 +112,8 @@ public class CarController : MonoBehaviour
 
     private void HandleRotation()
     {
-        m_StearingWheel.rotation = Quaternion.Euler(new Vector3(15, 0, horizontalInput * -1 * 450));
+        //m_StearingWheel.rotation = Quaternion.Euler(new Vector3(15, 0, horizontalInput * -1 * 450));
+        m_StearingWheel.eulerAngles = new Vector3(15, 0, horizontalInput * -1 * 450);
     }
 
     private void HandleMotor()
