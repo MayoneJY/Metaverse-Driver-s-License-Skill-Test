@@ -2657,7 +2657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motorForce: 1000
-  breakForce: 3000
+  breakForce: 1000
   maxSteerAngle: 30
   frontLeftWheelCollider: {fileID: 6126516293497392656}
   frontRightWheelCollider: {fileID: 1449161819036324945}
@@ -2679,6 +2679,7 @@ MonoBehaviour:
   frontRightWheeTransform_LOD3: {fileID: 4270667298038418}
   rearLeftWheelTransform_LOD3: {fileID: 4266923178459462}
   rearRightWheelTransform_LOD3: {fileID: 4063632702266372}
+  m_StearingWheel: {fileID: 4271157381684420}
 --- !u!65 &5159431273952186995
 BoxCollider:
   m_ObjectHideFlags: 0

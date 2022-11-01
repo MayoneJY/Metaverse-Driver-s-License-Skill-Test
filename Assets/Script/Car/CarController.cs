@@ -113,8 +113,8 @@ public class CarController : MonoBehaviour
     private void ApplyBreaking()
     {
         //Debug.Log(currentbreakForce);
-        frontRightWheelCollider.brakeTorque = currentbreakForce;
-        frontLeftWheelCollider.brakeTorque = currentbreakForce;
+        //frontRightWheelCollider.brakeTorque = currentbreakForce;
+        //frontLeftWheelCollider.brakeTorque = currentbreakForce;
         rearLeftWheelCollider.brakeTorque = currentbreakForce;
         rearRightWheelCollider.brakeTorque = currentbreakForce;
     }
