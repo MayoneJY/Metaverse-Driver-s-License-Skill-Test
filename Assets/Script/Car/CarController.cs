@@ -40,6 +40,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform_LOD3;
     [SerializeField] private Transform rearRightWheelTransform_LOD3;
     [SerializeField] private Transform m_StearingWheel;
+    private int gearStatus = 0;
 
     private void Start()
     {
@@ -65,33 +66,47 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
+        //GearControl.m_GearState_Now
+        //0: Parking
+        //1: Return
+        //2: Nature
+        //3: Drive
+        gearStatus = GearControl.m_GearState_Now;
         if(Controller.isController){
             horizontalInput = Input.GetAxis(HORIZONTAL);
 
-            if (Input.GetAxis("axel") < 0)
-                verticalInput = 1 - (Input.GetAxis("axel") * (-1));
-            else if (Input.GetAxis("axel") == 0)
-                verticalInput = 1;
-            else if (Input.GetAxis("axel") > 0)
-                verticalInput = 1 + Input.GetAxis("axel");
+            if(gearStatus == 1 || gearStatus == 3){
+                if (Input.GetAxis("axel") < 0)
+                    verticalInput = 1 - (Input.GetAxis("axel") * (-1));
+                else if (Input.GetAxis("axel") == 0)
+                    verticalInput = 1;
+                else if (Input.GetAxis("axel") > 0)
+                    verticalInput = 1 + Input.GetAxis("axel");
 
-            verticalInput = verticalInput / 2;
+                verticalInput = verticalInput / 2;
 
 
-            breakingInput = Input.GetAxis("break");
-            if(breakingInput < 0.1) breakingInput = 0;
-            if(verticalInput < 0.1) verticalInput = 0;
+                breakingInput = Input.GetAxis("break");
+                if(breakingInput < 0.1) breakingInput = 0;
+                if(verticalInput < 0.1) verticalInput = 0;
+            }
         }
         else{
             horizontalInput = Input.GetAxis(HORIZONTAL);
-            verticalInput = Input.GetAxis(VERTICAL);
-            if(Input.GetKey(KeyCode.Space)){
-                breakingInput = 1;
-            }
-            else{
-                breakingInput = 0;
+
+            if(gearStatus == 1 || gearStatus == 3){
+                verticalInput = Input.GetAxis(VERTICAL);
+                if(Input.GetKey(KeyCode.Space)){
+                    breakingInput = 1;
+                }
+                else{
+                    breakingInput = 0;
+                }
             }
         }
+        if(gearStatus == 1) verticalInput *= -1;
+        
+        if(gearStatus == 0) breakingInput = 1;
         Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
         HandleRotation();
     }
