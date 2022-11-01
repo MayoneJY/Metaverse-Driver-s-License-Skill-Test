@@ -66,12 +66,6 @@ public class CarController : MonoBehaviour
     private void GetInput()
     {
         if(Controller.isController){
-            // if (Joystick.all[0].stick.x.ReadValue() == -1 || Joystick.all[0].stick.x.ReadValue() == 1)
-            //     horizontalInput = 0;
-            // else if (Joystick.all[0].stick.x.ReadValue() < 0)
-            //     horizontalInput = 1 - Joystick.all[0].stick.x.ReadValue() * (-1);
-            // else if (Joystick.all[0].stick.x.ReadValue() > 0)
-            //     horizontalInput = (1 - Joystick.all[0].stick.x.ReadValue()) * (-1);
             horizontalInput = Input.GetAxis(HORIZONTAL);
 
             if (Input.GetAxis("axel") < 0)
@@ -98,20 +92,6 @@ public class CarController : MonoBehaviour
                 breakingInput = 0;
             }
         }
-        /*for (int i = 0; i < Joystick.all[0].allControls.Count; i++)
-            Debug.Log(Joystick.all[0].allControls[i].name);*/
-        //Debug.Log(Input.GetAxis("axel"));
-        //Debug.Log(InputSystem.FindControl("/Arduino LLC Arduino Leonardo/rx"));
-        //Debug.Log(InputSystem.GetDevice("Arduino LLC Arduino Leonardo").);
-        //Debug.Log(Joystick.all[0].hatswitch);
-        //Debug.Log(Joystick.all[0].allControls[34].path);
-        /*for (int i = 0; i < Joystick.all[0].allControls.Count; i++)
-        {
-            if (Joystick.all[0].allControls[i].IsPressed())
-            {
-                Debug.Log(Joystick.all[0].allControls[i].name);
-            }
-        }*/
         Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
         HandleRotation();
     }
