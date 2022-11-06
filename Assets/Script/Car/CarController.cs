@@ -40,15 +40,18 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform_LOD3;
     [SerializeField] private Transform rearRightWheelTransform_LOD3;
     [SerializeField] private Transform m_StearingWheel;
+    private int gearStatus = 0;
 
     private void Start()
     {
-        if (Input.GetAxis("axel") < 0)
-            verticalInput = 1 - (Input.GetAxis("axel") * (-1));
-        else if (Input.GetAxis("axel") == 0)
-            verticalInput = 1;
-        else if (Input.GetAxis("axel") > 0)
-            verticalInput = 1 + Input.GetAxis("axel");
+        if(Controller.isController){
+            if (Input.GetAxis("axel") < 0)
+                verticalInput = 1 - (Input.GetAxis("axel") * (-1));
+            else if (Input.GetAxis("axel") == 0)
+                verticalInput = 1;
+            else if (Input.GetAxis("axel") > 0)
+                verticalInput = 1 + Input.GetAxis("axel");
+        }
 
     }
 
@@ -63,54 +66,54 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
+        //GearControl.m_GearState_Now
+        //0: Parking
+        //1: Return
+        //2: Nature
+        //3: Drive
+        gearStatus = GearControl.m_GearState_Now;
+        if(Controller.isController){
+            horizontalInput = Input.GetAxis(HORIZONTAL);
 
-        if (Joystick.all[0].stick.x.ReadValue() == -1 || Joystick.all[0].stick.x.ReadValue() == 1)
-            horizontalInput = 0;
-        else if (Joystick.all[0].stick.x.ReadValue() < 0)
-            horizontalInput = 1 - Joystick.all[0].stick.x.ReadValue() * (-1);
-        else if (Joystick.all[0].stick.x.ReadValue() > 0)
-            horizontalInput = (1 - Joystick.all[0].stick.x.ReadValue()) * (-1);
+            if(gearStatus == 1 || gearStatus == 3){
+                if (Input.GetAxis("axel") < 0)
+                    verticalInput = 1 - (Input.GetAxis("axel") * (-1));
+                else if (Input.GetAxis("axel") == 0)
+                    verticalInput = 1;
+                else if (Input.GetAxis("axel") > 0)
+                    verticalInput = 1 + Input.GetAxis("axel");
 
+                verticalInput = verticalInput / 2;
 
-        if (Input.GetAxis("axel") < 0)
-            verticalInput = 1 - (Input.GetAxis("axel") * (-1));
-        else if (Input.GetAxis("axel") == 0)
-            verticalInput = 1;
-        else if (Input.GetAxis("axel") > 0)
-            verticalInput = 1 + Input.GetAxis("axel");
-
-        verticalInput = verticalInput / 2;
-
-        if (Joystick.all[0].stick.y.ReadValue() * -1 > 0.5)
-            breakingInput = 0.5f;
-        else
-            breakingInput = Joystick.all[0].stick.y.ReadValue() * -1;
-
-        breakingInput *= 2;
-        //horizontalInput = Input.GetAxis(HORIZONTAL);
-        //verticalInput = Input.GetAxis(VERTICAL);
-        //isBreaking = Input.GetKey(KeyCode.Space);
-        /*for (int i = 0; i < Joystick.all[0].allControls.Count; i++)
-            Debug.Log(Joystick.all[0].allControls[i].name);*/
-        //Debug.Log(Input.GetAxis("axel"));
-        //Debug.Log(InputSystem.FindControl("/Arduino LLC Arduino Leonardo/rx"));
-        //Debug.Log(InputSystem.GetDevice("Arduino LLC Arduino Leonardo").);
-        //Debug.Log(Joystick.all[0].hatswitch);
-        //Debug.Log(Joystick.all[0].allControls[34].path);
-        /*for (int i = 0; i < Joystick.all[0].allControls.Count; i++)
-        {
-            if (Joystick.all[0].allControls[i].IsPressed())
-            {
-                Debug.Log(Joystick.all[0].allControls[i].name);
+                breakingInput = Input.GetAxis("break");
+                if(breakingInput < 0.1) breakingInput = 0;
+                if(verticalInput < 0.1) verticalInput = 0;
             }
-        }*/
+        }
+        else{
+            horizontalInput = Input.GetAxis(HORIZONTAL);
+
+            if(gearStatus == 1 || gearStatus == 3){
+                verticalInput = Input.GetAxis(VERTICAL);
+                if(Input.GetKey(KeyCode.Space)){
+                    breakingInput = 1;
+                }
+                else{
+                    breakingInput = 0;
+                }
+            }
+        }
+        if(gearStatus == 1) verticalInput *= -1;
+        
+        if(gearStatus == 0) breakingInput = 1;
         Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
         HandleRotation();
     }
 
     private void HandleRotation()
     {
-        m_StearingWheel.rotation = Quaternion.Euler(new Vector3(15, 0, horizontalInput * -1 * 450));
+        //m_StearingWheel.rotation = Quaternion.Euler(new Vector3(15, 0, horizontalInput * -1 * 450));
+        m_StearingWheel.eulerAngles = new Vector3(15, 0, horizontalInput * -1 * 450);
     }
 
     private void HandleMotor()
@@ -118,14 +121,15 @@ public class CarController : MonoBehaviour
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
         currentbreakForce = breakingInput * breakForce;
+        Debug.Log("" + verticalInput * motorForce + ", " + currentbreakForce);
         ApplyBreaking();
     }
 
     private void ApplyBreaking()
     {
         //Debug.Log(currentbreakForce);
-        frontRightWheelCollider.brakeTorque = currentbreakForce;
-        frontLeftWheelCollider.brakeTorque = currentbreakForce;
+        //frontRightWheelCollider.brakeTorque = currentbreakForce;
+        //frontLeftWheelCollider.brakeTorque = currentbreakForce;
         rearLeftWheelCollider.brakeTorque = currentbreakForce;
         rearRightWheelCollider.brakeTorque = currentbreakForce;
     }
