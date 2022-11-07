@@ -242,22 +242,7 @@ public class CarController : MonoBehaviour
 
         }
 
-        private void GetInput()
-        {
-            horizontalInput = Input.GetAxis(HORIZONTAL);
-            /*verticalInput = Input.GetAxis(VERTICAL);*/
-            isBreaking = Input.GetKey(KeyCode.Space);
-
-
-        }
-
-        private void HandleMotor()
-        {
-            frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-            frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-            currentbreakForce = isBreaking ? breakForce : 0f;
-            ApplyBreaking();
-        }
+        
 
         private void ApplyBreaking()
         {
