@@ -23,14 +23,10 @@ public class Controller : MonoBehaviour
             isController = true;
             //Debug.Log(Joystick.current.stick.ReadValue());
             //Debug.Log(Joystick.all[0].stick.x.ReadValue());
+            Debug.Log("연결완료");
         }
         else{
             isController = false;
         }
-    }
-
-    public void asdasd(InputAction.CallbackContext context)
-    {
-        //Debug.Log(context.ReadValue<float>());
     }
 }

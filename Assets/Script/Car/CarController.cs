@@ -124,7 +124,7 @@ public class CarController : MonoBehaviour
         if(gearStatus == 1) verticalInput *= -1;
         
         if(gearStatus == 0) breakingInput = 1;
-        Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
+        //Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
         HandleRotation();
     }
 
@@ -139,7 +139,7 @@ public class CarController : MonoBehaviour
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
         currentbreakForce = breakingInput * breakForce;
-        Debug.Log("" + verticalInput * motorForce + ", " + currentbreakForce);
+        //Debug.Log("" + verticalInput * motorForce + ", " + currentbreakForce);
         ApplyBreaking();
     }
 
