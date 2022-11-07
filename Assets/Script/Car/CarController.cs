@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class CarController : MonoBehaviour
     private float verticalInput;
     private float currentSteerAngle;
     private float currentbreakForce;
-    private bool isBreaking;
+    private float breakingInput;
 
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
@@ -39,11 +40,9 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontRightWheeTransform_LOD3;
     [SerializeField] private Transform rearLeftWheelTransform_LOD3;
     [SerializeField] private Transform rearRightWheelTransform_LOD3;
-
-    //감속
-    [SerializeField] private float decSpeed = 20f;
-
-    public WheelCollider[] wheels = new WheelCollider[4];
+    [SerializeField] private Transform m_StearingWheel;
+    private int gearStatus = 0;
+    // CarSpped
 
     private InPutManager IM;
     private Rigidbody rb;
@@ -58,13 +57,90 @@ public class CarController : MonoBehaviour
     public float smoothTime = 0.01f;
     public float KM;
     public AnimationCurve enginePower;
+    //감속
+    [SerializeField] private float decSpeed = 20f;
+
+    public WheelCollider[] wheels = new WheelCollider[4];
+
+    //CarSpped
 
     public int m_GearState_Now = 0;
-
-    void Start()
+    
+    private void Start()
     {
+    
         getObject();
         /* GetComponent<Rigidbody>().centerOfMass = new Vector3(0, -1, 0);*/
+        if(Controller.isController){
+            if (Input.GetAxis("axel") < 0)
+                verticalInput = 1 - (Input.GetAxis("axel") * (-1));
+            else if (Input.GetAxis("axel") == 0)
+                verticalInput = 1;
+            else if (Input.GetAxis("axel") > 0)
+                verticalInput = 1 + Input.GetAxis("axel");
+        }
+
+    }
+
+    private void GetInput()
+    {
+        //GearControl.m_GearState_Now
+        //0: Parking
+        //1: Return
+        //2: Nature
+        //3: Drive
+        gearStatus = GearControl.m_GearState_Now;
+        if(Controller.isController){
+            horizontalInput = Input.GetAxis(HORIZONTAL);
+
+            if(gearStatus == 1 || gearStatus == 3){
+                if (Input.GetAxis("axel") < 0)
+                    verticalInput = 1 - (Input.GetAxis("axel") * (-1));
+                else if (Input.GetAxis("axel") == 0)
+                    verticalInput = 1;
+                else if (Input.GetAxis("axel") > 0)
+                    verticalInput = 1 + Input.GetAxis("axel");
+
+                verticalInput = verticalInput / 2;
+
+                breakingInput = Input.GetAxis("break");
+                if(breakingInput < 0.1) breakingInput = 0;
+                if(verticalInput < 0.1) verticalInput = 0;
+            }
+        }
+        else{
+            horizontalInput = Input.GetAxis(HORIZONTAL);
+
+            if(gearStatus == 1 || gearStatus == 3){
+                verticalInput = Input.GetAxis(VERTICAL);
+                if(Input.GetKey(KeyCode.Space)){
+                    breakingInput = 1;
+                }
+                else{
+                    breakingInput = 0;
+                }
+            }
+        }
+        if(gearStatus == 1) verticalInput *= -1;
+        
+        if(gearStatus == 0) breakingInput = 1;
+        Debug.Log("axel : " + verticalInput + ", break : " + breakingInput + ", wheel : " + horizontalInput);
+        HandleRotation();
+    }
+
+    private void HandleRotation()
+    {
+        //m_StearingWheel.rotation = Quaternion.Euler(new Vector3(15, 0, horizontalInput * -1 * 450));
+        m_StearingWheel.eulerAngles = new Vector3(15, 0, horizontalInput * -1 * 450);
+    }
+
+    private void HandleMotor()
+    {
+        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
+        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+        currentbreakForce = breakingInput * breakForce;
+        Debug.Log("" + verticalInput * motorForce + ", " + currentbreakForce);
+        ApplyBreaking();
     }
 
 
@@ -72,6 +148,11 @@ public class CarController : MonoBehaviour
     {
         IM = GetComponent<InPutManager>();
         rb = GetComponent<Rigidbody>();
+        //Debug.Log(currentbreakForce);
+        //frontRightWheelCollider.brakeTorque = currentbreakForce;
+        //frontLeftWheelCollider.brakeTorque = currentbreakForce;
+        rearLeftWheelCollider.brakeTorque = currentbreakForce;
+        rearRightWheelCollider.brakeTorque = currentbreakForce;
     }
 
     void Update()
