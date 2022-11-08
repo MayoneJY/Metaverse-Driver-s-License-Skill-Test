@@ -28,9 +28,4 @@ public class Controller : MonoBehaviour
             isController = false;
         }
     }
-
-    public void asdasd(InputAction.CallbackContext context)
-    {
-        //Debug.Log(context.ReadValue<float>());
-    }
 }
