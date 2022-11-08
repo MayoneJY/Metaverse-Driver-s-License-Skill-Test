@@ -7,7 +7,7 @@ public class inputManager : MonoBehaviour
     public float vertical;
     public float horizontal;
     public float handbrake;
-    
+
     private int gearStatus = 0;
 
     // Start is called before the first frame update
@@ -38,9 +38,13 @@ public class inputManager : MonoBehaviour
             }
         }
         else{
-            vertical = Input.GetAxis("Vertical");
+            if(gearStatus == 1 || gearStatus == 3){
+                vertical = Input.GetAxis("Vertical");
+            }
             horizontal = Input.GetAxis("Horizontal");
             handbrake = (Input.GetAxis("Jump") != 0)? 1 : 0;
         }
+
+        if(gearStatus == 0) handbrake = 1;
     }
 }

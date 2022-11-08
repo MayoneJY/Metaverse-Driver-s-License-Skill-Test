@@ -18,7 +18,7 @@ public class controller : MonoBehaviour
     public inputManager IM;
     //public GameObject wheelMeshs,wheelColliders;
     public WheelCollider[] wheels = new WheelCollider[4];
-    public GameObject[] wheelMesh = new GameObject[4];
+    public GameObject[] wheelMesh = new GameObject[16];
     private GameObject centerOfMass;
     private Rigidbody rigidbody;
 
@@ -29,10 +29,10 @@ public class controller : MonoBehaviour
     public float smoothTime = 0.01f;
 
     public float KPH;
-    public float brakePower = 50000;
+    public float brakePower = 3000;
     public float radius = 6;
     public float downForceValue = 50;
-    public int motorTorque = 100;
+    public int motorTorque = 1500;
     public float steeringMax = 4;
 
     public float[] slip = new float[4];
@@ -53,16 +53,19 @@ public class controller : MonoBehaviour
         //getFriction();
         calculateEnginePower();
         shifter();
+        HandleRotation();
     }
 
     private void calculateEnginePower()
     {
         wheelRPM();
-        Debug.Log(enginePower.Evaluate(engineRPM));
+        
         totalPower = enginePower.Evaluate(engineRPM) * (gears[gearNum]) * IM.vertical;
         float velocity = 0.0f;
         engineRPM = Mathf.SmoothDamp(engineRPM, 1000 + (Mathf.Abs(wheelsRPM) * 3.6f * (gears[gearNum])), ref velocity, smoothTime);
-
+        if(GearControl.m_GearState_Now == 0){
+            engineRPM = 0.0f;
+        }
         moveVehicle();
     }
 
