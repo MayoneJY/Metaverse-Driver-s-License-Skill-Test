@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class GearControl : MonoBehaviour
 {
-
     public GameObject Gear;
 
     //private string[] m_GearStates = { "Parking", "Return", "Nature", "Driver" };
@@ -12,7 +11,7 @@ public class GearControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -33,11 +32,10 @@ public class GearControl : MonoBehaviour
         
     }
 
-    private void setGearLocationControl(int gear) 
+    public void setGearLocationControl(int gear) 
     {
         m_GearState_Now = gear;
         Debug.Log(gear);
     }
-
 
 }
