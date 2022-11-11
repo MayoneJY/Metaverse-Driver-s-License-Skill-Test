@@ -155,7 +155,7 @@ public class controller : MonoBehaviour
         IM = GetComponent<inputManager>();
         rigidbody = GetComponent<Rigidbody>();
 
-        centerOfMass = GameObject.Find("mass");
+        centerOfMass = gameObject.transform.Find("mass").gameObject;
         rigidbody.centerOfMass = centerOfMass.transform.position;
     }
 
