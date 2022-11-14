@@ -4,17 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ScenesChange : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public void Tutorial()
+    [SerializeField] private GameObject Practice;
+    [SerializeField] private GameObject Main;
+
+    public void PracticeBtn()
     {
-        SceneManager.LoadScene("Tutorial");
-    }
-    public void Test()
-    {
-        SceneManager.LoadScene("Test");
-    }
-    public void Practice()
-    {
-        SceneManager.LoadScene("Practice");
+        Main.SetActive(false);
+        Practice.SetActive(true);
     }
 }
