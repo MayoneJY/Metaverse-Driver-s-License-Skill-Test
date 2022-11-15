@@ -59,8 +59,8 @@ public class controller : MonoBehaviour
     private void calculateEnginePower()
     {
         wheelRPM();
-        
         totalPower = enginePower.Evaluate(engineRPM) * (gears[gearNum]) * IM.vertical;
+        if(!IM.isAxelPress && engineRPM > 1700) totalPower = 0;
         float velocity = 0.0f;
         engineRPM = Mathf.SmoothDamp(engineRPM, 1000 + (Mathf.Abs(wheelsRPM) * 3.6f * (gears[gearNum])), ref velocity, smoothTime);
         if(GearControl.m_GearState_Now == 0){
