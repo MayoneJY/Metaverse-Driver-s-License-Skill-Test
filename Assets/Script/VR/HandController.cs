@@ -33,15 +33,15 @@ public class HandController : MonoBehaviour
 
         var intAngle = Mathf.RoundToInt(angle);
 
-        if (intAngle < 270)
+        if (intAngle < 250)
         {
             result = GEAR_MODE.PARK;
         }
-        else if (intAngle < 285 && intAngle >= 270)
+        else if (intAngle < 280 && intAngle >= 250)
         {
             result = GEAR_MODE.REVERSE;
         }
-        else if (intAngle < 300 && intAngle >= 285)
+        else if (intAngle < 310 && intAngle >= 280)
         {
             result = GEAR_MODE.NEUTRAL;
         }
@@ -58,32 +58,49 @@ public class HandController : MonoBehaviour
         switch (gearMode)
         {
             case GEAR_MODE.PARK:
-                return 255;
+                return 230;
             case GEAR_MODE.REVERSE:
-                return 270;
+                return 260;
             case GEAR_MODE.NEUTRAL:
-                return 285;
+                return 290;
             default:
-                return 300;
+                return 320;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        var vector = transform.position - topOfLever.position;
-        var angle = Math.Abs(Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg - 180);
+        if (other.CompareTag("PlayerHand"))
+        {
+            var vector = other.transform.position - transform.position;
+            var angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg + 180;
 
-        var gearMode = GetGearMode(angle);
-        topOfLever.rotation.Set(GetGearStickAngle(gearMode), 0, 0, 0);
+            var gearMode = GetGearMode(angle);
+            //transform.rotation.Set(GetGearStickAngle(gearMode), 0, 0, 0);
+             transform.rotation = Quaternion.Euler(GetGearStickAngle(gearMode), -90, 0);
+       }
 
     }
 
-    private void OnTriggerStay(Collider other) {
-        if(other.CompareTag("PlayerHand")){
-            var vector = transform.position - other.transform.position;
-            var angle = Math.Abs(Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg );
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("PlayerHand"))
+        {
+            var vector = other.transform.position - transform.position;
+            var angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg + 180;
+
+            if (angle > 320)
+            {
+                angle = 320;
+            }
+            else if (angle < 230)
+            {
+                angle = 230;
+            }
+
             transform.rotation = Quaternion.Euler(angle, -90, 0);
             //transform.LookAt(other.transform.position, transform.up);
         }
     }
+
 }
