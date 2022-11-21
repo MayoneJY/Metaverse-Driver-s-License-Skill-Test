@@ -10,7 +10,6 @@ public class TrafficLightController : MonoBehaviour
         YELLOW,
         RED,
         ARROW,
-        YELLOW_2,
         MAX
     }
 
@@ -21,6 +20,8 @@ public class TrafficLightController : MonoBehaviour
     [SerializeField] private float _yellowLightChangeSecond = 10.0f;
     [SerializeField] private float _greenLightChangeSecond = 30.0f;
     [SerializeField] private float _arrowLightChangeSecond = 30.0f;
+    [SerializeField] private LIGHT_TYPE[] _lightTypeOrder = new LIGHT_TYPE[6];
+    [SerializeField] private int _lightTypeCount = 0;
 
     private float _deltaLight = 0.0f;
 
@@ -42,7 +43,7 @@ public class TrafficLightController : MonoBehaviour
 
     private void Start()
     {
-        SetState(_startType);
+        SetState((LIGHT_TYPE)(0));
     }
 
     // Update is called once per frame
@@ -57,7 +58,6 @@ public class TrafficLightController : MonoBehaviour
                 limitLightSeconds = _redLightChangeSecond;
                 break;
             case LIGHT_TYPE.YELLOW:
-            case LIGHT_TYPE.YELLOW_2:
                 limitLightSeconds = _yellowLightChangeSecond;
                 break;
             case LIGHT_TYPE.GREEN:
@@ -71,13 +71,57 @@ public class TrafficLightController : MonoBehaviour
 
         if (_deltaLight >= limitLightSeconds)
         {
-            _currentLightType = (LIGHT_TYPE)((int)_currentLightType + 1);
+            _lightTypeCount++;
 
-            if (_currentLightType == LIGHT_TYPE.MAX)
-                _currentLightType = LIGHT_TYPE.GREEN;
+            if (_lightTypeCount == _lightTypeOrder.Length   )
+                _lightTypeCount = 0;
+
+            _currentLightType = _lightTypeOrder[_lightTypeCount];
 
             SetState(_currentLightType);
             _deltaLight = 0.0f;
         }
     }
+
+//	3
+//1		1
+//	3
+
+//	3
+//2		2
+//	3
+
+//	4
+//3		3
+//	3
+
+//	2
+//3		3
+//	3
+
+//	3
+//3		3
+//	1
+
+//	3
+//3		3
+//	2
+//10   5    10   5
+//1ÆÄ 2³ë 3»¡ 4È­
+
+//¡á¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à
+//¡Ü
+//¡á¡à¡á¡à¡á¡à¡á¡à¡á¡à¡á¡à
+//¡Ü¡Ü¡Ü¡á¡á¡Ü¡Ü¡Ü
+//3   3   4   2   3   3
+//10 5   5   5   10 5
+//¡á¡à¡á¡Ü¡Ü¡Ü¡Ü¡Ü
+//1   2   3   3   3
+//10 5   10  10 5
+//¡á¡à¡á¡Ü¡Ü¡Ü¡Ü¡Ü
+//1   2   3   3   3
+//10 5   10  10 5
+//¡Ü¡Ü¡Ü¡Ü¡Ü¡á¡à¡á
+//3   3   3   1   2
+//10 5  10  10  5
 }
