@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GamePause : MonoBehaviour
 {
+    [SerializeField] GameObject Plyaer;
+    private Transform respawnPoint;
     public static bool GameIsPaused = false;
     public GameObject PauseMenu;
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -21,7 +23,6 @@ public class GamePause : MonoBehaviour
                 {
                 Pause();
                 }
-            
         }
     }
 
@@ -43,5 +44,13 @@ public class GamePause : MonoBehaviour
     {
         SceneManager.LoadScene("UI");
     }
+
+    public void ReSpawnnn()
+    {
+        Plyaer.transform.position = new Vector3(1, 1, 1);
+        GameIsPaused = false;
+    }
+
     
+
 }
