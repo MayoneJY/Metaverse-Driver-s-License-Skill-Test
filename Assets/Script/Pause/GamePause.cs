@@ -18,7 +18,6 @@ public class GamePause : MonoBehaviour
             if (GameIsPaused)
             {
                 Resum();
-
                 }else
                 {
                 Pause();
@@ -47,8 +46,10 @@ public class GamePause : MonoBehaviour
 
     public void ReSpawnnn()
     {
-        Plyaer.transform.position = new Vector3(1, 1, 1);
         GameIsPaused = false;
+        Plyaer.transform.position = new Vector3(1, 1, 1);
+        Time.timeScale = 1f;
+        PauseMenu.SetActive(false);
     }
 
     

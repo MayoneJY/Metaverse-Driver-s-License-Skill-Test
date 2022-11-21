@@ -7,11 +7,11 @@ public class ScenesChange : MonoBehaviour
     [SerializeField] private GameObject Practice;
     [SerializeField] private GameObject Main;
 
-    public void Start()
+    public void Startbtn()
     {
         SceneManager.LoadScene("");
     }
-    public void Exit()
+    public void Exitbtn()
     {
         Application.Quit();
     }
