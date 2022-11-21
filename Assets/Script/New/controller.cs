@@ -29,8 +29,8 @@ public class controller : MonoBehaviour
     public float smoothTime = 0.01f;
 
     public float KPH;
-    public float brakePower = 3000;
-    public float radius = 6;
+    public float brakePower = 500;
+    public float radius = 3;
     public float downForceValue = 50;
     public int motorTorque = 1500;
     public float steeringMax = 4;
@@ -59,8 +59,8 @@ public class controller : MonoBehaviour
     private void calculateEnginePower()
     {
         wheelRPM();
-        
         totalPower = enginePower.Evaluate(engineRPM) * (gears[gearNum]) * IM.vertical;
+        if(!IM.isAxelPress && engineRPM > 1700) totalPower = 0;
         float velocity = 0.0f;
         engineRPM = Mathf.SmoothDamp(engineRPM, 1000 + (Mathf.Abs(wheelsRPM) * 3.6f * (gears[gearNum])), ref velocity, smoothTime);
         if(GearControl.m_GearState_Now == 0){
@@ -155,7 +155,7 @@ public class controller : MonoBehaviour
         IM = GetComponent<inputManager>();
         rigidbody = GetComponent<Rigidbody>();
 
-        centerOfMass = gameObject.transform.Find("mass").gameObject;
+        centerOfMass = GameObject.Find("mass");
         rigidbody.centerOfMass = centerOfMass.transform.position;
     }
 
