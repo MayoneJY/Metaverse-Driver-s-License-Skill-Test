@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 5ffeff3fb1dcb7840998be695eaeb661
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - lowAccelClip: {fileID: 8300000, guid: d7fd6ffbe5db60047afd5cc80ab73b7c, type: 3}
+  - lowDecelClip: {fileID: 8300000, guid: 299dba3f60dd9604d8826d280c838446, type: 3}
+  - highAccelClip: {fileID: 8300000, guid: 8cb18572b37275747ad1575b7b61c9be, type: 3}
+  - highDecellClip: {fileID: 8300000, guid: 59b5ae74fd0cb7a4ab9398ea727b51c7, type: 3}
+  - m_CarController: {instanceID: 0}
+  - InputManager: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
