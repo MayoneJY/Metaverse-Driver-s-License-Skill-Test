@@ -45,6 +45,10 @@ public class inputManager : MonoBehaviour
                 }
                 if(handbrake > 1.0f) handbrake = 1.0f;
                 if(vertical > 1.0f) vertical = 1.0f;
+                if (gearStatus == 1)
+                {
+                    vertical *= -1;
+                }
             }
         }
         else{
