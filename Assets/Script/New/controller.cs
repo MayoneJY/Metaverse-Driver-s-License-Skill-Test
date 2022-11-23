@@ -16,6 +16,7 @@ public class controller : MonoBehaviour
     public AnimationCurve enginePower;
 
     public inputManager IM;
+    public GearControl GC;
     //public GameObject wheelMeshs,wheelColliders;
     public WheelCollider[] wheels = new WheelCollider[4];
     public GameObject[] wheelMesh = new GameObject[16];
@@ -63,7 +64,7 @@ public class controller : MonoBehaviour
         if(!IM.isAxelPress && engineRPM > 1700) totalPower = 0;
         float velocity = 0.0f;
         engineRPM = Mathf.SmoothDamp(engineRPM, 1000 + (Mathf.Abs(wheelsRPM) * 3.6f * (gears[gearNum])), ref velocity, smoothTime);
-        if(GearControl.m_GearState_Now == 0){
+        if(GC.m_GearState_Now == 0){
             engineRPM = 0.0f;
         }
         moveVehicle();
@@ -151,7 +152,9 @@ public class controller : MonoBehaviour
             
         }
     }
-    private void getObjects(){
+    private void getObjects()
+    {
+        GC = GetComponent<GearControl>();
         IM = GetComponent<inputManager>();
         rigidbody = GetComponent<Rigidbody>();
 

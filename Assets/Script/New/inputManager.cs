@@ -9,16 +9,18 @@ public class inputManager : MonoBehaviour
     public float handbrake;
     public bool isAxelPress = false;
     private int gearStatus = 0;
+    public GearControl GC;
 
     // Start is called before the first frame update
     void Start()
     {
+        GC = GetComponent<GearControl>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        gearStatus = GearControl.m_GearState_Now;
+        gearStatus = GC.m_GearState_Now;
         if(Controller.isController){
             horizontal = Input.GetAxis("Horizontal");
 

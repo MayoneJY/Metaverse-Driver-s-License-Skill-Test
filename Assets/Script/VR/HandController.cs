@@ -13,12 +13,17 @@ public class HandController : MonoBehaviour
         DRIVE,
         MAX
     }
-
     public Transform topOfLever;
 
     [SerializeField] private float forwardBackwardTilt = 0;
     [SerializeField] private float sideToSideTilt = 0;
+    public GearControl GC;
 
+    void Start()
+    {
+
+        GC = GetComponent<GearControl>();
+    }
     void Update()
     {
         forwardBackwardTilt = topOfLever.rotation.eulerAngles.x;
@@ -58,12 +63,16 @@ public class HandController : MonoBehaviour
         switch (gearMode)
         {
             case GEAR_MODE.PARK:
+                GC.m_GearState_Now = 0;
                 return 230;
             case GEAR_MODE.REVERSE:
+                GC.m_GearState_Now = 1;
                 return 260;
             case GEAR_MODE.NEUTRAL:
+                GC.m_GearState_Now = 2;
                 return 290;
             default:
+                GC.m_GearState_Now = 3;
                 return 320;
         }
     }
