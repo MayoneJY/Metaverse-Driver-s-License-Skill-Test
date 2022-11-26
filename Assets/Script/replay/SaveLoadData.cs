@@ -37,6 +37,13 @@ public class SaveLoadData : MonoBehaviour
     void Start()
     {
         IM = _carBody.GetComponent<inputManager>();
+
+        _loadCheck = true;
+        IM.replayCheck = true;
+        _topCamera.SetActive(true);
+        string json = File.ReadAllText(Application.dataPath + "/data.json");
+        _loadRD = JsonUtility.FromJson<ReplayData>(json);
+        _time = 0.0f;
     }
 
     //json
