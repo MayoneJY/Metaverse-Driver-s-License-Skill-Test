@@ -19,11 +19,11 @@ public class TurnSignal : MonoBehaviour
     private Renderer m_Renderer_Right;
     private float timer;
     private int waitingTime;
-    private bool leftTurnSignal = false;
-    private bool leftLightBool = false;
-    private bool rightTurnSignal = false;
-    private bool rightLightBool = false;
-    private bool doubleTurnSignal = false;
+    public bool leftTurnSignal = false;
+    public bool leftLightBool = false;
+    public bool rightTurnSignal = false;
+    public bool rightLightBool = false;
+    public bool doubleTurnSignal = false;
     // Start is called before the first frame update
     void Start()
     {

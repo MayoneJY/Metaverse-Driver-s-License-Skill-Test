@@ -45,8 +45,10 @@ public class StartStage : MonoBehaviour
 
     [SerializeField] private GameObject _carEngineStarter;
     [SerializeField] private GameObject _carBody;
+    [SerializeField] private GameObject _carTurnLight;
 
     private GearControl _GC;
+    private TurnSignal _TS;
 
     //기어바꾸기
     private bool[] _gearCheck = new bool[]{false, false};
@@ -57,6 +59,7 @@ public class StartStage : MonoBehaviour
     {
         _timerPanel.SetActive(false);
         _GC = _carBody.GetComponent<GearControl>();
+        _TS = _carTurnLight.GetComponent<TurnSignal>();
     }
 
     // Update is called once per frame
@@ -129,7 +132,51 @@ public class StartStage : MonoBehaviour
                 break;
 
                 case 4: //좌측방향지시등 켜기
+                    if(_TS.leftTurnSignal){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
+                    else if(_TS.rightTurnSignal){
+                        //점수깍였다고 UI내보내자
+                        _score -= 5;
+                    }
+                break;
+                
+                case 5: //좌측방향지시등 끄기
+                    if(!_TS.leftTurnSignal){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
+                    else if(_TS.rightTurnSignal){
+                        //점수깍였다고 UI내보내자
+                        _score -= 5;
+                    }
+                break;
 
+                case 6: //좌측방향지시등 켜기
+                    if(_TS.rightTurnSignal){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
+                    else if(_TS.leftTurnSignal){
+                        //점수깍였다고 UI내보내자
+                        _score -= 5;
+                    }
+                break;
+                
+                case 7: //좌측방향지시등 끄기
+                    if(!_TS.rightTurnSignal){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
+                    else if(_TS.leftTurnSignal){
+                        //점수깍였다고 UI내보내자
+                        _score -= 5;
+                    }
                 break;
 
 

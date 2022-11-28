@@ -1361,26 +1361,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gear: {fileID: 0}
   m_GearState_Now: 3
---- !u!114 &240621621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240621619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db2465cbcf720451f9530a9895183460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material_On: {fileID: 0}
-  m_Material_Off: {fileID: 0}
-  m_GameObject_Left: {fileID: 0}
-  m_GameObject_Right: {fileID: 0}
-  m_GameObject_Light_Left_Front: {fileID: 0}
-  m_GameObject_Light_Left_Rear: {fileID: 0}
-  m_GameObject_Light_Right_Front: {fileID: 0}
-  m_GameObject_Light_Right_Rear: {fileID: 0}
 --- !u!1 &252321680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,6 +1854,11 @@ MonoBehaviour:
   m_GameObject_Light_Left_Rear: {fileID: 1738107308}
   m_GameObject_Light_Right_Front: {fileID: 16970127}
   m_GameObject_Light_Right_Rear: {fileID: 1188533084}
+  leftTurnSignal: 0
+  leftLightBool: 0
+  rightTurnSignal: 0
+  rightLightBool: 0
+  doubleTurnSignal: 0
 --- !u!1001 &676635465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3197,7 +3182,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh41540
+  m_Name: pb_Mesh95570
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3511,6 +3496,7 @@ MonoBehaviour:
   _timer: 0
   _carEngineStarter: {fileID: 405386944}
   _carBody: {fileID: 240621619}
+  _carTurnLight: {fileID: 649968337}
 --- !u!1 &1092995349
 GameObject:
   m_ObjectHideFlags: 0
@@ -3890,7 +3876,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh41860
+  m_Name: pb_Mesh95890
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
