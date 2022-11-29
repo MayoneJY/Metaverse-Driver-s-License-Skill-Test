@@ -266,7 +266,6 @@ GameObject:
   m_Component:
   - component: {fileID: 209971342}
   - component: {fileID: 209971341}
-  - component: {fileID: 209971340}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -274,14 +273,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &209971340
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209971339}
-  m_Enabled: 1
 --- !u!20 &209971341
 Camera:
   m_ObjectHideFlags: 0
@@ -1705,10 +1696,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 299dba3f60dd9604d8826d280c838446, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 135cdf963c62bf24591a87a486e22cfa, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 0.3
+  m_Pitch: 0.2
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -1803,10 +1794,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ef2016769081c4eb83195c75bd0011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 0
+  minSpeed: 10
   maxSpeed: 40
-  minPitch: 0.2
-  maxPitch: 1
+  minPitch: 1
+  maxPitch: 2
 --- !u!114 &1798937396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,6 +1811,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gear: {fileID: 0}
+--- !u!114 &1798937397 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6259329718057509772, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  m_PrefabInstance: {fileID: 1798937387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798937388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ecffda3012d44746bf36192557ea29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1798937398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -3268597971953158394, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  m_PrefabInstance: {fileID: 1798937387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798937388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125cd8b89c3c84a409265a25eac18434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!81 &1798937415
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798937388}
+  m_Enabled: 1
+--- !u!114 &1798937416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798937388}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ffeff3fb1dcb7840998be695eaeb661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engineSoundStyle: 1
+  lowAccelClip: {fileID: 8300000, guid: d7fd6ffbe5db60047afd5cc80ab73b7c, type: 3}
+  lowDecelClip: {fileID: 8300000, guid: d7fd6ffbe5db60047afd5cc80ab73b7c, type: 3}
+  highAccelClip: {fileID: 8300000, guid: 8cb18572b37275747ad1575b7b61c9be, type: 3}
+  highDecellClip: {fileID: 8300000, guid: 8cb18572b37275747ad1575b7b61c9be, type: 3}
+  pitchMultiplier: 1
+  lowPitchMin: 0.2
+  lowPitchMax: 0.5
+  highPitchMultiplier: 0.2
+  maxRolloffDistance: 100
+  dopplerLevel: 1
+  useDoppler: 1
+  m_CarController: {fileID: 1798937398}
+  InputManager: {fileID: 1798937397}
 --- !u!1 &1843204691
 GameObject:
   m_ObjectHideFlags: 0

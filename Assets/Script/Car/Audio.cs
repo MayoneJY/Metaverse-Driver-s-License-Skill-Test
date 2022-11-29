@@ -77,7 +77,7 @@ public class Audio : MonoBehaviour
         if (m_StartedSound)
         {
             // The pitch is interpolated between the min and max values, according to the car's revs.
-            float pitch = ULerp(lowPitchMin, lowPitchMax, m_CarController.engineRPM / m_CarController.motorTorque);
+            float pitch = ULerp(lowPitchMin, lowPitchMax, m_CarController.engineRPM / m_CarController.totalPower);
 
             // clamp to minimum pitch (note, not clamped to max for high revs while burning out)
             pitch = Mathf.Min(lowPitchMax, pitch);
@@ -98,11 +98,10 @@ public class Audio : MonoBehaviour
                 m_LowDecel.pitch = pitch * pitchMultiplier;
                 m_HighAccel.pitch = pitch * highPitchMultiplier * pitchMultiplier;
                 m_HighDecel.pitch = pitch * highPitchMultiplier * pitchMultiplier;
-                float accFade = 0;
+
                 // get values for fading the sounds based on the acceleration
 
-                accFade = Mathf.Abs((InputManager.vertical > 0 ) ? InputManager.vertical : 0);
-
+                float accFade = Mathf.Abs((InputManager.vertical > 0) ? InputManager.vertical : 0);
                 float decFade = 1 - accFade;
 
                 // get the high fade value based on the cars revs
