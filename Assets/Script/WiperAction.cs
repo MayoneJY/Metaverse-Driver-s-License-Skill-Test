@@ -4,38 +4,49 @@ using UnityEngine;
 
 public class WiperAction : MonoBehaviour
 {
+    public enum wiperValue{
+        Off,
+        Automatic,
+        Manual
+    }
     Animator animator;
     bool WiperM = false;
+    public wiperValue _wiperValue;
 
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        _wiperValue = wiperValue.Off;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) //ÀÚµ¿
+        if (Input.GetKeyDown(KeyCode.A)) //ï¿½Úµï¿½
         {
             animator.SetBool("WiperA", true);
             animator.SetBool("WiperH", false);
             animator.SetBool("WiperL", false);
+            _wiperValue = wiperValue.Automatic;
         }
 
-        if (Input.GetKeyDown(KeyCode.S)) //Á¤Áö
+        if (Input.GetKeyDown(KeyCode.S)) //ï¿½ï¿½ï¿½ï¿½
         {
             animator.SetBool("WiperA", false);
             animator.SetBool("WiperH", false);
             animator.SetBool("WiperL", false);
+            _wiperValue = wiperValue.Off;
         }
 
         if (Input.GetKeyDown(KeyCode.M)) //1È¸
         {
+            _wiperValue = wiperValue.Manual;
             animator.Play("WiperRightH", -1, 0f);
             animator.Play("WiperLeftH", -1, 0f);
             animator.SetBool("WiperA", false);
             animator.SetBool("WiperH", false);
             animator.SetBool("WiperL", false);
+            _wiperValue = wiperValue.Off;
         }
 
 
@@ -50,14 +61,14 @@ public class WiperAction : MonoBehaviour
         */
 
 
-        if (Input.GetKeyDown(KeyCode.H)) //°í¼Ó
+        if (Input.GetKeyDown(KeyCode.H)) //ï¿½ï¿½ï¿½ï¿½
         {
             animator.SetBool("WiperH", true);
             animator.SetBool("WiperA", false);
             animator.SetBool("WiperL", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.L)) //Àú¼Ó
+        if (Input.GetKeyDown(KeyCode.L)) //ï¿½ï¿½ï¿½ï¿½
         {
             animator.SetBool("WiperL", true);
             animator.SetBool("WiperA", false);

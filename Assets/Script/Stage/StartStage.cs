@@ -20,10 +20,10 @@ public class StartStage : MonoBehaviour
         "5초이내에 우측 방향지시등을 끄세요.",
         "5초이내에 와이퍼를 작동하세요.",
         "5초이내에 와이퍼를 끄세요.",
-        "5초이내에 상향등을 키세요.",
-        "5초이내에 하향등을 키세요.",
-        "5초이내에 하향등을 끄세요.",
-        "5초이내에 상향등을 끄세요.",
+        "5초이내에 전조등을 키세요.",
+        "5초이내에 상향등으로 전환하세요.",
+        "5초이내에 하향등으로 전환하세요.",
+        "5초이내에 전조등을 끄세요.",
         "브레이크를 밟은 상태에서 기어를 리버스로 바꾸세요.",
         "기어를 리버스로 둔 상태로 악셀을 살짝 밟아 속도를 시속 이십키로미터까지 올려보세요.",
         "브레이크를 밟아 멈추세요.",
@@ -46,9 +46,13 @@ public class StartStage : MonoBehaviour
     [SerializeField] private GameObject _carEngineStarter;
     [SerializeField] private GameObject _carBody;
     [SerializeField] private GameObject _carTurnLight;
+    [SerializeField] private GameObject _carWiper;
 
     private GearControl _GC;
     private TurnSignal _TS;
+    private WiperAction _WA;
+    private NightLamp _NL;
+    private controller _CR;
 
     //기어바꾸기
     private bool[] _gearCheck = new bool[]{false, false};
@@ -60,6 +64,9 @@ public class StartStage : MonoBehaviour
         _timerPanel.SetActive(false);
         _GC = _carBody.GetComponent<GearControl>();
         _TS = _carTurnLight.GetComponent<TurnSignal>();
+        _WA = _carWiper.GetComponent<WiperAction>();
+        _NL = _carBody.GetComponent<NightLamp>();
+        _CR = _carBody.GetComponent<controller>();
     }
 
     // Update is called once per frame
@@ -132,6 +139,7 @@ public class StartStage : MonoBehaviour
                 break;
 
                 case 4: //좌측방향지시등 켜기
+                    _timerPanel.SetActive(true);
                     if(_TS.leftTurnSignal){
                         _uiTextCount++;
                         _timeCheck = false;
@@ -144,6 +152,7 @@ public class StartStage : MonoBehaviour
                 break;
                 
                 case 5: //좌측방향지시등 끄기
+                    _timerPanel.SetActive(true);
                     if(!_TS.leftTurnSignal){
                         _uiTextCount++;
                         _timeCheck = false;
@@ -156,6 +165,7 @@ public class StartStage : MonoBehaviour
                 break;
 
                 case 6: //좌측방향지시등 켜기
+                    _timerPanel.SetActive(true);
                     if(_TS.rightTurnSignal){
                         _uiTextCount++;
                         _timeCheck = false;
@@ -168,6 +178,7 @@ public class StartStage : MonoBehaviour
                 break;
                 
                 case 7: //좌측방향지시등 끄기
+                    _timerPanel.SetActive(true);
                     if(!_TS.rightTurnSignal){
                         _uiTextCount++;
                         _timeCheck = false;
@@ -180,36 +191,98 @@ public class StartStage : MonoBehaviour
                 break;
 
                 case 8: //와이퍼 켜기
+                    _timerPanel.SetActive(true);
+                    if(_WA._wiperValue == WiperAction.wiperValue.Automatic){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
+                    //다른 버튼 눌렀을떄 감점
                 break;
 
                 case 9: //와이퍼 끄기
+                    _timerPanel.SetActive(true);
+                    if(_WA._wiperValue == WiperAction.wiperValue.Off){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
                 break;
 
-                case 10: //상향등 켜기
+                case 10: //하향등 켜기
+                    _timerPanel.SetActive(true);
+                    if(_NL._nightBeamStatus && !_NL._highBeamStatus){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
                 break;
 
-                case 11: //햐양등 켜기
+                case 11: //상향등 켜기
+                    _timerPanel.SetActive(true);
+                    if(_NL._nightBeamStatus && _NL._highBeamStatus){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
                 break;
 
-                case 12: //하양등 끄기
+                case 12: //상향등 끄기
+                    _timerPanel.SetActive(true);
+                    if(_NL._nightBeamStatus && !_NL._highBeamStatus){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
                 break;
 
-                case 13: //상향등 끄기
+                case 13: //하향등 끄기
+                    _timerPanel.SetActive(true);
+                    if(!_NL._nightBeamStatus){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
                 break;
 
                 case 14: //기어 리버스로
+                    if(_GC.m_GearState_Now == 1){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
                 break;
 
                 case 15: //후진 20km/h
+                    if(_GC.m_GearState_Now == 1 && _CR.KPH > 20){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
                 break;
 
                 case 16: //브레이크
+                    if(_GC.m_GearState_Now == 1 && _CR.KPH < 0.01f){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
                 break;
 
                 case 17: //기어 드라이브로
+                    if(_GC.m_GearState_Now == 3){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
                 break;
 
                 case 18: //전진 30km/h
+                    if(_GC.m_GearState_Now == 3 && _CR.KPH > 30){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                    }
                 break;
                 
                 case 19: //왼쪽 회전
