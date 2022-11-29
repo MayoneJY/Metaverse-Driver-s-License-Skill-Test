@@ -179,7 +179,45 @@ public class StartStage : MonoBehaviour
                     }
                 break;
 
+                case 8: //와이퍼 켜기
+                break;
 
+                case 9: //와이퍼 끄기
+                break;
+
+                case 10: //상향등 켜기
+                break;
+
+                case 11: //햐양등 켜기
+                break;
+
+                case 12: //하양등 끄기
+                break;
+
+                case 13: //상향등 끄기
+                break;
+
+                case 14: //기어 리버스로
+                break;
+
+                case 15: //후진 20km/h
+                break;
+
+                case 16: //브레이크
+                break;
+
+                case 17: //기어 드라이브로
+                break;
+
+                case 18: //전진 30km/h
+                break;
+                
+                case 19: //왼쪽 회전
+                break;
+
+                case 20: //오른쪽 회전
+                break;
+                
                 default:
                 break;
             }
