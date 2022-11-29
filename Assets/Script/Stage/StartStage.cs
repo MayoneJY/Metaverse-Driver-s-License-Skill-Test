@@ -286,6 +286,9 @@ public class StartStage : MonoBehaviour
                 break;
                 
                 case 19: //왼쪽 회전
+                    //회전하는 게이지를 채울끼?
+                    //몇 도 회전하면 끝낼끼?
+                    //일단 보류
                 break;
 
                 case 20: //오른쪽 회전

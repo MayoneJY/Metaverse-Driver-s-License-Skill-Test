@@ -216,6 +216,43 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &58072753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1679488866799854, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  m_PrefabInstance: {fileID: 240621611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &58072755
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58072753}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b2caf47a54a8e08418cb170037d786a8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &58072758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58072753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550afded1e68b8d4ba0f235a2207d301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wiperValue: 0
 --- !u!1 &67492111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,6 +1398,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gear: {fileID: 0}
   m_GearState_Now: 3
+--- !u!114 &240621638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240621619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753b962b101763f4aa8c326629df5a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nightBeamLight: {fileID: 1225011935}
+  _highBeamLight: {fileID: 1703243894}
+  _renderer: {fileID: 0}
+  _lightOn: {fileID: 2100000, guid: 8895ff1fec0790d4f98871584b431ad3, type: 2}
+  _lightOff: {fileID: 2100000, guid: ec8c31228f9327d4ba615ec92ef78b85, type: 2}
+  _DayTimeLight: {fileID: 240621615}
+  _MainLight_LOD0: {fileID: 240621614}
+  _nightBeamStatus: 0
+  _highBeamStatus: 0
 --- !u!1 &252321680
 GameObject:
   m_ObjectHideFlags: 0
@@ -3182,7 +3240,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh95570
+  m_Name: pb_Mesh42516
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3497,6 +3555,7 @@ MonoBehaviour:
   _carEngineStarter: {fileID: 405386944}
   _carBody: {fileID: 240621619}
   _carTurnLight: {fileID: 649968337}
+  _carWiper: {fileID: 58072753}
 --- !u!1 &1092995349
 GameObject:
   m_ObjectHideFlags: 0
@@ -3876,7 +3935,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh95890
+  m_Name: pb_Mesh42836
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5645,6 +5704,43 @@ Transform:
   m_Father: {fileID: 240621612}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1708990261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1680544690524372, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+  m_PrefabInstance: {fileID: 240621611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1708990263
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708990261}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2942b8dc89bdf64b95d9729b53b6283, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1708990266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708990261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550afded1e68b8d4ba0f235a2207d301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wiperValue: 0
 --- !u!1 &1733520977
 GameObject:
   m_ObjectHideFlags: 0
