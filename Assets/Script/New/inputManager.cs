@@ -10,12 +10,13 @@ public class inputManager : MonoBehaviour
     public bool isAxelPress = false;
     public bool replayCheck = false;
     private int gearStatus = 0;
-    public GearControl GC;
+    private GearControl GC;
+    public GameObject _gearManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        GC = GetComponent<GearControl>();
+        GC = _gearManager.GetComponent<GearControl>();
     }
 
     // Update is called once per frame
