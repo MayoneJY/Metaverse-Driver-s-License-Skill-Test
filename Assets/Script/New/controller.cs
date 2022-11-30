@@ -15,8 +15,8 @@ public class controller : MonoBehaviour
     public float totalPower;
     public AnimationCurve enginePower;
 
-    public inputManager IM;
-    public GearControl GC;
+    private inputManager IM;
+    private GearControl GC;
     //public GameObject wheelMeshs,wheelColliders;
     public WheelCollider[] wheels = new WheelCollider[4];
     public GameObject[] wheelMesh = new GameObject[16];
@@ -40,6 +40,7 @@ public class controller : MonoBehaviour
 
     
     [SerializeField] private Transform m_StearingWheel;
+    public GameObject _gearManager;
 
     // Start is called before the first frame update
     void Start()
@@ -154,7 +155,7 @@ public class controller : MonoBehaviour
     }
     private void getObjects()
     {
-        GC = GetComponent<GearControl>();
+        GC = _gearManager.GetComponent<GearControl>();
         IM = GetComponent<inputManager>();
         rigidbody = GetComponent<Rigidbody>();
 
