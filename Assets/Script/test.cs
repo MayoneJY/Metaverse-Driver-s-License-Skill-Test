@@ -1,38 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class test : MonoBehaviour
 {
-    private void Update()
-    {
-        
-    }
-    public GameObject back;
-    public GameObject Main;
-    public GameObject TutorialSelect;
-    public GameObject stageinfo;
+    public GameObject tutorial;
+    public GameObject mainMenu;
+    public GameObject stageSelect;
+    public GameObject stage1;
 
-    public void Tutorialbtn()
+    public void Tutorialtbtn()
     {
-        Main.SetActive(false);
-        TutorialSelect.SetActive(true);
-        
-        
-    } 
-
-    
-    
-    public void StageSelectBtn()
-    {
-        stageinfo.SetActive(true);
-        
+        tutorial.SetActive(true);
+        mainMenu.SetActive(false);
     }
+
+    public void StageSelectbtn()
+    {
+        stage1.SetActive(true);
+    }
+
     public void Backbtn()
     {
-
-        Main.SetActive(true);
-        TutorialSelect.SetActive(false);
+        stageSelect.SetActive(false);
+        mainMenu.SetActive(true);
     }
 }
