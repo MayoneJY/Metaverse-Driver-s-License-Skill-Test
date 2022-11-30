@@ -105,11 +105,11 @@ public class Exam : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Block"))
         {
-            Debug.Log("�ǰ�");
+            Debug.Log("실격");
         }
         else if(other.gameObject.layer == LayerMask.NameToLayer("Line"))
         {
-            Debug.Log("����");
+            Debug.Log("10점 감점");
         }
             
     }
