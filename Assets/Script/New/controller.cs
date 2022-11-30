@@ -84,12 +84,12 @@ public class controller : MonoBehaviour
     }
 
     private void shifter(){
-        if(Input.GetKeyDown(KeyCode.E)){
-            gearNum++;
-        }
-        if(Input.GetKeyDown(KeyCode.Q)){
-            gearNum--;
-        }
+        // if(Input.GetKeyDown(KeyCode.E)){
+        //     gearNum++;
+        // }
+        // if(Input.GetKeyDown(KeyCode.Q)){
+        //     gearNum--;
+        // }
     }
 
     private void moveVehicle(){

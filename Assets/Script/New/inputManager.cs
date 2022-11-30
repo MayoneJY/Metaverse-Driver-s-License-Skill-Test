@@ -8,6 +8,7 @@ public class inputManager : MonoBehaviour
     public float horizontal;
     public float handbrake;
     public bool isAxelPress = false;
+    public bool isBrakePress = false;
     public bool replayCheck = false;
     private int gearStatus = 0;
     private GearControl GC;
@@ -59,7 +60,6 @@ public class inputManager : MonoBehaviour
             else{
                 if(gearStatus == 3){
                     vertical = Input.GetAxis("Vertical");
-
                     if(vertical < 0.1){
                         isAxelPress = false;
                     }
@@ -69,13 +69,19 @@ public class inputManager : MonoBehaviour
                 }
                 else if(gearStatus == 1){
                     vertical = Input.GetAxis("Vertical") * -1;
-
-                    if(vertical < -0.1){
+                    if(vertical > -0.1){
                         isAxelPress = false;
                     }
                     else{
                         isAxelPress = true;
                     }
+                }
+
+                if(handbrake < 0.1f){
+                    isBrakePress = false;
+                }
+                else{
+                    isBrakePress = true;
                 }
                 horizontal = Input.GetAxis("Horizontal");
                 handbrake = Input.GetAxis("Jump");

@@ -17,19 +17,24 @@ public class HandController : MonoBehaviour
 
     [SerializeField] private float forwardBackwardTilt = 0;
     [SerializeField] private float sideToSideTilt = 0;
-    public GearControl GC;
+    [SerializeField] private GameObject _carBody;
+    private GearControl GC;
+    private inputManager IM;
 
     void Start()
     {
-
-        GC = GetComponent<GearControl>();
+        IM = _carBody.GetComponent<inputManager>();
+        GC = _carBody.GetComponent<GearControl>();
     }
     void Update()
     {
-        forwardBackwardTilt = topOfLever.rotation.eulerAngles.x;
-        if(forwardBackwardTilt < 355 && forwardBackwardTilt > 290){
-            forwardBackwardTilt = Math.Abs(forwardBackwardTilt - 360);
+        if(IM.isBrakePress){
+            forwardBackwardTilt = topOfLever.rotation.eulerAngles.x;
+            if(forwardBackwardTilt < 355 && forwardBackwardTilt > 290){
+                forwardBackwardTilt = Math.Abs(forwardBackwardTilt - 360);
+            }
         }
+        
     }
 
     private GEAR_MODE GetGearMode(float angle)

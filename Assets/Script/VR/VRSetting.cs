@@ -47,6 +47,16 @@ public class VRSetting : MonoBehaviour
 
         }
 
+        try
+        {
+            other.gameObject.GetComponent<OnOffObject>().OnTrigger();
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
+
     }
 
 }
