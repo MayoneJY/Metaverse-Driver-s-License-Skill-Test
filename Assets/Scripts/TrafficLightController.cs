@@ -10,7 +10,6 @@ public class TrafficLightController : MonoBehaviour
         YELLOW,
         RED,
         ARROW,
-        YELLOW_2,
         MAX
     }
 
@@ -21,6 +20,9 @@ public class TrafficLightController : MonoBehaviour
     [SerializeField] private float _yellowLightChangeSecond = 10.0f;
     [SerializeField] private float _greenLightChangeSecond = 30.0f;
     [SerializeField] private float _arrowLightChangeSecond = 30.0f;
+    [SerializeField] private LIGHT_TYPE[] _lightTypeOrder = new LIGHT_TYPE[6];
+    [SerializeField] private int[] _lightTypeTime = new int[6];
+    [SerializeField] private int _lightTypeCount = 0;
 
     private float _deltaLight = 0.0f;
 
@@ -42,7 +44,8 @@ public class TrafficLightController : MonoBehaviour
 
     private void Start()
     {
-        SetState(_startType);
+        _currentLightType = _lightTypeOrder[_lightTypeCount];
+        SetState(_currentLightType);
     }
 
     // Update is called once per frame
@@ -51,33 +54,89 @@ public class TrafficLightController : MonoBehaviour
         _deltaLight += Time.deltaTime;
         float limitLightSeconds = 0.0f;
 
-        switch (_currentLightType)
-        {
-            case LIGHT_TYPE.RED:
-                limitLightSeconds = _redLightChangeSecond;
-                break;
-            case LIGHT_TYPE.YELLOW:
-            case LIGHT_TYPE.YELLOW_2:
-                limitLightSeconds = _yellowLightChangeSecond;
-                break;
-            case LIGHT_TYPE.GREEN:
-                limitLightSeconds = _greenLightChangeSecond;
-                break;
-            case LIGHT_TYPE.ARROW:
-                limitLightSeconds = _arrowLightChangeSecond;
-                break;
+        // switch (_currentLightType)
+        // {
+        //     case LIGHT_TYPE.RED:
+        //         limitLightSeconds = _redLightChangeSecond;
+        //         break;
+        //     case LIGHT_TYPE.YELLOW:
+        //         limitLightSeconds = _yellowLightChangeSecond;
+        //         break;
+        //     case LIGHT_TYPE.GREEN:
+        //         limitLightSeconds = _greenLightChangeSecond;
+        //         break;
+        //     case LIGHT_TYPE.ARROW:
+        //         limitLightSeconds = _arrowLightChangeSecond;
+        //         break;
 
-        }
+        // }
+
+        limitLightSeconds = _lightTypeTime[_lightTypeCount];
 
         if (_deltaLight >= limitLightSeconds)
         {
-            _currentLightType = (LIGHT_TYPE)((int)_currentLightType + 1);
+            _lightTypeCount++;
 
-            if (_currentLightType == LIGHT_TYPE.MAX)
-                _currentLightType = LIGHT_TYPE.GREEN;
+            if (_lightTypeCount == _lightTypeOrder.Length   )
+                _lightTypeCount = 0;
+
+            _currentLightType = _lightTypeOrder[_lightTypeCount];
 
             SetState(_currentLightType);
             _deltaLight = 0.0f;
         }
     }
+
+//	3
+//1		1
+//	3
+
+//	3
+//2		2
+//	3
+
+//	4
+//3		3
+//	3
+
+//	2
+//3		3
+//	3
+
+//	3
+//3		3
+//	1
+
+//	3
+//3		3
+//	2
+//10   5    10   5
+//1�� 2�� 3�� 4ȭ
+
+//�ܡܡܡ��ܡܡ�
+//3   3   4   2   3   3
+//10 5   5   5   10 5
+//����ܡܡܡܡ�
+//1   2   3   3   3
+//10 5   10  10 5
+//����ܡܡܡܡ�
+//1   2   3   3   3
+//10 5   10  10 5
+//�ܡܡܡܡܡ���
+//3   3   3   1   2
+//10 5  10  10  5
+
+
+//�ܡܡܡ��ܡܡ�
+//3   3   4   2   3   3
+//10 5   10   5   10 5
+//����ܡܡܡܡ�
+//1   2   3   3   3
+//10 5   10  10  10
+//����ܡܡܡܡ�
+//1   2   3   3   3
+//10 5   10  10  10
+//�ܡܡܡܡܡ���
+//3   3   3   1   2
+//10 10  10  10  5
 }

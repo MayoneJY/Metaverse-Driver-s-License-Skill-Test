@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - RoomLight
+  - PlayerHand
   layers:
   - Default
   - TransparentFX
@@ -15,6 +16,9 @@ TagManager:
   - Block
   - Line
   - body
+  - Car
+  - 
+  - 
   - 
   - 
   - 

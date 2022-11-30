@@ -7,18 +7,20 @@ public class inputManager : MonoBehaviour
     public float vertical;
     public float horizontal;
     public float handbrake;
-
+    public bool isAxelPress = false;
     private int gearStatus = 0;
+    public GearControl GC;
 
     // Start is called before the first frame update
     void Start()
     {
+        GC = GetComponent<GearControl>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        gearStatus = GearControl.m_GearState_Now;
+        gearStatus = GC.m_GearState_Now;
         if(Controller.isController){
             horizontal = Input.GetAxis("Horizontal");
 
@@ -33,16 +35,34 @@ public class inputManager : MonoBehaviour
                 vertical = vertical / 2;
 
                 handbrake = Input.GetAxis("break");
-                if(handbrake < 0.1) handbrake = 0;
-                if(vertical < 0.1) vertical = 0;
+                if(handbrake < 0.4) handbrake = 0;
+                else handbrake = (handbrake - 0.4f) * 1.67f;
+                if(vertical < 0.4){
+                    vertical = 0.15f;
+                    isAxelPress = false;
+                }
+                else{
+                    vertical = (vertical - 0.4f) * 1.67f;
+                    isAxelPress = true;
+                }
+                if(handbrake > 1.0f) handbrake = 1.0f;
+                if(vertical > 1.0f) vertical = 1.0f;
+                if (gearStatus == 1)
+                {
+                    vertical *= -1;
+                }
             }
         }
         else{
-            if(gearStatus == 1 || gearStatus == 3){
+            if(gearStatus == 3){
                 vertical = Input.GetAxis("Vertical");
             }
+            else if(gearStatus == 1){
+                vertical = Input.GetAxis("Vertical") * -1;
+            }
             horizontal = Input.GetAxis("Horizontal");
-            handbrake = (Input.GetAxis("Jump") != 0)? 1 : 0;
+            handbrake = Input.GetAxis("Jump");
+            //handbrake = (Input.GetAxis("Jump") != 0)? 1 : 0;
         }
 
         if(gearStatus == 0) handbrake = 1;
