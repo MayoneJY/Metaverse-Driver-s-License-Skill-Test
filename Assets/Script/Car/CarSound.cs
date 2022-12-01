@@ -15,10 +15,13 @@ public class CarSound : MonoBehaviour
     public float maxPitch;
     private float pitchFromCar;
 
+    private controller _CR;
+
     private void Start()
     {
         carAudio = GetComponent<AudioSource>();
         carRb = GetComponent<Rigidbody>();
+        _CR = GetComponent<controller>();
     }
 
     private void Update()
@@ -28,24 +31,33 @@ public class CarSound : MonoBehaviour
 
     public void EnginSound()
     {
+        float speed = _CR.KPH / 100.0f + 0.1f;
         curretnSpeed = carRb.velocity.magnitude;
         pitchFromCar = carRb.velocity.magnitude / 50f;
 
-        if (curretnSpeed < minSpeed)
-        {
-            carAudio.pitch = minPitch;
-        }
+        if (speed < 0.1f)
+            speed = 0.1f;
+        //0 최소 1 최대
 
-        if(curretnSpeed >minSpeed && curretnSpeed < maxSpeed)
-        {
-            carAudio.pitch = minPitch + pitchFromCar;
-        }
 
-        if(curretnSpeed > maxSpeed)
-        {
-            carAudio.pitch = maxPitch;
+        carAudio.pitch = speed;
 
-        }
+
+        // if (curretnSpeed < minSpeed)
+        // {
+        //     carAudio.pitch = minPitch;
+        // }
+
+        // if(curretnSpeed >minSpeed && curretnSpeed < maxSpeed)
+        // {
+        //     carAudio.pitch = minPitch + pitchFromCar;
+        // }
+
+        // if(curretnSpeed > maxSpeed)
+        // {
+        //     carAudio.pitch = maxPitch;
+
+        // }
     }
 
 }

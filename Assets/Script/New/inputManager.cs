@@ -50,6 +50,14 @@ public class inputManager : MonoBehaviour
         else{
             if(gearStatus == 3){
                 vertical = Input.GetAxis("Vertical");
+
+                if(vertical < 0.1){
+                    isAxelPress = false;
+                }
+                else{
+                    vertical = (vertical - 0.4f) * 1.67f;
+                    isAxelPress = true;
+                }
             }
             else if(gearStatus == 1){
                 vertical = Input.GetAxis("Vertical") * -1;
