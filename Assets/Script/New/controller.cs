@@ -40,7 +40,6 @@ public class controller : MonoBehaviour
 
     
     [SerializeField] private Transform m_StearingWheel;
-    public GameObject _gearManager;
 
     // Start is called before the first frame update
     void Start()
@@ -155,7 +154,7 @@ public class controller : MonoBehaviour
     }
     private void getObjects()
     {
-        GC = _gearManager.GetComponent<GearControl>();
+        GC = GetComponent<GearControl>();
         IM = GetComponent<inputManager>();
         rigidbody = GetComponent<Rigidbody>();
 

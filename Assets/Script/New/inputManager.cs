@@ -12,12 +12,11 @@ public class inputManager : MonoBehaviour
     public bool replayCheck = false;
     private int gearStatus = 0;
     private GearControl GC;
-    public GameObject _gearManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        GC = _gearManager.GetComponent<GearControl>();
+        GC = GetComponent<GearControl>();
     }
 
     // Update is called once per frame

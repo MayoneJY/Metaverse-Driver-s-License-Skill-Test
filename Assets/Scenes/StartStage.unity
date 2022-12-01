@@ -1176,6 +1176,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6259329718057509772, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
+      propertyPath: _gearManager
+      value: 
+      objectReference: {fileID: 1084482693}
     - target: {fileID: -3268597971953158394, guid: f17dfaf4c25d15e41a1cfe4f7597bcd6, type: 3}
       propertyPath: radius
       value: 3
@@ -3240,7 +3244,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42516
+  m_Name: pb_Mesh1079792
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3935,7 +3939,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42836
+  m_Name: pb_Mesh1080118
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

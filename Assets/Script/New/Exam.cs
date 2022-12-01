@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Exam : MonoBehaviour
 {
+    //통과 체크
     [SerializeField] private bool hillTest = false;
+    [SerializeField] private bool _tCourseTest = false;
     
     //탈락 체크
     [SerializeField] private bool leavingOut = false;
 
+    private int _score = 100;
+
     private int examNumber = 0;
+    private int examNumber2 = 0;
     public bool collisionBodyStart = false;
     public bool collisionBodyEnd = false;
     private bool collisionBody = false;
+    private bool _tCourseJoin = false;
     
     private bool timeCheck = false;
     private float timer = 0.0f;
+    // T자코스
+    private float _tCourseOverTime = 120.0f;
 
     private controller ctrl;
     // Start is called before the first frame update
@@ -34,10 +42,47 @@ public class Exam : MonoBehaviour
                 examHill();
                 break;
             case 2:
+                examTCourseStart();
+                break;
+            case 3:
                 examTCourse();
                 break;
         }
 
+
+    }
+
+    private void examTCourseStart(){
+        // 입장 후 시험
+        if(timeCheck && _tCourseJoin){
+            timer = timer + Time.deltaTime;
+
+            if(timer >= _tCourseOverTime){
+                _tCourseOverTime += 5.0f;
+                if(_tCourseOverTime == 120.0f)
+                    _score -= 10;
+                else
+                    _score -= 3;
+
+            }
+
+
+        }
+
+        // 첫 입장
+        if(!_tCourseJoin && collisionBodyStart){
+            _tCourseJoin = true;
+        }
+
+        // 퇴장
+        if(_tCourseJoin && collisionBodyStart && timer > 20.0f){
+            _tCourseJoin = false;
+        }
+        
+        // 입장 후 타이머 작동
+        if(!timeCheck && _tCourseJoin){
+            timeCheck = true;   
+        }
 
     }
 
@@ -118,12 +163,15 @@ public class Exam : MonoBehaviour
         collisionBody = !collisionBody;
     }
 
-    public void setExamNumber(int number){
+    public void setExamNumber(int number, int number2){
         if(this.examNumber != number) {
             collisionBody = false;
             collisionBodyEnd = false;
             collisionBodyStart = false;
+            timer = 0.0f;
+            timeCheck = false;
         }
         this.examNumber = number;
+        this.examNumber2 = number2;
     }
 }

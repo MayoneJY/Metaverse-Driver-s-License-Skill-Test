@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExamCollision : MonoBehaviour
 {
     public int testNumber = 0;
+    public int testNumber2 = 0;
     private Exam EM;
 
     // Start is called before the first frame update
@@ -23,11 +24,11 @@ public class ExamCollision : MonoBehaviour
     {
         if(other.gameObject.name == "BodyStart") {
             EM.collisionBodyStart = true;
-            EM.setExamNumber(testNumber);
+            EM.setExamNumber(testNumber, testNumber2);
         }
         if(other.gameObject.name == "BodyEnd") {
             EM.collisionBodyEnd = true;
-            EM.setExamNumber(testNumber);
+            EM.setExamNumber(testNumber, testNumber2);
         }
             
     }
@@ -35,11 +36,11 @@ public class ExamCollision : MonoBehaviour
     {
         if(other.gameObject.name == "BodyStart") {
             EM.collisionBodyStart = false;
-            EM.setExamNumber(testNumber);
+            EM.setExamNumber(testNumber, testNumber2);
         }
         if(other.gameObject.name == "BodyEnd") {
             EM.collisionBodyEnd = false;
-            EM.setExamNumber(testNumber);
+            EM.setExamNumber(testNumber, testNumber2);
         }
     }
 }
