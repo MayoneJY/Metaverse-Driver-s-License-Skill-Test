@@ -30,6 +30,9 @@ public class ExamCollision : MonoBehaviour
             EM.collisionBodyEnd = true;
             EM.setExamNumber(testNumber, testNumber2);
         }
+        if(other.gameObject.name == "WheelEnd") {
+            EM.collisionWheelEnd = true;
+        }
             
     }
     private void OnTriggerExit(Collider other)
@@ -42,5 +45,9 @@ public class ExamCollision : MonoBehaviour
             EM.collisionBodyEnd = false;
             EM.setExamNumber(testNumber, testNumber2);
         }
+        if(other.gameObject.name == "WheelEnd") {
+            EM.collisionWheelEnd = false;
+        }
+        
     }
 }

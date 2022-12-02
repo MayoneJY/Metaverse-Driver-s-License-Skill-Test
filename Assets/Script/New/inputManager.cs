@@ -9,6 +9,7 @@ public class inputManager : MonoBehaviour
     public float handbrake;
     public bool isAxelPress = false;
     public bool isBrakePress = false;
+    public bool isParkingPress = false;
     public bool replayCheck = false;
     private int gearStatus = 0;
     private GearControl GC;

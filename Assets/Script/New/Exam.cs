@@ -17,6 +17,7 @@ public class Exam : MonoBehaviour
     private int examNumber2 = 0;
     public bool collisionBodyStart = false;
     public bool collisionBodyEnd = false;
+    public bool collisionWheelEnd = false;
     private bool collisionBody = false;
     private bool _tCourseJoin = false;
     
@@ -24,12 +25,16 @@ public class Exam : MonoBehaviour
     private float timer = 0.0f;
     // T자코스
     private float _tCourseOverTime = 120.0f;
+    private bool _tCourseCheck = false;
+    private float _tCourseTimeCheck = 9999.0f;
 
     private controller ctrl;
+    private inputManager _inputManager;
     // Start is called before the first frame update
     void Start()
     {
         ctrl = GetComponent<controller>();
+        _inputManager = GetComponent<inputManager>();
     }
 
     // Update is called once per frame
@@ -43,9 +48,9 @@ public class Exam : MonoBehaviour
                 break;
             case 2:
                 examTCourseStart();
-                break;
-            case 3:
-                examTCourse();
+                if(examNumber2 == 1){
+                    examTCourse();
+                }
                 break;
         }
 
@@ -77,6 +82,10 @@ public class Exam : MonoBehaviour
         // 퇴장
         if(_tCourseJoin && collisionBodyStart && timer > 20.0f){
             _tCourseJoin = false;
+            timeCheck = false;
+            if(_tCourseCheck){
+                _tCourseTest = true;
+            }
         }
         
         // 입장 후 타이머 작동
@@ -87,10 +96,22 @@ public class Exam : MonoBehaviour
     }
 
     private void examTCourse(){
-        if(!collisionBody) {
-            // 차체가 블럭에 다 들어 왔을 때
-            //Debug.Log("S:" + collisionBodyStart + ", E:" + collisionBodyEnd);
-            if(collisionBodyStart && collisionBodyEnd) toggleCollisionBody();
+        if(collisionWheelEnd) {
+            // 확인선을 밟았을 때
+
+            if(ctrl.KPH < 0.01f && _inputManager.isParkingPress && !_tCourseCheck){
+                // 주차브레이크 작동 했을 때
+                _tCourseCheck = true;
+                _tCourseTimeCheck = timer;
+            }
+            else if(ctrl.KPH < 0.01f && !_inputManager.isParkingPress && _tCourseCheck){
+                // 주차브레이크 작동 후 주차브레이크 작동 해제 했을 때
+                if(timer < _tCourseTimeCheck + 1.0f){
+                    // 1초 이하 동안 작동 했을 때
+                    _tCourseCheck = false;
+                    _score -= 10;
+                }
+            }
         }
     }
 
