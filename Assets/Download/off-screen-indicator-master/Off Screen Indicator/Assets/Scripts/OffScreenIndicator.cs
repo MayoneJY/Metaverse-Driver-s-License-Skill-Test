@@ -27,6 +27,7 @@ public class OffScreenIndicator : MonoBehaviour
         mainCamera = Camera.main;
         screenCentre = new Vector3(Screen.width, Screen.height, 0) / 2;
         screenBounds = screenCentre * screenBoundOffset;
+        Debug.Log(screenCentre);
         TargetStateChanged += HandleTargetStateChanged;
     }
 
