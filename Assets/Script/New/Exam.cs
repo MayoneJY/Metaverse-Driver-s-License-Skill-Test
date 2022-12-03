@@ -12,7 +12,7 @@ public class Exam : MonoBehaviour
     [SerializeField] private bool leavingOut = false;
 
     [Header("점수")]
-    private int _score = 100;
+    [SerializeField] private int _score = 100;
 
     [Header("기타 확인")]
     [SerializeField] private int examNumber = 0;
@@ -43,6 +43,7 @@ public class Exam : MonoBehaviour
     [SerializeField] private bool _boolWarringStopCheck = false;
     [SerializeField] private float _floatWarringStopTime = 0.0f;
     [SerializeField] private float _floatWarringTimeOver = 0.0f;
+    [SerializeField] private int _intWarringRandom = 0;
 
     private controller ctrl;
     private inputManager _inputManager;
@@ -51,7 +52,7 @@ public class Exam : MonoBehaviour
     {
         ctrl = GetComponent<controller>();
         _inputManager = GetComponent<inputManager>();
-
+        _intWarringRandom = Random.Range(1, 7);
     }
 
     // Update is called once per frame
@@ -85,7 +86,8 @@ public class Exam : MonoBehaviour
                 break;
             case 4:
                 //돌발 상황
-
+                if(_intWarringRandom == examNumber2)
+                    examWarring();
                 break;
             case 5:
                 //가속 구간
@@ -99,7 +101,10 @@ public class Exam : MonoBehaviour
 
     private void examFast(){
         // 가속 구간
+        if(ctrl.KPH <= 20.0f)
+        {
 
+        }
     }
 
     private void examWarring(){
@@ -127,7 +132,24 @@ public class Exam : MonoBehaviour
             // 비상등을 끄지 않고 1m이상 주행 한 경우 10점 감점
             _score -= 10;
         }
+
         // 정해진 시간을 지키지 못 한 경우  5초마다 3점씩 감점
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
     }
 
     private void examTrafficLight(){
@@ -297,7 +319,7 @@ public class Exam : MonoBehaviour
     }
 
     public void setExamNumber(int number, int number2){
-        if(this.examNumber != number) {
+        if(this.examNumber != number || this.examNumber2 != number2) {
             collisionBody = false;
             collisionBodyEnd = false;
             collisionBodyStart = false;

@@ -31,7 +31,7 @@ public class ExamCollision : MonoBehaviour
                 EM.setExamNumber(testNumber, testNumber2);
             }
         }
-        if(other.gameObject.name == "Body") {
+        if(other.gameObject.name == "BodyCenter") {
             if(testNumber == 3 && testNumber2 == 2){
                 EM._boolTrafficLightCheck = true;
             }
