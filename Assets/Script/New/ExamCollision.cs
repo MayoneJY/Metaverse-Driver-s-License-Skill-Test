@@ -23,30 +23,77 @@ public class ExamCollision : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.name == "BodyStart") {
-            EM.collisionBodyStart = true;
-            EM.setExamNumber(testNumber, testNumber2);
+            if(testNumber == 3 && testNumber2 == 2){
+                EM._boolTrafficLightCheck = true;
+            }
+            else{
+                EM.collisionBodyStart = true;
+                EM.setExamNumber(testNumber, testNumber2);
+            }
+        }
+        if(other.gameObject.name == "Body") {
+            if(testNumber == 3 && testNumber2 == 2){
+                EM._boolTrafficLightCheck = true;
+            }
+            else{
+                EM.collisionBodyCenter = true;
+            }
         }
         if(other.gameObject.name == "BodyEnd") {
-            EM.collisionBodyEnd = true;
-            EM.setExamNumber(testNumber, testNumber2);
+            if(testNumber == 3 && testNumber2 == 2){
+                EM._boolTrafficLightCheck = true;
+            }
+            else{
+                EM.collisionBodyEnd = true;
+                EM.setExamNumber(testNumber, testNumber2);
+            }
         }
         if(other.gameObject.name == "WheelEnd") {
-            EM.collisionWheelEnd = true;
+            if(testNumber == 3 && testNumber2 == 2){
+                EM._boolTrafficLightCheck = true;
+            }
+            else{
+                EM.collisionWheelEnd = true;
+            }
         }
+        
             
     }
     private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.name == "BodyStart") {
-            EM.collisionBodyStart = false;
-            EM.setExamNumber(testNumber, testNumber2);
+            if(testNumber == 3 && testNumber2 == 2){
+                EM._boolTrafficLightCheck = false;
+            }
+            else{
+                EM.collisionBodyStart = false;
+                EM.setExamNumber(testNumber, testNumber2);
+            }
+        }
+        if(other.gameObject.name == "Body") {
+            if(testNumber == 3 && testNumber2 == 2){
+                EM._boolTrafficLightCheck = false;
+            }
+            else{
+                EM.collisionBodyCenter = false;
+            }
         }
         if(other.gameObject.name == "BodyEnd") {
-            EM.collisionBodyEnd = false;
-            EM.setExamNumber(testNumber, testNumber2);
+            if(testNumber == 3 && testNumber2 == 2){
+                EM._boolTrafficLightCheck = false;
+            }
+            else{
+                EM.collisionBodyEnd = false;
+                EM.setExamNumber(testNumber, testNumber2);
+            }
         }
         if(other.gameObject.name == "WheelEnd") {
-            EM.collisionWheelEnd = false;
+            if(testNumber == 3 && testNumber2 == 2){
+                EM._boolTrafficLightCheck = false;
+            }
+            else{
+                EM.collisionWheelEnd = false;
+            }
         }
         
     }

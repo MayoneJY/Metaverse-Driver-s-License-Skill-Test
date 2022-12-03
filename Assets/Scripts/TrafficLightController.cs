@@ -13,6 +13,8 @@ public class TrafficLightController : MonoBehaviour
         MAX
     }
 
+    public int _lightNo = 0;
+
     [SerializeField] private LIGHT_TYPE _startType = LIGHT_TYPE.RED;
     [SerializeField] private GameObject[] _objectLights = new GameObject[(int)LIGHT_TYPE.MAX];
 
@@ -26,7 +28,7 @@ public class TrafficLightController : MonoBehaviour
 
     private float _deltaLight = 0.0f;
 
-    private LIGHT_TYPE _currentLightType = LIGHT_TYPE.GREEN;
+    public LIGHT_TYPE _currentLightType = LIGHT_TYPE.GREEN;
 
     private void SetState(LIGHT_TYPE type)
     {

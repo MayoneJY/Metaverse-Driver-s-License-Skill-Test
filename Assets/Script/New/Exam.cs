@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class Exam : MonoBehaviour
 {
-    //통과 체크
+    [Header("통과 체크")]
     [SerializeField] private bool hillTest = false;
     [SerializeField] private bool _tCourseTest = false;
     
-    //탈락 체크
+    [Header("탈락 체크")]
     [SerializeField] private bool leavingOut = false;
 
+    [Header("점수")]
     private int _score = 100;
 
-    private int examNumber = 0;
-    private int examNumber2 = 0;
+    [Header("기타 확인")]
+    [SerializeField] private int examNumber = 0;
+    [SerializeField] private int examNumber2 = 0;
     public bool collisionBodyStart = false;
+    public bool collisionBodyCenter = false;
     public bool collisionBodyEnd = false;
     public bool collisionWheelEnd = false;
     private bool collisionBody = false;
@@ -23,10 +26,17 @@ public class Exam : MonoBehaviour
     
     private bool timeCheck = false;
     private float timer = 0.0f;
-    // T자코스
+
+    [Header("T자 코스")]
     private float _tCourseOverTime = 120.0f;
     private bool _tCourseCheck = false;
     private float _tCourseTimeCheck = 9999.0f;
+
+    [Header("신호등 코스")]
+    [SerializeField] private TrafficLightController _TLC_1;
+    [SerializeField] private TrafficLightController _TLC_2;
+    public bool _boolTrafficLightCheck = false;
+    [SerializeField] private float _floatTrafficLightStopTime = 0.0f;
 
     private controller ctrl;
     private inputManager _inputManager;
@@ -44,17 +54,62 @@ public class Exam : MonoBehaviour
         switch (examNumber)
         {
             case 1:
+                //언덕코스
                 examHill();
                 break;
             case 2:
+                //T코스
                 examTCourseStart();
                 if(examNumber2 == 1){
                     examTCourse();
                 }
                 break;
+            case 3:
+                //신호등 코스
+                examTrafficLight();
+                break;
         }
 
 
+    }
+
+    private void examTrafficLight(){
+        // 신호등 코스
+        if(_boolTrafficLightCheck){
+            //신호등 코스 공통
+            timer += Time.deltaTime;
+
+            if(!timeCheck && ctrl.KPH < 0.01f){
+                //정지선 넘어서 멈췄을 때
+                _floatTrafficLightStopTime += Time.deltaTime;
+            }
+            if(_floatTrafficLightStopTime > 3.0f){
+                // 3초이상 멈췄을 때
+                _score -= 5;
+            }
+            if(timer > 20.0f){
+                // 20초 이상 30초 이내에 통과 했을 경우
+                _score -= 5;
+            }
+            if(timer > 30.0f){
+                // 30초 이상 통과하지 못 했을 경우
+                leavingOut = true;
+            }
+        }
+        switch (examNumber2)
+        {
+            case 1:
+                //첫 신호등, 두 번째 신호등
+
+                if(_TLC_1._currentLightType == TrafficLightController.LIGHT_TYPE.RED){
+                    // 빨간불일 때 정지선 넘으면 바로 탈락
+                    leavingOut = true;
+                }
+                break;
+            case 2:
+                //신호등 공통
+                break;
+        }
     }
 
     private void examTCourseStart(){

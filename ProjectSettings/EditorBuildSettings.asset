@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/VRSetting.unity
     guid: a0a7998993d6cc44fa1d9b4369903294
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/develop.unity
     guid: f0f5048ea95281f40a69f25247699c01
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/replay.unity
     guid: 83553fb05615149e3b629af7adbb8fa7
   m_configObjects:
