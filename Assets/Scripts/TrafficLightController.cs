@@ -35,7 +35,7 @@ public class TrafficLightController : MonoBehaviour
         for (int i = 0; i < _objectLights.Length; ++i)
         {
             _objectLights[i].SetActive(false);
-        }gasdf.gnsd.fkj.,
+        }
 
         if (type == LIGHT_TYPE.ARROW)
             _objectLights[(int)LIGHT_TYPE.RED].SetActive(true);
