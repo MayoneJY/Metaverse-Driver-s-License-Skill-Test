@@ -37,6 +37,12 @@ public class Exam : MonoBehaviour
     [SerializeField] private TrafficLightController _TLC_2;
     public bool _boolTrafficLightCheck = false;
     [SerializeField] private float _floatTrafficLightStopTime = 0.0f;
+    [SerializeField] private TurnSignal _turnSignal;
+
+    [Header("돌발 상황")]
+    [SerializeField] private bool _boolWarringStopCheck = false;
+    [SerializeField] private float _floatWarringStopTime = 0.0f;
+    [SerializeField] private float _floatWarringTimeOver = 0.0f;
 
     private controller ctrl;
     private inputManager _inputManager;
@@ -45,12 +51,21 @@ public class Exam : MonoBehaviour
     {
         ctrl = GetComponent<controller>();
         _inputManager = GetComponent<inputManager>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(!collisionBodyStart && !collisionBodyCenter && !collisionBodyEnd){
+            examNumber = 0;
+            examNumber2 = 0;
+        }
+        if(examNumber == 0 && examNumber2 == 0){
+            if(_turnSignal.doubleTurnSignal)
+                // 돌발상황 지시 전 비상등을 작동한 경우 10점 감점
+                _score -= 10;
+        }
         switch (examNumber)
         {
             case 1:
@@ -68,9 +83,51 @@ public class Exam : MonoBehaviour
                 //신호등 코스
                 examTrafficLight();
                 break;
+            case 4:
+                //돌발 상황
+
+                break;
+            case 5:
+                //가속 구간
+                examFast();
+                break;
+                
         }
 
 
+    }
+
+    private void examFast(){
+        // 가속 구간
+
+    }
+
+    private void examWarring(){
+        // 돌발생황
+        timer += Time.deltaTime;
+        if(timer > 2.0f && !_boolWarringStopCheck){
+            // 2초이내에 정지하지 못 한 경우 10점 감점
+            _score -= 10;
+        }
+
+        if(!_boolWarringStopCheck && ctrl.KPH < 0.01f){
+            _boolWarringStopCheck = true;
+            _floatWarringStopTime = timer;
+        }
+        if(_boolWarringStopCheck){
+            if(timer - _floatWarringStopTime > 3.0f){
+                if(!_turnSignal.doubleTurnSignal){
+                    // 정지후 3초이내에 비상등을 작동 못 한 경우 10점 감점
+                    _score -= 10;
+                }
+
+            }
+        }
+        if(_turnSignal.doubleTurnSignal && ctrl.KPH > 3.0f){
+            // 비상등을 끄지 않고 1m이상 주행 한 경우 10점 감점
+            _score -= 10;
+        }
+        // 정해진 시간을 지키지 못 한 경우  5초마다 3점씩 감점
     }
 
     private void examTrafficLight(){
