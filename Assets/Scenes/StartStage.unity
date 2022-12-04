@@ -2759,6 +2759,11 @@ PrefabInstance:
       objectReference: {fileID: 980425883}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
+--- !u!1 &641649690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9103035271702293035, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
+  m_PrefabInstance: {fileID: 421154207}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &649968337
 GameObject:
   m_ObjectHideFlags: 0
@@ -3690,6 +3695,10 @@ PrefabInstance:
       value: "\uD654\uC0B4\uD45C"
       objectReference: {fileID: 0}
     - target: {fileID: 9103035271702293035, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103035271702293035, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -3716,6 +3725,10 @@ PrefabInstance:
     - target: {fileID: 9103035272926522162, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103035272926522163, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
@@ -4698,7 +4711,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh80886
+  m_Name: pb_Mesh401418
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5014,6 +5027,10 @@ MonoBehaviour:
   _carBody: {fileID: 240621619}
   _carTurnLight: {fileID: 649968337}
   _carWiper: {fileID: 58072753}
+  _carGearArrow: {fileID: 1963106626}
+  _carTurnLightArrow: {fileID: 1100173396}
+  _carUnderLightArrow: {fileID: 2032734291}
+  _carTopLightArrow: {fileID: 641649690}
 --- !u!1 &1092995349
 GameObject:
   m_ObjectHideFlags: 0
@@ -5089,6 +5106,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092995349}
   m_CullTransparentMesh: 1
+--- !u!1 &1100173396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9103035271702293035, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
+  m_PrefabInstance: {fileID: 812415568}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1179330520
 GameObject:
   m_ObjectHideFlags: 0
@@ -5395,7 +5417,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh81224
+  m_Name: pb_Mesh401778
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6960,6 +6982,10 @@ PrefabInstance:
       value: "\uD654\uC0B4\uD45C"
       objectReference: {fileID: 0}
     - target: {fileID: 9103035271702293035, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103035271702293035, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -6982,6 +7008,10 @@ PrefabInstance:
     - target: {fileID: 9103035272926522162, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103035272926522163, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
@@ -8554,6 +8584,16 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1963106626 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9103035271702293035, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
+  m_PrefabInstance: {fileID: 1479035469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2032734291 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9103035271702293035, guid: 7fc417d1bd9987040981e8742cf56529, type: 3}
+  m_PrefabInstance: {fileID: 456084364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2048112410
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,6 +32,7 @@ public class StartStage : MonoBehaviour
         "핸들을 반 시계방향으로 돌리고 왼쪽으로 이동해보세요.",
         "핸들을 시계방향으로 돌리고 오른쪽으로 이동해보세요."
     };
+    [SerializeField] private AudioSource[] _audioTTS = new AudioSource[21];
     private int[] _uiTextTime = new int[]{1,1,5,10,5,5,5,5,5,5,5,5,5,5,0,0,0,0,0,0,0};
     private int[] _uiTTSTime = new int[]{5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5};
     private int _uiTextCount = 0;
@@ -49,6 +50,8 @@ public class StartStage : MonoBehaviour
     [SerializeField] private GameObject _carWiper;
     [SerializeField] private GameObject _carGearArrow;
     [SerializeField] private GameObject _carTurnLightArrow;
+    [SerializeField] private GameObject _carUnderLightArrow;
+    [SerializeField] private GameObject _carTopLightArrow;
 
     private GearControl _GC;
     private TurnSignal _TS;
@@ -119,34 +122,37 @@ public class StartStage : MonoBehaviour
                     switch (_gearCheckCount)
                     {
                         case 0:
-                        if(_GC.m_GearState_Now >= 2){
-                            _gearCheck[_gearCheckCount] = true;
-                            _gearCheckCount += 1;
-                        }
-                        break;
+                            if(_GC.m_GearState_Now >= 2){
+                                _gearCheck[_gearCheckCount] = true;
+                                _gearCheckCount += 1;
+                            }
+                            break;
 
                         case 1:
-                        if(_GC.m_GearState_Now == 0){
-                            _gearCheck[_gearCheckCount] = true;
-                            _gearCheckCount += 1;
-                        }
-                        break;
+                            if(_GC.m_GearState_Now == 0){
+                                _gearCheck[_gearCheckCount] = true;
+                                _gearCheckCount += 1;
+                            }
+                            break;
 
                         case 2:
-                        _uiTextCount++;
-                        _timeCheck = false;
-                        _timeOver = false;
-                        break;
+                            _uiTextCount++;
+                            _timeCheck = false;
+                            _timeOver = false;
+                            _carGearArrow.SetActive(false);
+                            break;
 
                         default:
-                        break;
+                            break;
                     }
                     break;
 
                 case 4: //좌측방향지시등 켜기
                     _timerPanel.SetActive(true);
+                    _carTurnLightArrow.SetActive(true);
                     if(_TS.leftTurnSignal){
                         _uiTextCount++;
+                        _carTurnLightArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -158,8 +164,10 @@ public class StartStage : MonoBehaviour
                 
                 case 5: //좌측방향지시등 끄기
                     _timerPanel.SetActive(true);
+                    _carTurnLightArrow.SetActive(true);
                     if(!_TS.leftTurnSignal){
                         _uiTextCount++;
+                        _carTurnLightArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -171,8 +179,10 @@ public class StartStage : MonoBehaviour
 
                 case 6: //좌측방향지시등 켜기
                     _timerPanel.SetActive(true);
+                    _carTurnLightArrow.SetActive(true);
                     if(_TS.rightTurnSignal){
                         _uiTextCount++;
+                        _carTurnLightArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -184,8 +194,10 @@ public class StartStage : MonoBehaviour
                 
                 case 7: //좌측방향지시등 끄기
                     _timerPanel.SetActive(true);
+                    _carTurnLightArrow.SetActive(true);
                     if(!_TS.rightTurnSignal){
                         _uiTextCount++;
+                        _carTurnLightArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -216,8 +228,10 @@ public class StartStage : MonoBehaviour
 
                 case 10: //하향등 켜기
                     _timerPanel.SetActive(true);
+                    _carUnderLightArrow.SetActive(true);
                     if(_NL._nightBeamStatus && !_NL._highBeamStatus){
                         _uiTextCount++;
+                        _carUnderLightArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -225,8 +239,10 @@ public class StartStage : MonoBehaviour
 
                 case 11: //상향등 켜기
                     _timerPanel.SetActive(true);
+                    _carTopLightArrow.SetActive(true);
                     if(_NL._nightBeamStatus && _NL._highBeamStatus){
                         _uiTextCount++;
+                        _carTopLightArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -234,8 +250,10 @@ public class StartStage : MonoBehaviour
 
                 case 12: //상향등 끄기
                     _timerPanel.SetActive(true);
+                    _carTopLightArrow.SetActive(true);
                     if(_NL._nightBeamStatus && !_NL._highBeamStatus){
                         _uiTextCount++;
+                        _carTopLightArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -243,16 +261,20 @@ public class StartStage : MonoBehaviour
 
                 case 13: //하향등 끄기
                     _timerPanel.SetActive(true);
+                    _carUnderLightArrow.SetActive(true);
                     if(!_NL._nightBeamStatus){
                         _uiTextCount++;
+                        _carUnderLightArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
                 break;
 
                 case 14: //기어 리버스로
+                    _carGearArrow.SetActive(true);
                     if(_GC.m_GearState_Now == 1){
                         _uiTextCount++;
+                        _carGearArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -275,8 +297,10 @@ public class StartStage : MonoBehaviour
                 break;
 
                 case 17: //기어 드라이브로
+                    _carGearArrow.SetActive(true);
                     if(_GC.m_GearState_Now == 3){
                         _uiTextCount++;
+                        _carGearArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
