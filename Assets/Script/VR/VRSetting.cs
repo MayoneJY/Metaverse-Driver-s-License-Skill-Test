@@ -8,7 +8,7 @@ public class VRSetting : MonoBehaviour
     [SerializeField] private GameObject _carObject;
     private bool _triggerBooleanCheck = false;
     public GearControl GC;
-    [SerializeField] private VRSetting _VS;
+    [SerializeField] private TurnSignal _TS;
     [SerializeField] private NightLamp _NL;
     // Start is called before the first frame update
     void Start()
@@ -59,7 +59,7 @@ public class VRSetting : MonoBehaviour
             }
             else if(other.gameObject.name == "Warning")
             {
-                _VS.turnSignalOnOff("DOUBLE");
+                _TS.turnSignalOnOff("DOUBLE");
 
             }
             else if(other.gameObject.name == "UnderLight")
