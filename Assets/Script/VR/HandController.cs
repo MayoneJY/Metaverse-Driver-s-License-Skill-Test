@@ -13,45 +13,24 @@ public class HandController : MonoBehaviour
         DRIVE,
         MAX
     }
-    public Transform topOfLever;
 
-    [SerializeField] private float forwardBackwardTilt = 0;
-    [SerializeField] private float sideToSideTilt = 0;
-    [SerializeField] private GameObject _carBody;
-    private GearControl GC;
-    private inputManager IM;
-
-    void Start()
-    {
-        IM = _carBody.GetComponent<inputManager>();
-        GC = _carBody.GetComponent<GearControl>();
-    }
-    void Update()
-    {
-        if(IM.isBrakePress){
-            forwardBackwardTilt = topOfLever.rotation.eulerAngles.x;
-            if(forwardBackwardTilt < 355 && forwardBackwardTilt > 290){
-                forwardBackwardTilt = Math.Abs(forwardBackwardTilt - 360);
-            }
-        }
-        
-    }
-
+    public Transform Root;
+    [SerializeField] private Transform Target;
     private GEAR_MODE GetGearMode(float angle)
     {
         GEAR_MODE result = GEAR_MODE.DRIVE;
 
         var intAngle = Mathf.RoundToInt(angle);
 
-        if (intAngle < 250)
+        if (intAngle < 60)
         {
             result = GEAR_MODE.PARK;
         }
-        else if (intAngle < 280 && intAngle >= 250)
+        else if (intAngle < 80 && intAngle >= 60)
         {
             result = GEAR_MODE.REVERSE;
         }
-        else if (intAngle < 310 && intAngle >= 280)
+        else if (intAngle < 110 && intAngle >= 80)
         {
             result = GEAR_MODE.NEUTRAL;
         }
@@ -68,17 +47,13 @@ public class HandController : MonoBehaviour
         switch (gearMode)
         {
             case GEAR_MODE.PARK:
-                GC.m_GearState_Now = 0;
-                return 230;
+                return 40;
             case GEAR_MODE.REVERSE:
-                GC.m_GearState_Now = 1;
-                return 260;
+                return 70;
             case GEAR_MODE.NEUTRAL:
-                GC.m_GearState_Now = 2;
-                return 290;
+                return 100;
             default:
-                GC.m_GearState_Now = 3;
-                return 320;
+                return 140;
         }
     }
 
@@ -86,13 +61,12 @@ public class HandController : MonoBehaviour
     {
         if (other.CompareTag("PlayerHand"))
         {
-            var vector = other.transform.position - transform.position;
-            var angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg + 180;
+            var vector = transform.position - other.transform.position;
+            var angle = Vector3.Angle(Target.forward, vector);
 
             var gearMode = GetGearMode(angle);
-            //transform.rotation.Set(GetGearStickAngle(gearMode), 0, 0, 0);
-             transform.rotation = Quaternion.Euler(GetGearStickAngle(gearMode), -90, 0);
-       }
+            Root.localRotation = Quaternion.AngleAxis(GetGearStickAngle(gearMode) -90, Target.up);
+        }
 
     }
 
@@ -100,21 +74,19 @@ public class HandController : MonoBehaviour
     {
         if (other.CompareTag("PlayerHand"))
         {
-            var vector = other.transform.position - transform.position;
-            var angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg + 180;
+            var vector = transform.position - other.transform.position;
+            var angle = Vector3.Angle(Target.forward, vector);
 
-            if (angle > 320)
+            if (angle > 140)
             {
-                angle = 320;
+                angle = 140;
             }
-            else if (angle < 230)
+            else if (angle < 40)
             {
-                angle = 230;
+                angle = 40;
             }
-
-            transform.rotation = Quaternion.Euler(angle, -90, 0);
-            //transform.LookAt(other.transform.position, transform.up);
+            
+            Root.localRotation = Quaternion.AngleAxis(angle - 90, Target.up);
         }
     }
-
 }
