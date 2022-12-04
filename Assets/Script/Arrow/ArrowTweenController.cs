@@ -5,47 +5,39 @@ using UnityEngine;
 public class ArrowTweenController : MonoBehaviour
 {
     public float Speed = 1f;
-    public float Move = 10;
+    public float Length = 1;
 
-    private float _defaultPosition = 0.0f;
-    private bool _isReversed = false;
+    [SerializeField] private Transform _target = null;
 
-    private Transform _transform = null;
+    private bool _isReverse = false;
+    float moveAmount = 0.0f;
 
-    private void Awake()
-    {
-        if (_transform == null)
-            _transform = gameObject.transform;
-
-        _defaultPosition = _transform.position.y;
-    }
-
-    // Update is called once per frame
     void Update()
     {
         var moveDelta = Time.deltaTime * Speed;
-        var updatePosition = _transform.position;
+        var direction = transform.forward;
+        
+        // 바라보는 상대가 있으면 방향은 상대방이다.
+        if (_target != null)
+        {
+            transform.LookAt(_target);
+            direction = _target.position - transform.position;
+        }
 
-        if (_isReversed)
-            updatePosition.y += moveDelta * -1;
+        var move = direction * moveDelta;
+        moveAmount += move.magnitude;
+
+        Vector3 updatePosition = Vector3.zero;
+        if (_isReverse)
+            updatePosition = transform.position + direction * moveDelta * -1;
         else
-            updatePosition.y += moveDelta;
+            updatePosition = transform.position + direction * moveDelta;
 
-        bool isTrigger = false;
-        if (updatePosition.y >= _defaultPosition + Move)
+        if (moveAmount >= Length)
         {
-            updatePosition.y = _defaultPosition + Move;
-            isTrigger = true;
+            _isReverse = !_isReverse;
+            moveAmount = 0.0f;
         }
-        else if(updatePosition.y <= _defaultPosition - Move)
-        {
-            updatePosition.y = _defaultPosition - Move;
-            isTrigger = true;
-        }
-       
-        _transform.position = updatePosition;
-
-        if (isTrigger)
-            _isReversed = !_isReversed;
+        transform.position = updatePosition;
     }
 }
