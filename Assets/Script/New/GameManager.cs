@@ -29,6 +29,6 @@ public class GameManager : MonoBehaviour
     public void updateNeedle(){
         desiredPosition = startPosition - endPosition;
         float temp = RR.engineRPM / 10000;
-        needle.transform.eulerAngles = new Vector3(0,0,(startPosition - temp * desiredPosition));
+        needle.transform.localEulerAngles = new Vector3(0,0,(startPosition - temp * desiredPosition));
     }
 }

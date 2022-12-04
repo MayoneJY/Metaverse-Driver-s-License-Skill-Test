@@ -19,11 +19,11 @@ public class TurnSignal : MonoBehaviour
     private Renderer m_Renderer_Right;
     private float timer;
     private int waitingTime;
-    private bool leftTurnSignal = false;
-    private bool leftLightBool = false;
-    private bool rightTurnSignal = false;
-    private bool rightLightBool = false;
-    private bool doubleTurnSignal = false;
+    public bool leftTurnSignal = false;
+    public bool leftLightBool = false;
+    public bool rightTurnSignal = false;
+    public bool rightLightBool = false;
+    public bool doubleTurnSignal = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -94,10 +94,10 @@ public class TurnSignal : MonoBehaviour
         }
     }
 
-    private void turnSignalOnOff(string signal)
+    public void turnSignalOnOff(string signal)
     {
-        //ÇÑÂÊ ¹æÇâÁö½ÃµîÀÌ ÄÑÁ®ÀÖÀ» ¶§ ´Ù¸¥ ¹æÇâÁö½ÃµîÀÌ ²¨Áü
-        //ºñ»óµî ÄÑÁú ¶§ ¿ì¼± ¾çÂÊ ¹æÇâÁö½ÃµîÀ» ²û
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ ï¿½ï¿½
         if(signal == "LEFT") leftTurnSignal = !leftTurnSignal;
         else leftTurnSignal = false;
         leftLightBool = false;

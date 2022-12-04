@@ -6,7 +6,7 @@ public class GearControl : MonoBehaviour
     public GameObject Gear;
 
     //private string[] m_GearStates = { "Parking", "Return", "Nature", "Driver" };
-    public static int m_GearState_Now = 3;
+    public int m_GearState_Now = 3;
 
     // Start is called before the first frame update
     void Start()

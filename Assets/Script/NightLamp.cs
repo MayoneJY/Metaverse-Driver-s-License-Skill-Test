@@ -11,6 +11,8 @@ public class NightLamp : MonoBehaviour
     [SerializeField] private Material _lightOff = null;
     [SerializeField] private GameObject _DayTimeLight = null;
     [SerializeField] private GameObject _MainLight_LOD0 = null;
+    public bool _nightBeamStatus = false;
+    public bool _highBeamStatus = false;
 
     // Update is called once per frame
     void Update()
@@ -18,38 +20,42 @@ public class NightLamp : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.J))
         {
-            bool isActive = _nightBeamLight.activeSelf == false;
-            _nightBeamLight.SetActive(isActive);
-            
-            if (isActive)
-            {
-                _MainLight_LOD0.GetComponent<Renderer>().material = _lightOn;
-            }
-            else
-            {
-                _MainLight_LOD0.GetComponent<Renderer>().material = _lightOff;
-            }
-
-
+            triggerLight();
         }
 
        
 
         if (Input.GetKeyDown(KeyCode.K))
-        {
-            bool isActive = _highBeamLight.activeSelf == false;
-            _highBeamLight.SetActive(isActive);
-
-            if (isActive)
-            {
-                _MainLight_LOD0.GetComponent<Renderer>().material = _lightOn;
-            }
-            else
-            {
-                _MainLight_LOD0.GetComponent<Renderer>().material = _lightOff;
-            }
+        {   
+            triggerHighLight();
+            
         }
     
 
+    }
+
+    public void triggerLight(){
+        _nightBeamStatus = !_nightBeamStatus;
+            
+        if (_nightBeamStatus)
+        {
+            _MainLight_LOD0.GetComponent<Renderer>().material = _lightOn;
+            _nightBeamLight.SetActive(!_highBeamStatus);
+            _highBeamLight.SetActive(_highBeamStatus);
+        }
+        else
+        {
+            _MainLight_LOD0.GetComponent<Renderer>().material = _lightOff;
+            _nightBeamLight.SetActive(false);
+            _highBeamLight.SetActive(false);
+        }
+    }
+
+    public void triggerHighLight(){
+        if(_nightBeamStatus){
+            _highBeamStatus = _highBeamLight.activeSelf == false;
+            _highBeamLight.SetActive(_highBeamStatus);
+            _nightBeamLight.SetActive(!_highBeamStatus);
+        }
     }
 }

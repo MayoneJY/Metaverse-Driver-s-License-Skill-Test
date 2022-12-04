@@ -13,6 +13,8 @@ public class TrafficLightController : MonoBehaviour
         MAX
     }
 
+    public int _lightNo = 0;
+
     [SerializeField] private LIGHT_TYPE _startType = LIGHT_TYPE.RED;
     [SerializeField] private GameObject[] _objectLights = new GameObject[(int)LIGHT_TYPE.MAX];
 
@@ -21,11 +23,12 @@ public class TrafficLightController : MonoBehaviour
     [SerializeField] private float _greenLightChangeSecond = 30.0f;
     [SerializeField] private float _arrowLightChangeSecond = 30.0f;
     [SerializeField] private LIGHT_TYPE[] _lightTypeOrder = new LIGHT_TYPE[6];
+    [SerializeField] private int[] _lightTypeTime = new int[6];
     [SerializeField] private int _lightTypeCount = 0;
 
     private float _deltaLight = 0.0f;
 
-    private LIGHT_TYPE _currentLightType = LIGHT_TYPE.GREEN;
+    public LIGHT_TYPE _currentLightType = LIGHT_TYPE.GREEN;
 
     private void SetState(LIGHT_TYPE type)
     {
@@ -43,7 +46,8 @@ public class TrafficLightController : MonoBehaviour
 
     private void Start()
     {
-        SetState((LIGHT_TYPE)(0));
+        _currentLightType = _lightTypeOrder[_lightTypeCount];
+        SetState(_currentLightType);
     }
 
     // Update is called once per frame
@@ -52,22 +56,24 @@ public class TrafficLightController : MonoBehaviour
         _deltaLight += Time.deltaTime;
         float limitLightSeconds = 0.0f;
 
-        switch (_currentLightType)
-        {
-            case LIGHT_TYPE.RED:
-                limitLightSeconds = _redLightChangeSecond;
-                break;
-            case LIGHT_TYPE.YELLOW:
-                limitLightSeconds = _yellowLightChangeSecond;
-                break;
-            case LIGHT_TYPE.GREEN:
-                limitLightSeconds = _greenLightChangeSecond;
-                break;
-            case LIGHT_TYPE.ARROW:
-                limitLightSeconds = _arrowLightChangeSecond;
-                break;
+        // switch (_currentLightType)
+        // {
+        //     case LIGHT_TYPE.RED:
+        //         limitLightSeconds = _redLightChangeSecond;
+        //         break;
+        //     case LIGHT_TYPE.YELLOW:
+        //         limitLightSeconds = _yellowLightChangeSecond;
+        //         break;
+        //     case LIGHT_TYPE.GREEN:
+        //         limitLightSeconds = _greenLightChangeSecond;
+        //         break;
+        //     case LIGHT_TYPE.ARROW:
+        //         limitLightSeconds = _arrowLightChangeSecond;
+        //         break;
 
-        }
+        // }
+
+        limitLightSeconds = _lightTypeTime[_lightTypeCount];
 
         if (_deltaLight >= limitLightSeconds)
         {
@@ -107,21 +113,32 @@ public class TrafficLightController : MonoBehaviour
 //3		3
 //	2
 //10   5    10   5
-//1ÆÄ 2³ë 3»¡ 4È­
+//1ï¿½ï¿½ 2ï¿½ï¿½ 3ï¿½ï¿½ 4È­
 
-//¡á¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à¡à
-//¡Ü
-//¡á¡à¡á¡à¡á¡à¡á¡à¡á¡à¡á¡à
-//¡Ü¡Ü¡Ü¡á¡á¡Ü¡Ü¡Ü
+//ï¿½Ü¡Ü¡Ü¡ï¿½ï¿½Ü¡Ü¡ï¿½
 //3   3   4   2   3   3
 //10 5   5   5   10 5
-//¡á¡à¡á¡Ü¡Ü¡Ü¡Ü¡Ü
+//ï¿½ï¿½ï¿½ï¿½Ü¡Ü¡Ü¡Ü¡ï¿½
 //1   2   3   3   3
 //10 5   10  10 5
-//¡á¡à¡á¡Ü¡Ü¡Ü¡Ü¡Ü
+//ï¿½ï¿½ï¿½ï¿½Ü¡Ü¡Ü¡Ü¡ï¿½
 //1   2   3   3   3
 //10 5   10  10 5
-//¡Ü¡Ü¡Ü¡Ü¡Ü¡á¡à¡á
+//ï¿½Ü¡Ü¡Ü¡Ü¡Ü¡ï¿½ï¿½ï¿½
 //3   3   3   1   2
 //10 5  10  10  5
+
+
+//ï¿½Ü¡Ü¡Ü¡ï¿½ï¿½Ü¡Ü¡ï¿½
+//3   3   4   2   3   3
+//10 5   10   5   10 5
+//ï¿½ï¿½ï¿½ï¿½Ü¡Ü¡Ü¡Ü¡ï¿½
+//1   2   3   3   3
+//10 5   10  10  10
+//ï¿½ï¿½ï¿½ï¿½Ü¡Ü¡Ü¡Ü¡ï¿½
+//1   2   3   3   3
+//10 5   10  10  10
+//ï¿½Ü¡Ü¡Ü¡Ü¡Ü¡ï¿½ï¿½ï¿½
+//3   3   3   1   2
+//10 10  10  10  5
 }
