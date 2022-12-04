@@ -47,6 +47,8 @@ public class StartStage : MonoBehaviour
     [SerializeField] private GameObject _carBody;
     [SerializeField] private GameObject _carTurnLight;
     [SerializeField] private GameObject _carWiper;
+    [SerializeField] private GameObject _carGearArrow;
+    [SerializeField] private GameObject _carTurnLightArrow;
 
     private GearControl _GC;
     private TurnSignal _TS;
@@ -101,42 +103,45 @@ public class StartStage : MonoBehaviour
                     }
                     break;
                 case 2: //시동걸기
-                _timerPanel.SetActive(true);
-                if(_carEngineStarter.GetComponent<OnOffObject>().GetTrigger()){
-                    _uiTextCount++;
-                    _timeCheck = false;
-                    _timeOver = false;
-                }
-                break;
+                    _timerPanel.SetActive(true);
+                    _carEngineStarter.transform.GetChild(0).gameObject.SetActive(true);
+                    if(_carEngineStarter.GetComponent<OnOffObject>().GetTrigger()){
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                        _carEngineStarter.transform.GetChild(0).gameObject.SetActive(false);
+                    }
+                    break;
 
                 case 3: //기어바꾸기(P > D/N > P)
-                _timerPanel.SetActive(true);
-                switch (_gearCheckCount)
-                {
-                    case 0:
-                    if(_GC.m_GearState_Now >= 2){
-                        _gearCheck[_gearCheckCount] = true;
-                        _gearCheckCount += 1;
+                    _carGearArrow.SetActive(true);
+                    _timerPanel.SetActive(true);
+                    switch (_gearCheckCount)
+                    {
+                        case 0:
+                        if(_GC.m_GearState_Now >= 2){
+                            _gearCheck[_gearCheckCount] = true;
+                            _gearCheckCount += 1;
+                        }
+                        break;
+
+                        case 1:
+                        if(_GC.m_GearState_Now == 0){
+                            _gearCheck[_gearCheckCount] = true;
+                            _gearCheckCount += 1;
+                        }
+                        break;
+
+                        case 2:
+                        _uiTextCount++;
+                        _timeCheck = false;
+                        _timeOver = false;
+                        break;
+
+                        default:
+                        break;
                     }
                     break;
-
-                    case 1:
-                    if(_GC.m_GearState_Now == 0){
-                        _gearCheck[_gearCheckCount] = true;
-                        _gearCheckCount += 1;
-                    }
-                    break;
-
-                    case 2:
-                    _uiTextCount++;
-                    _timeCheck = false;
-                    _timeOver = false;
-                    break;
-
-                    default:
-                    break;
-                }
-                break;
 
                 case 4: //좌측방향지시등 켜기
                     _timerPanel.SetActive(true);

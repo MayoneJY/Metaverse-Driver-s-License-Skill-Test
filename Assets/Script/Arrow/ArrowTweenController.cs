@@ -8,7 +8,6 @@ public class ArrowTweenController : MonoBehaviour
     public float Move = 10;
 
     private float _defaultPosition = 0.0f;
-    private float _moveAmount = 0.0f;
     private bool _isReversed = false;
 
     private Transform _transform = null;
@@ -24,27 +23,29 @@ public class ArrowTweenController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var move = Time.deltaTime * Speed;
-        var prevPosition = _transform.position;
+        var moveDelta = Time.deltaTime * Speed;
+        var updatePosition = _transform.position;
 
-        _moveAmount += move;
         if (_isReversed)
-            prevPosition.y += move * -1;
+            updatePosition.y += moveDelta * -1;
         else
-            prevPosition.y += move;
+            updatePosition.y += moveDelta;
 
-        if (prevPosition.y >= _defaultPosition + Move)
-            prevPosition.y = _defaultPosition;
-        else if(prevPosition.y <= -_defaultPosition - Move)
-            prevPosition.y = -_defaultPosition;
-       
-        //Debug.Log(_moveAmount + "//" + prevPosition);
-        _transform.position = prevPosition;
-
-        if (_moveAmount >= Move)
+        bool isTrigger = false;
+        if (updatePosition.y >= _defaultPosition + Move)
         {
-            _isReversed = !_isReversed;
-            _moveAmount = 0;
+            updatePosition.y = _defaultPosition + Move;
+            isTrigger = true;
         }
+        else if(updatePosition.y <= _defaultPosition - Move)
+        {
+            updatePosition.y = _defaultPosition - Move;
+            isTrigger = true;
+        }
+       
+        _transform.position = updatePosition;
+
+        if (isTrigger)
+            _isReversed = !_isReversed;
     }
 }

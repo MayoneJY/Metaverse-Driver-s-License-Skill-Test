@@ -100,6 +100,7 @@ public class HandController : MonoBehaviour
     {
         if (other.CompareTag("PlayerHand"))
         {
+            other.transform.GetChild()
             var vector = other.transform.position - transform.position;
             var angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg + 180;
 
