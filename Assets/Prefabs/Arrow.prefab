@@ -74,13 +74,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945281362373259384}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.10000003, y: 0.10000003, z: 1}
   m_Children: []
   m_Father: {fileID: 1945281361632867596}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 180, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &1945281362373259388
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9103035271702293034}
   m_Layer: 0
-  m_Name: "\uD654\uC0B4\uD45C"
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,6 +10,8 @@ public class VRSetting : MonoBehaviour
     public GearControl GC;
     [SerializeField] private TurnSignal _TS;
     [SerializeField] private NightLamp _NL;
+    [SerializeField] private WiperAction _WP;
+    [SerializeField] private WiperAction _WP2;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +72,12 @@ public class VRSetting : MonoBehaviour
             else if(other.gameObject.name == "TopLight")
             {
                 _NL.triggerHighLight();
+
+            }
+            else if(other.gameObject.name == "Wiper")
+            {
+                _WP.triggerCheck = true;
+                _WP2.triggerCheck = true;
 
             }
 

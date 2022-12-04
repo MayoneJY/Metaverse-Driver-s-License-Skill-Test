@@ -12,7 +12,7 @@ public class WiperAction : MonoBehaviour
     Animator animator;
     bool WiperM = false;
     public wiperValue _wiperValue;
-
+    public bool triggerCheck = false;
 
     void Start()
     {
@@ -22,23 +22,28 @@ public class WiperAction : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) //�ڵ�
+        if (Input.GetKeyDown(KeyCode.F) || triggerCheck) //�ڵ�
         {
-            animator.SetBool("WiperA", true);
-            animator.SetBool("WiperH", false);
-            animator.SetBool("WiperL", false);
-            _wiperValue = wiperValue.Automatic;
+            triggerCheck = false;
+            if(!animator.GetBool("WiperA")){
+                animator.SetBool("WiperA", true);
+                animator.SetBool("WiperH", false);
+                animator.SetBool("WiperL", false);
+                _wiperValue = wiperValue.Automatic;
+            }
+            else{
+                animator.SetBool("WiperA", false);
+                animator.SetBool("WiperH", false);
+                animator.SetBool("WiperL", false);
+                _wiperValue = wiperValue.Off;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.S)) //����
         {
-            animator.SetBool("WiperA", false);
-            animator.SetBool("WiperH", false);
-            animator.SetBool("WiperL", false);
-            _wiperValue = wiperValue.Off;
         }
 
-        if (Input.GetKeyDown(KeyCode.M)) //1ȸ
+        if (Input.GetKeyDown(KeyCode.G)) //1ȸ
         {
             _wiperValue = wiperValue.Manual;
             animator.Play("WiperRightH", -1, 0f);
