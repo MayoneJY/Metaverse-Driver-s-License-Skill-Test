@@ -14,8 +14,8 @@ public class SideBreakController : MonoBehaviour
 
     public Transform Root;
     [SerializeField] private Transform Target;
-    private int a = 220;
-    private int b = 120;
+    private int a = 140;
+    private int b = 40;
     private int c;
     private int d = 90;
 
