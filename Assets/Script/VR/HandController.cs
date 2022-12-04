@@ -14,6 +14,7 @@ public class HandController : MonoBehaviour
         MAX
     }
 
+    [SerializeField] private GearControl _GC;
     public Transform Root;
     [SerializeField] private Transform Target;
     private GEAR_MODE GetGearMode(float angle)
@@ -25,18 +26,23 @@ public class HandController : MonoBehaviour
         if (intAngle < 60)
         {
             result = GEAR_MODE.PARK;
+            _GC.m_GearState_Now = 0;
+            Debug.Log(0);
         }
         else if (intAngle < 80 && intAngle >= 60)
         {
             result = GEAR_MODE.REVERSE;
+            _GC.m_GearState_Now = 1;
         }
         else if (intAngle < 110 && intAngle >= 80)
         {
             result = GEAR_MODE.NEUTRAL;
+            _GC.m_GearState_Now = 2;
         }
         else 
         {
             result = GEAR_MODE.DRIVE;
+            _GC.m_GearState_Now = 3;
         }
 
         return result;
