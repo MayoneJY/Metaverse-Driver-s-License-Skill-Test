@@ -254,7 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9103035271702293034}
   m_Layer: 0
-  m_Name: "\uD654\uC0B4\uD45C"
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

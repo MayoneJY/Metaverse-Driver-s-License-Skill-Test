@@ -15,7 +15,7 @@ public class ArrowTweenController : MonoBehaviour
     void Update()
     {
         var moveDelta = Time.deltaTime * Speed;
-        var direction = transform.forward;
+        var direction = transform.up;
         
         // 바라보는 상대가 있으면 방향은 상대방이다.
         if (_target != null)

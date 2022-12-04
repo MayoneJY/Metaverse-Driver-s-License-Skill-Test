@@ -43,10 +43,10 @@ public class ArrowGenerator : MonoBehaviour
         Vector3 stemOrigin = Vector3.zero;
         float stemHalfWidth = stemWidth / 2f;
         //Stem points
-        verticesList.Add(stemOrigin + (stemHalfWidth * Vector3.down));
-        verticesList.Add(stemOrigin + (stemHalfWidth * Vector3.up));
-        verticesList.Add(verticesList[0] + (stemLength * Vector3.right));
-        verticesList.Add(verticesList[1] + (stemLength * Vector3.right));
+        verticesList.Add(stemOrigin + (stemHalfWidth * Vector3.left));
+        verticesList.Add(stemOrigin + (stemHalfWidth * Vector3.right));
+        verticesList.Add(verticesList[0] + (stemLength * Vector3.up));
+        verticesList.Add(verticesList[1] + (stemLength * Vector3.up));
 
         //Stem triangles
         trianglesList.Add(0);
@@ -58,13 +58,13 @@ public class ArrowGenerator : MonoBehaviour
         trianglesList.Add(2);
 
         //tip setup
-        Vector3 tipOrigin = stemLength * Vector3.right;
+        Vector3 tipOrigin = stemLength * Vector3.up;
         float tipHalfWidth = tipWidth / 2;
 
         //tip points
-        verticesList.Add(tipOrigin + (tipHalfWidth * Vector3.up));
-        verticesList.Add(tipOrigin + (tipHalfWidth * Vector3.down));
-        verticesList.Add(tipOrigin + (tipLength * Vector3.right));
+        verticesList.Add(tipOrigin + (tipHalfWidth * Vector3.right));
+        verticesList.Add(tipOrigin + (tipHalfWidth * Vector3.left));
+        verticesList.Add(tipOrigin + (tipLength * Vector3.up));
 
         //tip triangle
         trianglesList.Add(4);
