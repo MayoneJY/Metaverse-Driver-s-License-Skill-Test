@@ -94,7 +94,7 @@ public class TurnSignal : MonoBehaviour
         }
     }
 
-    private void turnSignalOnOff(string signal)
+    public void turnSignalOnOff(string signal)
     {
         //���� �������õ��� �������� �� �ٸ� �������õ��� ����
         //���� ���� �� �켱 ���� �������õ��� ��

@@ -20,36 +20,42 @@ public class NightLamp : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.J))
         {
-            _nightBeamStatus = !_nightBeamStatus;
-            
-            if (_nightBeamStatus)
-            {
-                _MainLight_LOD0.GetComponent<Renderer>().material = _lightOn;
-                _nightBeamLight.SetActive(!_highBeamStatus);
-                _highBeamLight.SetActive(_highBeamStatus);
-            }
-            else
-            {
-                _MainLight_LOD0.GetComponent<Renderer>().material = _lightOff;
-                _nightBeamLight.SetActive(false);
-                _highBeamLight.SetActive(false);
-            }
-
-
+            triggerLight();
         }
 
        
 
         if (Input.GetKeyDown(KeyCode.K))
         {   
-            if(_nightBeamStatus){
-                _highBeamStatus = _highBeamLight.activeSelf == false;
-                _highBeamLight.SetActive(_highBeamStatus);
-                _nightBeamLight.SetActive(!_highBeamStatus);
-            }
+            triggerHighLight();
             
         }
     
 
+    }
+
+    public void triggerLight(){
+        _nightBeamStatus = !_nightBeamStatus;
+            
+        if (_nightBeamStatus)
+        {
+            _MainLight_LOD0.GetComponent<Renderer>().material = _lightOn;
+            _nightBeamLight.SetActive(!_highBeamStatus);
+            _highBeamLight.SetActive(_highBeamStatus);
+        }
+        else
+        {
+            _MainLight_LOD0.GetComponent<Renderer>().material = _lightOff;
+            _nightBeamLight.SetActive(false);
+            _highBeamLight.SetActive(false);
+        }
+    }
+
+    public void triggerHighLight(){
+        if(_nightBeamStatus){
+            _highBeamStatus = _highBeamLight.activeSelf == false;
+            _highBeamLight.SetActive(_highBeamStatus);
+            _nightBeamLight.SetActive(!_highBeamStatus);
+        }
     }
 }
