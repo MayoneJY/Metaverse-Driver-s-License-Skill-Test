@@ -17,7 +17,7 @@ public class SideBreakController : MonoBehaviour
     private int a = 220;
     private int b = 120;
     private int c;
-    private int d = 60;
+    private int d = 90;
 
     private void Start()
     {
@@ -72,6 +72,7 @@ public class SideBreakController : MonoBehaviour
         {
             var vector = transform.position - other.transform.position;
             var angle = Vector3.Angle(Target.forward, vector);
+            Debug.Log(angle);
 
             if (angle > a)
             {
