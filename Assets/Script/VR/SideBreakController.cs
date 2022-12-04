@@ -14,6 +14,15 @@ public class SideBreakController : MonoBehaviour
 
     public Transform Root;
     [SerializeField] private Transform Target;
+    private int a = 220;
+    private int b = 120;
+    private int c;
+    private int d = 60;
+
+    private void Start()
+    {
+        c = (int) ((a + b) / 2);
+    }
 
     private GEAR_MODE GetGearMode(float angle)
     {
@@ -21,7 +30,7 @@ public class SideBreakController : MonoBehaviour
 
         var intAngle = Mathf.RoundToInt(angle);
 
-        if (intAngle < 80)
+        if (intAngle < c)
         {
             result = GEAR_MODE.PARK;
         }
@@ -38,9 +47,9 @@ public class SideBreakController : MonoBehaviour
         switch (gearMode)
         {
             case GEAR_MODE.PARK:
-                return 40;
+                return b;
             default:
-                return 140;
+                return a;
         }
     }
 
@@ -52,7 +61,7 @@ public class SideBreakController : MonoBehaviour
             var angle = Vector3.Angle(Target.forward, vector);
 
             var gearMode = GetGearMode(angle);
-            Root.localRotation = Quaternion.AngleAxis(GetGearStickAngle(gearMode) -90, Target.up);
+            Root.localRotation = Quaternion.AngleAxis(GetGearStickAngle(gearMode) -d, Target.up);
         }
 
     }
@@ -64,16 +73,16 @@ public class SideBreakController : MonoBehaviour
             var vector = transform.position - other.transform.position;
             var angle = Vector3.Angle(Target.forward, vector);
 
-            if (angle > 140)
+            if (angle > a)
             {
-                angle = 140;
+                angle = a;
             }
-            else if (angle < 40)
+            else if (angle < b)
             {
-                angle = 40;
+                angle = b;
             }
             
-            Root.localRotation = Quaternion.AngleAxis(angle - 90, Target.up);
+            Root.localRotation = Quaternion.AngleAxis(angle - d, Target.up);
         }
     }
 }
