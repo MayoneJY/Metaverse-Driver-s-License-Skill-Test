@@ -23,6 +23,9 @@ public class Exam : MonoBehaviour
     public bool collisionWheelEnd = false;
     private bool collisionBody = false;
     private bool _tCourseJoin = false;
+    private bool _boolWarningCheck = false;
+    private bool _boolWarningCheck2 = false;
+    private bool _boolWarningCheck3 = false;
     
     private bool timeCheck = false;
     private float timer = 0.0f;
@@ -63,9 +66,15 @@ public class Exam : MonoBehaviour
             examNumber2 = 0;
         }
         if(examNumber == 0 && examNumber2 == 0){
-            if(_turnSignal.doubleTurnSignal)
+            if(_turnSignal.doubleTurnSignal && !_boolWarningCheck){
                 // 돌발상황 지시 전 비상등을 작동한 경우 10점 감점
+                Debug.Log("돌발상황: 돌발상황 지시 전 비상등을 작동함 (-10)");
                 _score -= 10;
+                _boolWarningCheck = true;
+            }
+            else if(!_turnSignal.doubleTurnSignal && _boolWarningCheck){
+                _boolWarningCheck = false;
+            }
         }
         switch (examNumber)
         {
@@ -112,6 +121,7 @@ public class Exam : MonoBehaviour
         timer += Time.deltaTime;
         if(timer > 2.0f && !_boolWarringStopCheck){
             // 2초이내에 정지하지 못 한 경우 10점 감점
+            Debug.Log("돌발상황: 2초이내 정지 못함 (-10)");
             _score -= 10;
         }
 
@@ -121,16 +131,20 @@ public class Exam : MonoBehaviour
         }
         if(_boolWarringStopCheck){
             if(timer - _floatWarringStopTime > 3.0f){
-                if(!_turnSignal.doubleTurnSignal){
+                if(!_turnSignal.doubleTurnSignal && !_boolWarningCheck2){
                     // 정지후 3초이내에 비상등을 작동 못 한 경우 10점 감점
+                    Debug.Log("돌발상황: 3초이내에 비상등을 작동 못함 (-10)");
                     _score -= 10;
+                    _boolWarningCheck2 = true;
                 }
 
             }
         }
-        if(_turnSignal.doubleTurnSignal && ctrl.KPH > 3.0f){
+        if(_turnSignal.doubleTurnSignal && ctrl.KPH > 3.0f && !_boolWarningCheck3){
             // 비상등을 끄지 않고 1m이상 주행 한 경우 10점 감점
+            Debug.Log("돌발상황: 비상등을 끄지 않고 주행 (-10)");
             _score -= 10;
+            _boolWarningCheck3 = true;
         }
 
         // 정해진 시간을 지키지 못 한 경우  5초마다 3점씩 감점
@@ -164,14 +178,17 @@ public class Exam : MonoBehaviour
             }
             if(_floatTrafficLightStopTime > 3.0f){
                 // 3초이상 멈췄을 때
+                Debug.Log("신호등: 정지선 이후에 3초이상 멈춤 (-5)");
                 _score -= 5;
             }
             if(timer > 20.0f){
                 // 20초 이상 30초 이내에 통과 했을 경우
+                Debug.Log("신호등: 20초 이상 30초 이내에 통과했을 경우 (-5)");
                 _score -= 5;
             }
             if(timer > 30.0f){
                 // 30초 이상 통과하지 못 했을 경우
+                Debug.Log("신호등: 30초 이상 통과하지 못 했을 경우 (실격)");
                 leavingOut = true;
             }
         }
@@ -182,6 +199,7 @@ public class Exam : MonoBehaviour
 
                 if(_TLC_1._currentLightType == TrafficLightController.LIGHT_TYPE.RED){
                     // 빨간불일 때 정지선 넘으면 바로 탈락
+                    Debug.Log("신호등: 빨간불에 정지선 통과 (실격)");
                     leavingOut = true;
                 }
                 break;
@@ -198,10 +216,14 @@ public class Exam : MonoBehaviour
 
             if(timer >= _tCourseOverTime){
                 _tCourseOverTime += 5.0f;
-                if(_tCourseOverTime == 120.0f)
+                if(_tCourseOverTime == 120.0f){
+                    Debug.Log("T코스: 제한시간 2분 초과 (-10)");
                     _score -= 10;
-                else
+                }
+                else{
+                    Debug.Log("T코스: 제한시간 2분 초과 이후 5초 초과 (-3)");
                     _score -= 3;
+                }
 
             }
 
@@ -242,6 +264,7 @@ public class Exam : MonoBehaviour
                 // 주차브레이크 작동 후 주차브레이크 작동 해제 했을 때
                 if(timer < _tCourseTimeCheck + 1.0f){
                     // 1초 이하 동안 작동 했을 때
+                    Debug.Log("T코스: 주차브레이크 1초 이상 하지 않음 (-10)");
                     _tCourseCheck = false;
                     _score -= 10;
                 }
@@ -274,14 +297,14 @@ public class Exam : MonoBehaviour
                 }
                 //움직이면
                 else{
-                    Debug.Log(timer);
+                    //Debug.Log(timer);
                     //3초 초과 30초 미만
                     if(timer > 3 && timer < 30){
                         hillTest = true;
                     }
-                    else if(timer != 0.0f){
+                    else{
+                        Debug.Log("언덕코스: 30초 이내에 정지선 통과 못함 / 정지하지 않고 통과 (실격)");
                         leavingOut = true;
-                        Debug.Log("탈락");
                     }
                 }
             }
@@ -292,7 +315,10 @@ public class Exam : MonoBehaviour
             }
             else if(collisionBodyStart && !collisionBodyEnd){
                 timeCheck = false;
-                if(examNumber == 1) hillTest = false;
+                if(examNumber == 1) {
+                    Debug.Log("언덕코스: 후방으로 밀림 (실격)");
+                    leavingOut = true;
+                }
                 //Debug.Log("탈락");
             }
             else if(!collisionBodyStart && !collisionBodyEnd){
@@ -305,11 +331,13 @@ public class Exam : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Block"))
         {
-            Debug.Log("실격");
+            Debug.Log("공통: 연석/보도블럭을 침범 (실격)");
+            leavingOut = true;
         }
         else if(other.gameObject.layer == LayerMask.NameToLayer("Line"))
         {
-            Debug.Log("10점 감점");
+            Debug.Log("공통: 차선/중앙선을 침범 (-15) : " + other.gameObject.name);
+            _score -= 15;
         }
             
     }
