@@ -8,7 +8,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject main;
     public GameObject startScreen;
     public GameObject Option;
-    public GameObject stage1, stage2, stage3, stage4, stage5, stage6, stage7, stage8;
+    public GameObject stage1, stage2, stage3, stage4, stage5, stage6, stage7;
     public GameObject rulebook;
     public GameObject rule;
     // Start is called before the first frame update
@@ -43,7 +43,6 @@ public class CanvasManager : MonoBehaviour
         stage5.SetActive(false);
         stage6.SetActive(false);
         stage7.SetActive(false);
-        stage8.SetActive(false);
     }
     public void Stage2btn() // 스테이지2 설명+입장뜨게하는거
     {
@@ -54,7 +53,6 @@ public class CanvasManager : MonoBehaviour
         stage5.SetActive(false);
         stage6.SetActive(false);
         stage7.SetActive(false);
-        stage8.SetActive(false);
     }
 
     public void Stage3btn() // 스테이지3 설명+입장뜨게하는거
@@ -66,7 +64,6 @@ public class CanvasManager : MonoBehaviour
         stage5.SetActive(false);
         stage6.SetActive(false);
         stage7.SetActive(false);
-        stage8.SetActive(false);
     }
 
     public void Stage4btn() // 스테이지4 설명+입장뜨게하는거
@@ -78,7 +75,6 @@ public class CanvasManager : MonoBehaviour
         stage5.SetActive(false);
         stage6.SetActive(false);
         stage7.SetActive(false);
-        stage8.SetActive(false);
     }
 
     public void Stage5btn() // 스테이지5 설명+입장뜨게하는거
@@ -90,7 +86,6 @@ public class CanvasManager : MonoBehaviour
         stage5.SetActive(true);
         stage6.SetActive(false);
         stage7.SetActive(false);
-        stage8.SetActive(false);
     }
 
     public void Stage6btn() // 스테이지6 설명+입장뜨게하는거
@@ -102,7 +97,6 @@ public class CanvasManager : MonoBehaviour
         stage5.SetActive(false);
         stage6.SetActive(true);
         stage7.SetActive(false);
-        stage8.SetActive(false);
     }
 
     public void Stage7btn() // 스테이지7 설명+입장뜨게하는거
@@ -114,20 +108,9 @@ public class CanvasManager : MonoBehaviour
         stage5.SetActive(false);
         stage6.SetActive(false);
         stage7.SetActive(true);
-        stage8.SetActive(false);
     }
 
-    public void Stage8btn() // 스테이지8 설명+입장뜨게하는거
-    {
-        stage1.SetActive(false);
-        stage2.SetActive(false);
-        stage3.SetActive(false);
-        stage4.SetActive(false);
-        stage5.SetActive(false);
-        stage6.SetActive(false);
-        stage7.SetActive(false);
-        stage8.SetActive(true);
-    }
+   
     public void SteageBackbtn() // 스테이지선택창 + 룰선택 닫고 메인창띄움
     {
         stageSelect.SetActive(false);
