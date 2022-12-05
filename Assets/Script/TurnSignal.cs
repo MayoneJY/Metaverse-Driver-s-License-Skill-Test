@@ -19,11 +19,26 @@ public class TurnSignal : MonoBehaviour
     private Renderer m_Renderer_Right;
     [SerializeField] private GameObject m_GameObject_Left_Ui;
     [SerializeField] private GameObject m_GameObject_Right_Ui;
+
+    // 출처 링크 : https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?wrtSn=13288073&menuNo=200026
+
+    // <img id="wrtImg" src="https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=13288073&filePath=L2Rpc2sxL25ld2RhdGEvMjAyMS8wMS9DTFMxMDAwMi8xMzI4ODA3M19XUlRfMDFfQ0xTMTAwMDJfMjAyMTA5MDNfMQ==&thumbAt=Y&thumbSe=b_tbumb&wrtTy=10002">
+    // <p style="font-size: 0.9rem;font-style: italic;">
+    // <span>
+    // title : <a href="https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?wrtSn=13288073&menuNo=200026"> 승합차_카니발_내부_방향지시등_비상등_Ambeo_ST_192</a>
+    // authr : <a href="https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?wrtSn=13288073&menuNo=200026"> (재)전주정보문화산업진흥원</a>by
+    // site : <a href="https://gongu.copyright.or.kr/gongu/main/main.do">공유마당 저작권 위원회</a></span> <br>
+    // is licensed under
+    // <img src="https://gongu.copyright.or.kr/static/gongu/img/common/img_license01.png" alt="KOGL 출처표시, 상업적, 비상업적 이용가능, 변형 등 2차적 저작물 작성 가능" class="img_cc">
+
+    // </p>
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _audio1;
     [SerializeField] private AudioClip _audio2;
+
+
     private float timer;
-    private int waitingTime;
+    private float waitingTime;
     public bool leftTurnSignal = false;
     public bool leftLightBool = false;
     public bool rightTurnSignal = false;
