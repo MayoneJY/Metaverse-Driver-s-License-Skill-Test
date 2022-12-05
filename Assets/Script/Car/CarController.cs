@@ -91,7 +91,7 @@ public class CarController : MonoBehaviour
         //1: Return
         //2: Nature
         //3: Drive
-        gearStatus = GearControl.m_GearState_Now;
+        //gearStatus = GearControl.m_GearState_Now;
         if(Controller.isController){
             horizontalInput = Input.GetAxis(HORIZONTAL);
 
