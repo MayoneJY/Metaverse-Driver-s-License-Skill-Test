@@ -903,6 +903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gear: {fileID: 0}
+  m_GearState_Now: 3
 --- !u!4 &196715013
 Transform:
   m_ObjectHideFlags: 0
@@ -2264,6 +2265,16 @@ MonoBehaviour:
   m_GameObject_Light_Left_Rear: {fileID: 1781037089}
   m_GameObject_Light_Right_Front: {fileID: 1314765784}
   m_GameObject_Light_Right_Rear: {fileID: 1263202257}
+  m_GameObject_Left_Ui: {fileID: 0}
+  m_GameObject_Right_Ui: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _audio1: {fileID: 0}
+  _audio2: {fileID: 0}
+  leftTurnSignal: 0
+  leftLightBool: 0
+  rightTurnSignal: 0
+  rightLightBool: 0
+  doubleTurnSignal: 0
 --- !u!1 &712095601
 GameObject:
   m_ObjectHideFlags: 0
@@ -4626,10 +4637,8 @@ MonoBehaviour:
   backgroundAudio: {fileID: 1725620661}
   soundEffectsAudio:
   - {fileID: 622194352}
-  carSoundAudio:
-  - {fileID: 1798937394}
-  ttsSoundAudio:
-  - {fileID: 2043889219}
+  carSoundAudio: []
+  ttsSoundAudio: []
 --- !u!114 &1760573320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5079,6 +5088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gear: {fileID: 0}
+  m_GearState_Now: 3
 --- !u!81 &1798937415
 AudioListener:
   m_ObjectHideFlags: 0

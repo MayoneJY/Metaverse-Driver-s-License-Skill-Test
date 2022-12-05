@@ -31,12 +31,12 @@ public class CarSound : MonoBehaviour
 
     public void EnginSound()
     {
-        float speed = _CR.KPH / 100.0f + 0.1f;
+        float speed = _CR.KPH / 50.0f + 0.2f;
         curretnSpeed = carRb.velocity.magnitude;
         pitchFromCar = carRb.velocity.magnitude / 50f;
 
-        if (speed < 0.1f)
-            speed = 0.1f;
+        if (speed < 0.2f)
+            speed = 0.2f;
         //0 최소 1 최대
 
 
