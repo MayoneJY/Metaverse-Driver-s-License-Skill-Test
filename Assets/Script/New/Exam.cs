@@ -119,10 +119,11 @@ public class Exam : MonoBehaviour
     private void examWarring(){
         // 돌발생황
         timer += Time.deltaTime;
-        if(timer > 2.0f && !_boolWarringStopCheck){
+        if(timer > 2.0f && !_boolWarringStopCheck && !_boolWarningCheck){
             // 2초이내에 정지하지 못 한 경우 10점 감점
             Debug.Log("돌발상황: 2초이내 정지 못함 (-10)");
             _score -= 10;
+            _boolWarningCheck = true;
         }
 
         if(!_boolWarringStopCheck && ctrl.KPH < 0.01f){
@@ -144,6 +145,7 @@ public class Exam : MonoBehaviour
             // 비상등을 끄지 않고 1m이상 주행 한 경우 10점 감점
             Debug.Log("돌발상황: 비상등을 끄지 않고 주행 (-10)");
             _score -= 10;
+            timer = 0.0f;
             _boolWarningCheck3 = true;
         }
 
@@ -302,7 +304,7 @@ public class Exam : MonoBehaviour
                     if(timer > 3 && timer < 30){
                         hillTest = true;
                     }
-                    else{
+                    else if(timer != 0.0f){
                         Debug.Log("언덕코스: 30초 이내에 정지선 통과 못함 / 정지하지 않고 통과 (실격)");
                         leavingOut = true;
                     }
@@ -353,6 +355,7 @@ public class Exam : MonoBehaviour
             collisionBodyStart = false;
             timer = 0.0f;
             timeCheck = false;
+            Debug.Log("asd");
         }
         this.examNumber = number;
         this.examNumber2 = number2;
