@@ -87,6 +87,26 @@ public class inputManager : MonoBehaviour
                 handbrake = Input.GetAxis("Jump");
                 //handbrake = (Input.GetAxis("Jump") != 0)? 1 : 0;
             }
+        }
+        else{
+            if(gearStatus == 3){
+                vertical = Input.GetAxis("Vertical");
+
+                if(vertical < 0.1){
+                    isAxelPress = false;
+                }
+                else{
+                    vertical = (vertical - 0.4f) * 1.67f;
+                    isAxelPress = true;
+                }
+            }
+            else if(gearStatus == 1){
+                vertical = Input.GetAxis("Vertical") * -1;
+            }
+            horizontal = Input.GetAxis("Horizontal");
+            handbrake = Input.GetAxis("Jump");
+            //handbrake = (Input.GetAxis("Jump") != 0)? 1 : 0;
+        }
 
             if(gearStatus == 0) handbrake = 1;
         }
