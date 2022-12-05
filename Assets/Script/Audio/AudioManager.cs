@@ -19,13 +19,14 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()  
     {
-       
+        ContinueSettings();
+
         // if (instance != null)  
         // {
         //     Destroy(this.gameObject);
         //     instance = this;
         //     DontDestroyOnLoad(gameObject);
-            
+
         // }
         // else
         //     instance = this;
@@ -39,8 +40,7 @@ public class AudioManager : MonoBehaviour
         try{
             Debug.Log(PlayerPrefs.GetFloat(BackgroundPref));
             
-            backgroundFloat = PlayerPrefs.GetFloat(BackgroundPref);
-            backgroundSlider.value = backgroundFloat;
+      
              
             soundEffectFloat = PlayerPrefs.GetFloat(SoundEffectPref);
             soundEffectSlider.value = soundEffectFloat;
@@ -104,5 +104,27 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+     private void ContinueSettings()
+    {
+        backgroundFloat = PlayerPrefs.GetFloat(BackgroundPref);
+        soundEffectFloat = PlayerPrefs.GetFloat(SoundEffectPref);
+        carSoundFloat = PlayerPrefs.GetFloat(CarSoundPref);
+        ttsSoundFloat = PlayerPrefs.GetFloat(TTSSoundPref);
+         
+        backgroundAudio.volume = backgroundFloat;
+        for (int i = 0; i < soundEffectsAudio.Length; i++)
+        {
+            soundEffectsAudio[i].volume = soundEffectFloat;
+        }
+
+        for (int i = 0; i < carSoundAudio.Length; i++)
+        {
+            carSoundAudio[i].volume = carSoundFloat;
+        }
+        for (int i = 0; i < ttsSoundAudio.Length; i++)
+        {
+            ttsSoundAudio[i].volume = ttsSoundFloat;
+        }
+    }
     
     }
