@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -435,7 +435,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 553599467}
+      - m_Target: {fileID: 1760573320}
         m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
         m_MethodName: optionbtn
         m_Mode: 1
@@ -568,7 +568,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 553599467}
+      - m_Target: {fileID: 1760573320}
         m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
         m_MethodName: optionexitbtn
         m_Mode: 1
@@ -2009,50 +2009,6 @@ Transform:
   m_Father: {fileID: 622828179}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &553599466
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 553599468}
-  - component: {fileID: 553599467}
-  m_Layer: 0
-  m_Name: GameObject (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &553599467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553599466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81e77fd793120074d9ab8a319a73a05b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  option: {fileID: 255988105}
---- !u!4 &553599468
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553599466}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1190.5911, y: 838.9938, z: -247.33252}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &583986055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,7 +2751,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 553599467}
+      - m_Target: {fileID: 1760573320}
         m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
         m_MethodName: Scenegogo
         m_Mode: 1
@@ -4625,6 +4581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1760573318}
   - component: {fileID: 1760573319}
+  - component: {fileID: 1760573320}
   m_Layer: 0
   m_Name: SFX
   m_TagString: Untagged
@@ -4648,7 +4605,7 @@ Transform:
   - {fileID: 1547030879}
   - {fileID: 2043889218}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1760573319
 MonoBehaviour:
@@ -4673,6 +4630,19 @@ MonoBehaviour:
   - {fileID: 1798937394}
   ttsSoundAudio:
   - {fileID: 2043889219}
+--- !u!114 &1760573320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760573317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e77fd793120074d9ab8a319a73a05b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  option: {fileID: 255988105}
 --- !u!1 &1781037089
 GameObject:
   m_ObjectHideFlags: 0

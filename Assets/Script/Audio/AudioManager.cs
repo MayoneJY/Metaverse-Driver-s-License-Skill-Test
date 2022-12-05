@@ -20,26 +20,40 @@ public class AudioManager : MonoBehaviour
     private void Awake()  
     {
        
-        if (instance != null)  
-        {
-            Destroy(this.gameObject);
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+        // if (instance != null)  
+        // {
+        //     Destroy(this.gameObject);
+        //     instance = this;
+        //     DontDestroyOnLoad(gameObject);
             
-        }
-        else
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+        // }
+        // else
+        //     instance = this;
+        //     DontDestroyOnLoad(gameObject);
 
     }
     
     
     void Start()
     {
-        firstPlayInt = PlayerPrefs.GetInt(FirstPlay);
+        try{
+            Debug.Log(PlayerPrefs.GetFloat(BackgroundPref));
+            
+            backgroundFloat = PlayerPrefs.GetFloat(BackgroundPref);
+            backgroundSlider.value = backgroundFloat;
+             
+            soundEffectFloat = PlayerPrefs.GetFloat(SoundEffectPref);
+            soundEffectSlider.value = soundEffectFloat;
 
-        if (firstPlayInt == 0)
+            carSoundFloat = PlayerPrefs.GetFloat(CarSoundPref);
+            carSoundSlider.value = carSoundFloat;
+
+            ttsSoundFloat = PlayerPrefs.GetFloat(TTSSoundPref);
+            ttsSoundSlider.value = ttsSoundFloat;
+        }
+        catch (System.Exception e)
         {
+            Debug.Log("사운드 세팅 초기화..");
             backgroundFloat = .125f;
             soundEffectFloat = .75f;
             carSoundFloat = .75f;
@@ -53,20 +67,6 @@ public class AudioManager : MonoBehaviour
             PlayerPrefs.SetFloat(CarSoundPref, carSoundFloat);
             PlayerPrefs.SetFloat(TTSSoundPref, ttsSoundFloat);
             PlayerPrefs.SetInt(FirstPlay, -1);
-        }
-        else
-        {
-            backgroundFloat = PlayerPrefs.GetFloat(BackgroundPref);
-            backgroundSlider.value = backgroundFloat;
-             
-            soundEffectFloat = PlayerPrefs.GetFloat(SoundEffectPref);
-            soundEffectSlider.value = soundEffectFloat;
-
-            carSoundFloat = PlayerPrefs.GetFloat(CarSoundPref);
-            carSoundSlider.value = carSoundFloat;
-
-            ttsSoundFloat = PlayerPrefs.GetFloat(TTSSoundPref);
-            ttsSoundSlider.value = ttsSoundFloat;
         }
     }
 
