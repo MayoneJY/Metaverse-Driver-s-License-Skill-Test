@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class VRSetting : MonoBehaviour
 {
-    [SerializeField] private GameObject _oculusObject;
     [SerializeField] private GameObject _carObject;
     //[SerializeField] private GameObject _TurnLightUiObject;
     [SerializeField] private GameObject _LowBeamUiObject;
@@ -12,8 +11,6 @@ public class VRSetting : MonoBehaviour
     [SerializeField] private GameObject _WiperUiObject;
     [SerializeField] private GameObject _LeftSignalObject;
     [SerializeField] private GameObject _RightSignalObject;
-    private bool _triggerBooleanCheck = false;
-    public GearControl GC;
     [SerializeField] private TurnSignal _TS;
     [SerializeField] private NightLamp _NL;
     [SerializeField] private WiperAction _WP;
@@ -21,7 +18,6 @@ public class VRSetting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GC = _carObject.GetComponent<GearControl>();
 
     }
 
@@ -32,18 +28,7 @@ public class VRSetting : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        _triggerBooleanCheck = true;
-        if(other.gameObject.name == "Drive")
-        {
-            GC.m_GearState_Now = 3;
-
-        }
-        else if(other.gameObject.name == "Return")
-        {
-            GC.m_GearState_Now = 1;
-
-        }
-        else if(other.gameObject.name == "EngineStarter")
+        if(other.gameObject.name == "EngineStarter")
         {
             other.gameObject.GetComponent<OnOffObject>().OnTrigger();
 
@@ -64,6 +49,7 @@ public class VRSetting : MonoBehaviour
                 other.gameObject.GetComponent<OnOffObject>().OnTrigger(result);
             else
                 other.gameObject.GetComponent<OnOffObject>().OnTrigger(result);
+            Debug.Log("UnderLight: " + result);
 
         }
         else if(other.gameObject.name == "TopLight")
@@ -72,7 +58,8 @@ public class VRSetting : MonoBehaviour
             result = _NL.GetTrigger();
             if (result)
                 other.gameObject.GetComponent<OnOffObject>().OnTrigger();
-            
+            Debug.Log("TopLight: " + result);
+
 
         }
         else if(other.gameObject.name == "Wiper")
@@ -80,6 +67,7 @@ public class VRSetting : MonoBehaviour
             _WiperUiObject.GetComponent<OnOffObject>().OnTrigger();
             _WP.triggerCheck = true;
             _WP2.triggerCheck = true;
+            Debug.Log("Wiper: ");
 
         }
         else if(other.gameObject.name == "Left")
@@ -87,6 +75,7 @@ public class VRSetting : MonoBehaviour
             _TS.turnSignalOnOff("LEFT");
             other.gameObject.GetComponent<OnOffObject>().OnTrigger();
             _RightSignalObject.GetComponent<OnOffObject>().OnTrigger(false);
+            Debug.Log("LEFT: ");
 
         }
         else if(other.gameObject.name == "Right")
@@ -94,13 +83,9 @@ public class VRSetting : MonoBehaviour
             _TS.turnSignalOnOff("RIGHT");
             other.gameObject.GetComponent<OnOffObject>().OnTrigger();
             _LeftSignalObject.GetComponent<OnOffObject>().OnTrigger(false);
+            Debug.Log("RIGHT: ");
         }
 
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        _triggerBooleanCheck = false;
     }
 
 }
