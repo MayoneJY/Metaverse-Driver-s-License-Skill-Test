@@ -482,7 +482,7 @@ MonoBehaviour:
   Light2: {fileID: 1173964358}
   Light3: {fileID: 1723752908}
   MinTime: 0.2
-  MaxTime: 5
+  MaxTime: 0.5
   Timer: 0
 --- !u!4 &1417140619
 Transform:
