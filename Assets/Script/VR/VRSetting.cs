@@ -6,6 +6,10 @@ public class VRSetting : MonoBehaviour
 {
     [SerializeField] private GameObject _oculusObject;
     [SerializeField] private GameObject _carObject;
+    //[SerializeField] private GameObject _TurnLightUiObject;
+    [SerializeField] private GameObject _LowBeamUiObject;
+    [SerializeField] private GameObject _HighBeamUiObject;
+    [SerializeField] private GameObject _WiperUiObject;
     private bool _triggerBooleanCheck = false;
     public GearControl GC;
     [SerializeField] private TurnSignal _TS;
@@ -27,22 +31,7 @@ public class VRSetting : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         _triggerBooleanCheck = true;
-        if (other.gameObject.name == "Up")
-        {
-            var po = _oculusObject.transform.position;
-            _oculusObject.transform.position = new Vector3(po.x, po.y + 0.01f, po.z);
-        }
-        else if (other.gameObject.name == "Down")
-        {
-            var po = _oculusObject.transform.position;
-            _oculusObject.transform.position = new Vector3(po.x, po.y - 0.01f, po.z);
-        }
-        else if (other.gameObject.name == "Respawn")
-        {
-            _carObject.transform.position = new Vector3(0, 0, 0);
-            _carObject.transform.localEulerAngles = new Vector3(0, 0, 0);
-        }
-        else if(other.gameObject.name == "Drive")
+        if(other.gameObject.name == "Drive")
         {
             GC.m_GearState_Now = 3;
 
@@ -59,7 +48,9 @@ public class VRSetting : MonoBehaviour
         }
         else if(other.gameObject.name == "Warning")
         {
+            
             _TS.turnSignalOnOff("DOUBLE");
+
 
         }
         else if(other.gameObject.name == "UnderLight")
@@ -74,6 +65,7 @@ public class VRSetting : MonoBehaviour
         }
         else if(other.gameObject.name == "Wiper")
         {
+            _WiperUiObject.GetComponent<OnOffObject>().OnTrigger();
             _WP.triggerCheck = true;
             _WP2.triggerCheck = true;
 
