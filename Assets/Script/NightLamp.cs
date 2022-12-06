@@ -37,9 +37,10 @@ public class NightLamp : MonoBehaviour
 
     }
 
-    public void triggerLight(){
+    public void triggerLight()
+    {
         _nightBeamStatus = !_nightBeamStatus;
-            
+
         if (_nightBeamStatus)
         {
             _MainLight_LOD0.GetComponent<Renderer>().material = _lightOn;
@@ -57,6 +58,30 @@ public class NightLamp : MonoBehaviour
             _Ui_Up.SetActive(false);
         }
     }
+    public bool triggerLight(bool Check)
+    {
+        _nightBeamStatus = !_nightBeamStatus;
+
+        if (_nightBeamStatus)
+        {
+            _MainLight_LOD0.GetComponent<Renderer>().material = _lightOn;
+            _nightBeamLight.SetActive(!_highBeamStatus);
+            _Ui_Down.SetActive(!_highBeamStatus);
+            _highBeamLight.SetActive(_highBeamStatus);
+            _Ui_Up.SetActive(_highBeamStatus);
+        }
+        else
+        {
+            _MainLight_LOD0.GetComponent<Renderer>().material = _lightOff;
+            _nightBeamLight.SetActive(false);
+            _highBeamLight.SetActive(false);
+            _Ui_Down.SetActive(false);
+            _Ui_Up.SetActive(false);
+        }
+        return _nightBeamLight;
+    }
+
+
 
     public void triggerHighLight(){
         if(_nightBeamStatus){
@@ -66,5 +91,10 @@ public class NightLamp : MonoBehaviour
             _Ui_Up.SetActive(_highBeamStatus);
             _Ui_Down.SetActive(!_highBeamStatus);
         }
+    }
+
+    public bool GetTrigger()
+    {
+        return _nightBeamStatus;
     }
 }

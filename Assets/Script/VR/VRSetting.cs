@@ -55,12 +55,21 @@ public class VRSetting : MonoBehaviour
         }
         else if(other.gameObject.name == "UnderLight")
         {
-            _NL.triggerLight();
+            bool result;
+            result = _NL.triggerLight(true);
+            if(result)
+                other.gameObject.GetComponent<OnOffObject>().OnTrigger(result);
+            else
+                other.gameObject.GetComponent<OnOffObject>().OnTrigger(result);
 
         }
         else if(other.gameObject.name == "TopLight")
         {
-            _NL.triggerHighLight();
+            bool result;
+            result = _NL.GetTrigger();
+            if (result)
+                other.gameObject.GetComponent<OnOffObject>().OnTrigger();
+            
 
         }
         else if(other.gameObject.name == "Wiper")
@@ -68,6 +77,14 @@ public class VRSetting : MonoBehaviour
             _WiperUiObject.GetComponent<OnOffObject>().OnTrigger();
             _WP.triggerCheck = true;
             _WP2.triggerCheck = true;
+
+        }
+        else if(other.gameObject.name == "Left")
+        {
+
+        }
+        else if(other.gameObject.name == "Right")
+        {
 
         }
 
