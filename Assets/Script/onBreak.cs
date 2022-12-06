@@ -12,6 +12,7 @@ public class onBreak : MonoBehaviour
     public float MinTime;
     public float MaxTime;
     public float Timer;
+    
 
 
     void Start()
@@ -27,7 +28,7 @@ public class onBreak : MonoBehaviour
     void Lighton()
     {
         if (Timer > 0)
-            Timer -= Time.deltaTime;
+            Timer += Time.deltaTime;
 
         if (Timer <= 0)
         {
@@ -38,4 +39,4 @@ public class onBreak : MonoBehaviour
             Timer = Random.Range(MinTime, MaxTime);
         }
     }
-}
+    }
