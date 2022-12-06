@@ -18,6 +18,7 @@ public class SideBreakController : MonoBehaviour
     private int b = 40;
     private int c;
     private int d = 90;
+    [SerializeField] private inputManager inputManager;
 
     private void Start()
     {
@@ -33,10 +34,12 @@ public class SideBreakController : MonoBehaviour
         if (intAngle < c)
         {
             result = GEAR_MODE.PARK;
+            inputManager.isParkingPress = true;
         }
         else 
         {
             result = GEAR_MODE.NEUTRAL;
+            inputManager.isParkingPress = false;
         }
 
         return result;

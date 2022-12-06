@@ -10,6 +10,8 @@ public class VRSetting : MonoBehaviour
     [SerializeField] private GameObject _LowBeamUiObject;
     [SerializeField] private GameObject _HighBeamUiObject;
     [SerializeField] private GameObject _WiperUiObject;
+    [SerializeField] private GameObject _LeftSignalObject;
+    [SerializeField] private GameObject _RightSignalObject;
     private bool _triggerBooleanCheck = false;
     public GearControl GC;
     [SerializeField] private TurnSignal _TS;
@@ -50,6 +52,7 @@ public class VRSetting : MonoBehaviour
         {
             
             _TS.turnSignalOnOff("DOUBLE");
+            other.gameObject.GetComponent<OnOffObject>().OnTrigger();
 
 
         }
@@ -81,11 +84,16 @@ public class VRSetting : MonoBehaviour
         }
         else if(other.gameObject.name == "Left")
         {
+            _TS.turnSignalOnOff("LEFT");
+            other.gameObject.GetComponent<OnOffObject>().OnTrigger();
+            _RightSignalObject.GetComponent<OnOffObject>().OnTrigger(false);
 
         }
         else if(other.gameObject.name == "Right")
         {
-
+            _TS.turnSignalOnOff("RIGHT");
+            other.gameObject.GetComponent<OnOffObject>().OnTrigger();
+            _LeftSignalObject.GetComponent<OnOffObject>().OnTrigger(false);
         }
 
     }
