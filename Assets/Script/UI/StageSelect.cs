@@ -7,6 +7,7 @@ public class StageSelect : MonoBehaviour
 {
     [SerializeField] private GameObject gameObject;
     [SerializeField] private GameObject camera;
+    [SerializeField] private GameObject[] guardrail;
     //Defualt position rotation
     //-1.84, 1, -5.1, 0, -90, 0
     //Start
@@ -30,13 +31,35 @@ public class StageSelect : MonoBehaviour
     // select the HillCourse button
     public void SelectExamButton(string index)
     {
-        Debug.Log("Asdasdasd");
+        GetComponent<WallManager>().enabled = false;
         string[] result2 = index.Split(',');
         float[] result = new float[7];
-        for(int i = 0; i < result2.Length; i++)
-            result[0] = float.Parse(result2[i]);
+        for (int i = 0; i < result2.Length; i++)
+            result[i] = float.Parse(result2[i]);
 
-
+        for (int i = 0; i < guardrail.Length; i++)
+        {
+            if ((int) result[0] != i)
+            {
+                for (int j = 0; j < guardrail[i].transform.childCount; j++)
+                {
+                    if(guardrail[i].transform.GetChild(j).name == "Temp")
+                    {
+                        guardrail[i].transform.GetChild(j).gameObject.SetActive(false);
+                    }
+                }
+            }
+            else
+            {
+                for (int j = 0; j < guardrail[i].transform.childCount; j++)
+                {
+                    if (guardrail[i].transform.GetChild(j).name == "Temp")
+                    {
+                        guardrail[i].transform.GetChild(j).gameObject.SetActive(true);
+                    }
+                }
+            }
+        }
         // PlayerPrefs is input int
         PlayerPrefs.SetInt("Exam", (int) result[0]);
         PlayerPrefs.SetFloat("ExamX", result[1]);
@@ -51,12 +74,13 @@ public class StageSelect : MonoBehaviour
         gameObject.transform.position = new Vector3(PlayerPrefs.GetFloat("ExamX"), PlayerPrefs.GetFloat("ExamY"), PlayerPrefs.GetFloat("ExamZ"));
         gameObject.transform.rotation = Quaternion.Euler(PlayerPrefs.GetFloat("ExamTX"), PlayerPrefs.GetFloat("ExamTY"), PlayerPrefs.GetFloat("ExamTZ"));
 
-        GetComponent<WallManager>().wallCheck = true;
+        GetComponent<WallManager>().enabled = true;
         //gameObject.SetActive(false);
         camera.transform.position = new Vector3(-0.3899994f, 0, 0.3f);
         camera.transform.localEulerAngles = new Vector3(0, 0, 0);
 
     }
+
     public void SelectStartStageButton()
     {
         SceneManager.LoadScene("StartStage");

@@ -10,51 +10,57 @@ public class WallManager : MonoBehaviour
     public GameObject[] parent;     // ���� ��ȯ�� �ڽĵ��� ����� �θ� ���� �迭
 
     public bool changePos = true;
-    private int examNo = 99;
-    public bool wallCheck;
+    [SerializeField] private int examNo = 99;
+    private int test = 0;
     // Start is called before the first frame update
-    void Start()
-    {
-        wallCheck = false;
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        if (wallCheck)
+        Debug.Log("1 :#" + test);
+        try
         {
-            wallCheck = false;
-            try
-            {
-                examNo = PlayerPrefs.GetInt("Exam");
-            }
-            catch (System.Exception ex)
-            {
-                examNo = 99;
-            }
+            examNo = PlayerPrefs.GetInt("Exam");
+        }
+        catch (System.Exception ex)
+        {
+            examNo = 99;
+        }
 
-            // �߰��� �θ��� �ڽ��� ������ �ľ��ϱ� ���� �ݺ�
-            for (int i = 0; i < parent.Length; i++)
+        Debug.Log("2 :#" + test + ": " + examNo);
+        // �߰��� �θ��� �ڽ��� ������ �ľ��ϱ� ���� �ݺ�
+        for (int i = 0; i < parent.Length; i++)
+        {
+
+            Debug.Log("2." + i + " :#" + test);
+            if (examNo != i)
+                continue;
+            Debug.Log(parent[i].transform.childCount);
+            // �ڽ��� ������ŭ ���� �����ϱ� ���� �ݺ���
+            for (int j = 0; j < parent[i].transform.childCount; j++)
             {
-                if (examNo != i)
-                    break;
-                Debug.Log(parent[i].transform.childCount);
-                // �ڽ��� ������ŭ ���� �����ϱ� ���� �ݺ���
-                for (int j = 0; j < parent[i].transform.childCount; j++)
+                //Debug.Log(parent[i].transform.GetChild(j).transform);
+                Transform childTransform = parent[i].transform.GetChild(j).transform;   // �ڽ��� ��ġ�� ��������
+                GameObject instance = Instantiate(wall, childTransform);                // �ڽ��� ��ġ�� ���� ����
+                if (changePos)
                 {
-                    //Debug.Log(parent[i].transform.GetChild(j).transform);
-                    Transform childTransform = parent[i].transform.GetChild(j).transform;   // �ڽ��� ��ġ�� ��������
-                    GameObject instance = Instantiate(wall, childTransform);                // �ڽ��� ��ġ�� ���� ����
-                    if (changePos)
-                    {
-                        // ���� ��ġ�� ������ ��ġ���� ������� y��ũ�⸸ŭ y������ �̵�
-                        instance.transform.position = instance.transform.position + new Vector3(0, sizeZ, 0);
-                        // ���� ũ�⸦ �Էµ� sizeY ��ŭ �߰�
-                        instance.transform.localScale = instance.transform.localScale + new Vector3(0, 0, sizeZ);
-                    }
+                    // ���� ��ġ�� ������ ��ġ���� ������� y��ũ�⸸ŭ y������ �̵�
+                    instance.transform.position = instance.transform.position + new Vector3(0, sizeZ, 0);
+                    // ���� ũ�⸦ �Էµ� sizeY ��ŭ �߰�
+                    instance.transform.localScale = instance.transform.localScale + new Vector3(0, 0, sizeZ);
                 }
             }
         }
-        
+
+        Debug.Log("3 :#" + test);
+        test++;
+    }
+
+    private void OnDisable()
+    {
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("wall");
+        for (int i = 0; i < obj.Length; i++)
+        {
+            Destroy(obj[i]);
+        }
     }
 }
