@@ -4,39 +4,51 @@ using UnityEngine;
 
 public class onBreak : MonoBehaviour
 {
-    public Light Light;
-    public Light Light2;
-    public Light Light3;
+    public GameObject Light;
 
+    public float nowTime;
+    public AudioSource audiosource;
+    public bool test;
 
-    public float MinTime;
-    public float MaxTime;
-    public float Timer;
-    
-
-
+    private bool audioStart = false;
     void Start()
     {
-        Timer = Random.Range(MinTime, MaxTime);
+        test = false;
+        
+        audiosource.loop = true;
     }
 
-    void Update()
+    public void Update()
     {
-        Lighton();
-    }
-
-    void Lighton()
-    {
-        if (Timer > 0)
-            Timer += Time.deltaTime;
-
-        if (Timer <= 0)
+        
+        
+        if (test)
         {
-            Light.enabled = !Light.enabled;
-            Light2.enabled = !Light2.enabled;
-            Light3.enabled = !Light3.enabled;
+            nowTime += Time.deltaTime;
+            if (nowTime < 5)
+            {
+                Light.SetActive(true);
+                Debug.Log(Light.name);
+                if(audioStart == false)
+                {
+                    audiosource.Play();
+                    audioStart = true;
+                }
+                
 
-            Timer = Random.Range(MinTime, MaxTime);
+            }
+            else
+            {
+                Light.SetActive(false);
+                nowTime = 0;
+                test = false;
+                audiosource.Stop();
+                audioStart = false;
+            }
         }
+       
+
     }
-    }
+
+
+}
