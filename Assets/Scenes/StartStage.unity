@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -670,7 +670,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67492111}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0.25}
   m_LocalScale: {x: 0.0005, y: 0.0005, z: 0.0005}
   m_Children:
   - {fileID: 1908103173}
@@ -730,6 +730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Root: {fileID: 1520227467}
   Target: {fileID: 434780491}
+  inputManager: {fileID: 0}
 --- !u!1 &95557804
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,9 +777,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5759187105a10e84b80555c46f7cb6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _oculusObject: {fileID: 1183773782}
   _carObject: {fileID: 240621619}
-  GC: {fileID: 0}
+  _LowBeamUiObject: {fileID: 0}
+  _HighBeamUiObject: {fileID: 0}
+  _WiperUiObject: {fileID: 0}
+  _LeftSignalObject: {fileID: 0}
+  _RightSignalObject: {fileID: 0}
   _TS: {fileID: 0}
   _NL: {fileID: 0}
   _WP: {fileID: 0}
@@ -3340,6 +3344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Root: {fileID: 1905695189}
   Target: {fileID: 1357879069}
+  inputManager: {fileID: 0}
 --- !u!65 &483885229
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3399,9 +3404,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5759187105a10e84b80555c46f7cb6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _oculusObject: {fileID: 1183773782}
   _carObject: {fileID: 240621619}
-  GC: {fileID: 0}
+  _LowBeamUiObject: {fileID: 0}
+  _HighBeamUiObject: {fileID: 0}
+  _WiperUiObject: {fileID: 0}
+  _LeftSignalObject: {fileID: 0}
+  _RightSignalObject: {fileID: 0}
   _TS: {fileID: 0}
   _NL: {fileID: 0}
   _WP: {fileID: 0}
@@ -3850,6 +3858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Root: {fileID: 434780491}
   Target: {fileID: 72512287}
+  inputManager: {fileID: 0}
 --- !u!65 &627862073
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4103,11 +4112,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f39a9d103c4129b42a53567f6cd8356a, type: 3}
---- !u!1 &676635466 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5550776016039436609, guid: f39a9d103c4129b42a53567f6cd8356a, type: 3}
-  m_PrefabInstance: {fileID: 676635465}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &676635467 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6305737498139461415, guid: f39a9d103c4129b42a53567f6cd8356a, type: 3}
@@ -4611,9 +4615,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5759187105a10e84b80555c46f7cb6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _oculusObject: {fileID: 676635466}
   _carObject: {fileID: 240621619}
-  GC: {fileID: 0}
+  _LowBeamUiObject: {fileID: 0}
+  _HighBeamUiObject: {fileID: 0}
+  _WiperUiObject: {fileID: 0}
+  _LeftSignalObject: {fileID: 0}
+  _RightSignalObject: {fileID: 0}
   _TS: {fileID: 0}
   _NL: {fileID: 0}
   _WP: {fileID: 0}
@@ -5111,9 +5118,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5759187105a10e84b80555c46f7cb6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _oculusObject: {fileID: 1183773782}
   _carObject: {fileID: 240621619}
-  GC: {fileID: 0}
+  _LowBeamUiObject: {fileID: 0}
+  _HighBeamUiObject: {fileID: 0}
+  _WiperUiObject: {fileID: 0}
+  _LeftSignalObject: {fileID: 0}
+  _RightSignalObject: {fileID: 0}
   _TS: {fileID: 0}
   _NL: {fileID: 0}
   _WP: {fileID: 0}
@@ -6038,7 +6048,7 @@ RectTransform:
   m_GameObject: {fileID: 1074011369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1277357510}
   m_Father: {fileID: 67492115}
@@ -6046,7 +6056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -99.5}
+  m_AnchoredPosition: {x: 0, y: -304}
   m_SizeDelta: {x: 900, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1074011371
@@ -6649,11 +6659,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a379f34d4f4f2e408d34f14bfb753ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1183773782 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5550776016039436609, guid: f39a9d103c4129b42a53567f6cd8356a, type: 3}
-  m_PrefabInstance: {fileID: 1183773779}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1188533084
 GameObject:
   m_ObjectHideFlags: 0
@@ -7157,6 +7162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Root: {fileID: 434780491}
   Target: {fileID: 72512287}
+  inputManager: {fileID: 0}
 --- !u!65 &1262024345
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7537,9 +7543,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5759187105a10e84b80555c46f7cb6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _oculusObject: {fileID: 1183773782}
   _carObject: {fileID: 240621619}
-  GC: {fileID: 0}
+  _LowBeamUiObject: {fileID: 0}
+  _HighBeamUiObject: {fileID: 0}
+  _WiperUiObject: {fileID: 0}
+  _LeftSignalObject: {fileID: 0}
+  _RightSignalObject: {fileID: 0}
   _TS: {fileID: 0}
   _NL: {fileID: 0}
   _WP: {fileID: 0}
@@ -8012,6 +8021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Root: {fileID: 832002775}
   Target: {fileID: 1905695189}
+  inputManager: {fileID: 0}
 --- !u!1 &1373614996
 GameObject:
   m_ObjectHideFlags: 0
@@ -8300,7 +8310,7 @@ RectTransform:
   m_GameObject: {fileID: 1412049334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1857967752}
   m_Father: {fileID: 67492115}
@@ -8308,7 +8318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 160, y: 60}
+  m_AnchoredPosition: {x: 508, y: 196}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1412049336
@@ -9406,9 +9416,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5759187105a10e84b80555c46f7cb6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _oculusObject: {fileID: 1183773782}
   _carObject: {fileID: 240621619}
-  GC: {fileID: 240621620}
+  _LowBeamUiObject: {fileID: 0}
+  _HighBeamUiObject: {fileID: 0}
+  _WiperUiObject: {fileID: 0}
+  _LeftSignalObject: {fileID: 0}
+  _RightSignalObject: {fileID: 0}
   _TS: {fileID: 649968339}
   _NL: {fileID: 240621638}
   _WP: {fileID: 58072758}
@@ -11154,9 +11167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5759187105a10e84b80555c46f7cb6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _oculusObject: {fileID: 1183773782}
   _carObject: {fileID: 240621619}
-  GC: {fileID: 240621620}
+  _LowBeamUiObject: {fileID: 0}
+  _HighBeamUiObject: {fileID: 0}
+  _WiperUiObject: {fileID: 0}
+  _LeftSignalObject: {fileID: 0}
+  _RightSignalObject: {fileID: 0}
   _TS: {fileID: 649968339}
   _NL: {fileID: 240621638}
   _WP: {fileID: 58072758}

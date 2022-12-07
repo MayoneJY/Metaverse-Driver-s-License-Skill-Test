@@ -8,6 +8,7 @@ public class StageSelect : MonoBehaviour
     [SerializeField] private GameObject gameObject;
     [SerializeField] private GameObject camera;
     [SerializeField] private GameObject[] guardrail;
+    [SerializeField] private GameObject mainUi;
     //Defualt position rotation
     //-1.84, 1, -5.1, 0, -90, 0
     //Start
@@ -78,6 +79,7 @@ public class StageSelect : MonoBehaviour
         //gameObject.SetActive(false);
         camera.transform.position = new Vector3(-0.3899994f, 0, 0.3f);
         camera.transform.localEulerAngles = new Vector3(0, 0, 0);
+        mainUi.SetActive(false);
 
     }
 

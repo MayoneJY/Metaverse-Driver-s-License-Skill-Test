@@ -23,6 +23,7 @@ public class SideBreakController : MonoBehaviour
     private void Start()
     {
         c = (int) ((a + b) / 2);
+        Root.localRotation = Quaternion.AngleAxis(GetGearStickAngle(GEAR_MODE.PARK) - d, Target.up);
     }
 
     private GEAR_MODE GetGearMode(float angle)
@@ -33,13 +34,13 @@ public class SideBreakController : MonoBehaviour
 
         if (intAngle < c)
         {
-            result = GEAR_MODE.PARK;
-            inputManager.isParkingPress = true;
-        }
-        else 
-        {
             result = GEAR_MODE.NEUTRAL;
             inputManager.isParkingPress = false;
+        }
+        else
+        {
+            result = GEAR_MODE.PARK;
+            inputManager.isParkingPress = true;
         }
 
         return result;
@@ -50,9 +51,9 @@ public class SideBreakController : MonoBehaviour
         switch (gearMode)
         {
             case GEAR_MODE.PARK:
-                return b;
-            default:
                 return a;
+            default:
+                return b;
         }
     }
 

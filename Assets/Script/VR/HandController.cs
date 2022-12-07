@@ -17,6 +17,12 @@ public class HandController : MonoBehaviour
     [SerializeField] private GearControl _GC;
     public Transform Root;
     [SerializeField] private Transform Target;
+
+    private void Start()
+    {
+        Root.localRotation = Quaternion.AngleAxis(GetGearStickAngle(GEAR_MODE.PARK) - 90, Target.up);
+
+    }
     private GEAR_MODE GetGearMode(float angle)
     {
         GEAR_MODE result = GEAR_MODE.DRIVE;
@@ -53,13 +59,13 @@ public class HandController : MonoBehaviour
         switch (gearMode)
         {
             case GEAR_MODE.PARK:
-                return 40;
+                return 50;
             case GEAR_MODE.REVERSE:
                 return 70;
             case GEAR_MODE.NEUTRAL:
                 return 100;
             default:
-                return 140;
+                return 130;
         }
     }
 
@@ -83,13 +89,13 @@ public class HandController : MonoBehaviour
             var vector = transform.position - other.transform.position;
             var angle = Vector3.Angle(Target.forward, vector);
 
-            if (angle > 140)
+            if (angle > 130)
             {
-                angle = 140;
+                angle = 130;
             }
-            else if (angle < 40)
+            else if (angle < 50)
             {
-                angle = 40;
+                angle = 50;
             }
             
             Root.localRotation = Quaternion.AngleAxis(angle - 90, Target.up);
