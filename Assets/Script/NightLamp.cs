@@ -83,18 +83,30 @@ public class NightLamp : MonoBehaviour
 
 
 
-    public void triggerHighLight(){
-        if(_nightBeamStatus){
+    public bool triggerHighLight()
+    {
+        if (_nightBeamStatus)
+        {
             _highBeamStatus = _highBeamLight.activeSelf == false;
             _highBeamLight.SetActive(_highBeamStatus);
             _nightBeamLight.SetActive(!_highBeamStatus);
             _Ui_Up.SetActive(_highBeamStatus);
             _Ui_Down.SetActive(!_highBeamStatus);
         }
+        return _nightBeamStatus;
+    }
+    public bool triggerHighLightOff()
+    {
+        _highBeamStatus = false;
+        _highBeamLight.SetActive(_highBeamStatus);
+        _nightBeamLight.SetActive(!_highBeamStatus);
+        _Ui_Up.SetActive(_highBeamStatus);
+        _Ui_Down.SetActive(!_highBeamStatus);
+        return _nightBeamStatus;
     }
 
     public bool GetTrigger()
     {
-        return _nightBeamStatus;
+        return _highBeamLight;
     }
 }

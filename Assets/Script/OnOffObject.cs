@@ -36,10 +36,12 @@ public class OnOffObject : MonoBehaviour
         if (Check)
         {
             gameObject.GetComponent<Renderer>().material = _materialOn;
+            _triggerBoolean = true;
         }
         else
         {
             gameObject.GetComponent<Renderer>().material = _materialOff;
+            _triggerBoolean = false;
         }
     }
 

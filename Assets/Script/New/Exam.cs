@@ -15,29 +15,6 @@ public class Exam : MonoBehaviour
     [Header("점수")]
     [SerializeField] private int _score = 100;
 
-    [Header("기타 확인")]
-    [SerializeField] private GameObject _uiCaption;
-    [SerializeField] private GameObject _uiTimer;
-    [SerializeField] private int examNumber = 0;
-    [SerializeField] private int examNumber2 = 0;
-    public bool collisionBodyStart = false;
-    public bool collisionBodyCenter = false;
-    public bool collisionBodyEnd = false;
-    public bool collisionWheelEnd = false;
-    public bool _stageMode = false;
-    private bool collisionBody = false;
-    private bool _tCourseJoin = false;
-    private bool _boolWarningCheck = false;
-    private bool _boolWarningCheck2 = false;
-    private bool _boolWarningCheck3 = false;
-    private string text;
-    
-    private bool timeCheck = false;
-    private float timer = 0.0f;
-
-    private bool _timerUiCheck = false;
-    private float _timerUi = 0.0f;
-
     [Header("T자 코스")]
     private float _tCourseOverTime = 120.0f;
     private bool _tCourseCheck = false;
@@ -56,8 +33,33 @@ public class Exam : MonoBehaviour
     [SerializeField] private float _floatWarringTimeOver = 0.0f;
     [SerializeField] private int _intWarringRandom = 0;
 
+    [Header("기타 확인")]
+    [SerializeField] private GameObject _uiCaption;
+    [SerializeField] private GameObject _uiTimer;
+    [SerializeField] private int examNumber = 0;
+    [SerializeField] private int examNumber2 = 0;
+    [SerializeField] private GameObject _okUi;
+    public bool collisionBodyStart = false;
+    public bool collisionBodyCenter = false;
+    public bool collisionBodyEnd = false;
+    public bool collisionWheelEnd = false;
+    public bool _stageMode = false;
+    private bool collisionBody = false;
+    private bool _tCourseJoin = false;
+    private bool _boolWarningCheck = false;
+    private bool _boolWarningCheck2 = false;
+    private bool _boolWarningCheck3 = false;
+    private string text;
+
+    private bool timeCheck = false;
+    private float timer = 0.0f;
+
+    private bool _timerUiCheck = false;
+    private float _timerUi = 0.0f;
+    
     private controller ctrl;
     private inputManager _inputManager;
+    [SerializeField] private HandController _handController;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,9 +73,10 @@ public class Exam : MonoBehaviour
     {
         if (_stageMode)
         {
-            _uiCaption.SetActive(false);
-            _uiTimer.SetActive(false);
+            //_uiCaption.SetActive(false);
+            //_uiTimer.SetActive(false);
             timerUiScore();
+            _intWarringRandom = 1;
         }
         if(!collisionBodyStart && !collisionBodyCenter && !collisionBodyEnd){
             examNumber = 0;
@@ -161,6 +164,13 @@ public class Exam : MonoBehaviour
             _score -= 10;
             timer = 0.0f;
             _boolWarningCheck3 = true;
+            _okUi.SetActive(true);
+            _handController.ResetGear();
+        }
+        else if(_turnSignal.doubleTurnSignal && ctrl.KPH > 3.0f)
+        {
+            _okUi.SetActive(true);
+            _handController.ResetGear();
         }
 
         // 정해진 시간을 지키지 못 한 경우  5초마다 3점씩 감점
@@ -188,7 +198,7 @@ public class Exam : MonoBehaviour
             //신호등 코스 공통
             timer += Time.deltaTime;
 
-            if(!timeCheck && ctrl.KPH < 0.01f){
+            if(ctrl.KPH < 0.01f){
                 //정지선 넘어서 멈췄을 때
                 _floatTrafficLightStopTime += Time.deltaTime;
             }
@@ -199,12 +209,15 @@ public class Exam : MonoBehaviour
             }
             if(timer > 20.0f){
                 // 20초 이상 30초 이내에 통과 했을 경우
-                timerUiScoreStart("신호등: ", "20초 이상 30초 이내에 통과했을 경우 (-5)");
+                timerUiScoreStart("신호등: ", "20초 이상 30초 이내에 통과 못함 (-5)");
                 _score -= 5;
             }
             if(timer > 30.0f){
                 // 30초 이상 통과하지 못 했을 경우
-                timerUiScoreStart("신호등: ", "30초 이상 통과하지 못 했을 경우 (실격)");
+                timerUiScoreStart("신호등: ", "30초 이상 통과하지 못함 (실격)");
+                _okUi.transform.GetChild(0).gameObject.GetComponent<Text>().text = "30초 이상 통과하지 못함 (실격)";
+                _okUi.SetActive(true);
+                _handController.ResetGear();
                 leavingOut = true;
             }
         }
@@ -216,11 +229,21 @@ public class Exam : MonoBehaviour
                 if(_TLC_1._currentLightType == TrafficLightController.LIGHT_TYPE.RED){
                     // 빨간불일 때 정지선 넘으면 바로 탈락
                     timerUiScoreStart("신호등: ", "빨간불에 정지선 통과 (실격)");
+                    _okUi.transform.GetChild(0).gameObject.GetComponent<Text>().text = "빨간불에 정지선 통과 (실격)";
+                    _okUi.SetActive(true);
+                    _handController.ResetGear();
                     leavingOut = true;
                 }
                 break;
             case 2:
                 //신호등 공통
+                break;
+            case 3:
+                if (_stageMode)
+                {
+                    _okUi.SetActive(true);
+                    _handController.ResetGear();
+                }
                 break;
         }
     }
@@ -249,6 +272,7 @@ public class Exam : MonoBehaviour
         // 첫 입장
         if(!_tCourseJoin && collisionBodyStart){
             _tCourseJoin = true;
+            _uiTimer.SetActive(true);
         }
 
         // 퇴장
@@ -258,6 +282,9 @@ public class Exam : MonoBehaviour
             if(_tCourseCheck){
                 _tCourseTest = true;
             }
+            _uiTimer.SetActive(false);
+            _okUi.SetActive(true);
+            _handController.ResetGear();
         }
         
         // 입장 후 타이머 작동
@@ -320,12 +347,17 @@ public class Exam : MonoBehaviour
                     }
                     else if(timer != 0.0f){
                         timerUiScoreStart("언덕코스: ", "30초 이내에 정지선 통과 못함 / 정지하지 않고 통과 (실격)");
+                        _okUi.transform.GetChild(0).gameObject.GetComponent<Text>().text = "30초 이내에 정지선 통과 못함 / 정지하지 않고 통과 (실격)";
+                        _okUi.SetActive(true);
+                        _handController.ResetGear();
                         leavingOut = true;
                     }
                 }
             }
             else if(!collisionBodyStart && collisionBodyEnd){
                 timeCheck = false;
+
+                _okUi.SetActive(true);
                 //if(examNumber == 1) hillTest = true;
                 //Debug.Log("성공");
             }
@@ -333,6 +365,9 @@ public class Exam : MonoBehaviour
                 timeCheck = false;
                 if(examNumber == 1) {
                     timerUiScoreStart("언덕코스: ", "후방으로 밀림 (실격)");
+                    _okUi.transform.GetChild(0).gameObject.GetComponent<Text>().text = "후방으로 밀림 (실격)";
+                    _okUi.SetActive(true);
+                    _handController.ResetGear();
                     leavingOut = true;
                 }
                 //Debug.Log("탈락");
@@ -345,9 +380,12 @@ public class Exam : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Block"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Block2"))
         {
             timerUiScoreStart("공통: ", "연석/보도블럭을 침범 (실격)");
+            _okUi.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = "연석/보도블럭을 침범 (실격)";
+            _okUi.SetActive(true);
+            _handController.ResetGear();
             leavingOut = true;
         }
         else if(other.gameObject.layer == LayerMask.NameToLayer("Line"))
@@ -369,7 +407,6 @@ public class Exam : MonoBehaviour
             collisionBodyStart = false;
             timer = 0.0f;
             timeCheck = false;
-            Debug.Log("asd");
         }
         this.examNumber = number;
         this.examNumber2 = number2;
@@ -380,6 +417,7 @@ public class Exam : MonoBehaviour
         _timerUi += Time.deltaTime;
         if (_timerUi > 3.0f)
         {
+            //Debug.Log(_timerUi);
             _uiCaption.SetActive(false);
             _timerUiCheck = false;
         }
@@ -388,7 +426,41 @@ public class Exam : MonoBehaviour
     private void timerUiScoreStart(string text, string text2)
     {
         Debug.Log(text + text2);
-        _uiCaption.SetActive(true);
-        _uiCaption.transform.GetChild(0).GetComponent<Text>().text = text2;
+        if (_stageMode)
+        {
+            _timerUi = 0.0f;
+            _uiCaption.SetActive(true);
+            _uiCaption.transform.GetChild(0).GetComponent<Text>().text = text2;
+        }
+    }
+
+    public void ResetItem()
+    {
+        hillTest = false;
+        _tCourseTest = false;
+        leavingOut = false;
+        _score = 100;
+        _tCourseOverTime = 120.0f;
+        _tCourseCheck = false;
+        _tCourseTimeCheck = 9999.0f;
+        _boolTrafficLightCheck = false;
+        _floatTrafficLightStopTime = 0.0f;
+        _boolWarringStopCheck = false;
+        _floatWarringStopTime = 0.0f;
+        _floatWarringTimeOver = 0.0f;
+        _intWarringRandom = 0;
+        collisionBodyStart = false;
+        collisionBodyCenter = false;
+        collisionBodyEnd = false;
+        collisionWheelEnd = false;
+        collisionBody = false;
+        _tCourseJoin = false;
+        _boolWarningCheck = false;
+        _boolWarningCheck2 = false;
+        _boolWarningCheck3 = false;
+        timeCheck = false;
+        timer = 0.0f;
+        _timerUiCheck = false;
+        _timerUi = 0.0f;
     }
 }

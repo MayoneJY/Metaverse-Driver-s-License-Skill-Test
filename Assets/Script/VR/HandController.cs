@@ -69,6 +69,12 @@ public class HandController : MonoBehaviour
         }
     }
 
+    public void ResetGear()
+    {
+        var gearMode = GetGearMode(40.0f);
+        Root.localRotation = Quaternion.AngleAxis(GetGearStickAngle(gearMode) - 90, Target.up);
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("PlayerHand"))

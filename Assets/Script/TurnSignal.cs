@@ -103,7 +103,6 @@ public class TurnSignal : MonoBehaviour
             _GameObject_Lights[0].SetActive(false);
             _GameObject_Lights[1].SetActive(false);
             _GameObject_Lights_Arrow.SetActive(false);
-            Debug.Log("Off");
             _audioSource.clip = _audio2;
             _audioSource.Play();
         }
@@ -116,7 +115,6 @@ public class TurnSignal : MonoBehaviour
             _GameObject_Lights_Arrow.SetActive(true);
             _audioSource.clip = _audio1;
             _audioSource.Play();
-            Debug.Log("On");
         }
     }
 

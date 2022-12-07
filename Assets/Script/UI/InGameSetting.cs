@@ -6,10 +6,13 @@ public class InGameSetting : MonoBehaviour
 {
     [SerializeField] private GameObject _oculusObject;
     [SerializeField] private GameObject _carObject;
+    [SerializeField] private Exam _exam;
+    [SerializeField] private GameObject gameObject;
+    [SerializeField] private GameObject mainUi;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -37,5 +40,22 @@ public class InGameSetting : MonoBehaviour
     public void clickQuitButton(){
         // Game Exit
         Application.Quit();
+    }
+
+    public void clickRestart()
+    {
+        _carObject.transform.position = new Vector3(0, 0, 0);
+        _carObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+        _exam.ResetItem();
+    }
+
+    public void clickMainMenu()
+    {
+        clickRespawnButton();
+        gameObject.transform.position = new Vector3(-1.84f, 1, -5.1f);
+        gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
+        _oculusObject.transform.position = new Vector3(-34.308f, 0, 42.975f);
+        _oculusObject.transform.localEulerAngles = new Vector3(0, -90, 0);
+        mainUi.SetActive(true);
     }
 }
