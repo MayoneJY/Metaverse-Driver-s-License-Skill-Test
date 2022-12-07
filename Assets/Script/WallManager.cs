@@ -16,7 +16,6 @@ public class WallManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("1 :#" + test);
         try
         {
             examNo = PlayerPrefs.GetInt("Exam");
@@ -26,12 +25,12 @@ public class WallManager : MonoBehaviour
             examNo = 99;
         }
 
-        Debug.Log("2 :#" + test + ": " + examNo);
+        if (examNo == 6)
+            return;
         // �߰��� �θ��� �ڽ��� ������ �ľ��ϱ� ���� �ݺ�
         for (int i = 0; i < parent.Length; i++)
         {
 
-            Debug.Log("2." + i + " :#" + test);
             if (examNo != i)
                 continue;
             Debug.Log(parent[i].transform.childCount);
@@ -51,7 +50,6 @@ public class WallManager : MonoBehaviour
             }
         }
 
-        Debug.Log("3 :#" + test);
         test++;
     }
 

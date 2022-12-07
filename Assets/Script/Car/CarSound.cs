@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class CarSound : MonoBehaviour
 {
-    public float minSpeed;
-    public float maxSpeed;
-    private float curretnSpeed;
+    //public float minSpeed;
+    //public float maxSpeed;
+    //private float curretnSpeed;
 
-    private Rigidbody carRb;
+    //private Rigidbody carRb;
     private AudioSource carAudio;
 
-    public float minPitch;
-    public float maxPitch;
-    private float pitchFromCar;
+    //public float minPitch;
+    //public float maxPitch;
+    //private float pitchFromCar;
 
     private controller _CR;
 
     private void Start()
     {
         carAudio = GetComponent<AudioSource>();
-        carRb = GetComponent<Rigidbody>();
+        //carRb = GetComponent<Rigidbody>();
         _CR = GetComponent<controller>();
     }
 
@@ -32,8 +32,8 @@ public class CarSound : MonoBehaviour
     public void EnginSound()
     {
         float speed = _CR.KPH / 50.0f + 0.2f;
-        curretnSpeed = carRb.velocity.magnitude;
-        pitchFromCar = carRb.velocity.magnitude / 50f;
+        //curretnSpeed = carRb.velocity.magnitude;
+        //pitchFromCar = carRb.velocity.magnitude / 50f;
 
         if (speed < 0.2f)
             speed = 0.2f;

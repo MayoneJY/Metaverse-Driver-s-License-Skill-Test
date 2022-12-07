@@ -8,6 +8,7 @@ public class StartStage : MonoBehaviour
     [SerializeField] private Text _uiText;
     [SerializeField] private GameObject _timerPanel;
     [SerializeField] private Text _timerText;
+    [SerializeField] private GameObject _okUi;
 
     private string[] _uiTextValue = new string[]{
         "VR세팅을 마치면 반짝이는 버튼을 눌러주세요.",
@@ -50,8 +51,10 @@ public class StartStage : MonoBehaviour
     [SerializeField] private GameObject _carEngineStarterArrow;
     [SerializeField] private GameObject _carGearArrow;
     [SerializeField] private GameObject _carTurnLightArrow;
+    [SerializeField] private GameObject _carTurnLightArrow2;
     [SerializeField] private GameObject _carUnderLightArrow;
     [SerializeField] private GameObject _carTopLightArrow;
+    [SerializeField] private GameObject _carWiperArrow;
     [SerializeField] private AudioSource _audioSource;
 
     private GearControl _GC;
@@ -64,10 +67,21 @@ public class StartStage : MonoBehaviour
     private bool[] _gearCheck = new bool[]{false, false};
     private int _gearCheckCount = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        for(int i = 0; i < _audioTTS.Length; i++){
+        _uiTextCount = 0;
+
+        _score = 100;
+
+        _timeCheck = false;
+        _timer = 0.0f;
+        _timeOver = false;
+        _uiTimer = 0.0f;
+        _boolAudioPlayed = false;
+        _gearCheck = new bool[] { false, false };
+        _gearCheckCount = 0;
+        for (int i = 0; i < _audioTTS.Length; i++)
+        {
             _uiTTSTime[i] = _audioTTS[i].length;
         }
         _audioSource.clip = _audioTTS[0];
@@ -78,6 +92,7 @@ public class StartStage : MonoBehaviour
         _NL = _carBody.GetComponent<NightLamp>();
         _CR = _carBody.GetComponent<controller>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -223,13 +238,13 @@ public class StartStage : MonoBehaviour
                         _boolAudioPlayed = true;
                     }
                     _timerPanel.SetActive(true);
-                    _carTurnLightArrow.SetActive(true);
+                    _carTurnLightArrow2.SetActive(true);
                     if(_TS.rightTurnSignal){
                         _uiTextCount++;
                         _boolAudioPlayed = false;
                         _audioSource.Stop();
                         _audioSource.clip = _audioTTS[_uiTextCount];
-                        _carTurnLightArrow.SetActive(false);
+                        _carTurnLightArrow2.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -245,13 +260,13 @@ public class StartStage : MonoBehaviour
                         _boolAudioPlayed = true;
                     }
                     _timerPanel.SetActive(true);
-                    _carTurnLightArrow.SetActive(true);
+                    _carTurnLightArrow2.SetActive(true);
                     if(!_TS.rightTurnSignal){
                         _uiTextCount++;
                         _boolAudioPlayed = false;
                         _audioSource.Stop();
                         _audioSource.clip = _audioTTS[_uiTextCount];
-                        _carTurnLightArrow.SetActive(false);
+                        _carTurnLightArrow2.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -267,11 +282,13 @@ public class StartStage : MonoBehaviour
                         _boolAudioPlayed = true;
                     }
                     _timerPanel.SetActive(true);
-                    if(_WA._wiperValue == WiperAction.wiperValue.Automatic){
+                    _carWiperArrow.SetActive(true);
+                    if (_WA._wiperValue == WiperAction.wiperValue.Automatic){
                         _uiTextCount++;
                         _boolAudioPlayed = false;
                         _audioSource.Stop();
                         _audioSource.clip = _audioTTS[_uiTextCount];
+                        _carWiperArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -284,11 +301,13 @@ public class StartStage : MonoBehaviour
                         _boolAudioPlayed = true;
                     }
                     _timerPanel.SetActive(true);
-                    if(_WA._wiperValue == WiperAction.wiperValue.Off){
+                    _carWiperArrow.SetActive(true);
+                    if (_WA._wiperValue == WiperAction.wiperValue.Off){
                         _uiTextCount++;
                         _boolAudioPlayed = false;
                         _audioSource.Stop();
                         _audioSource.clip = _audioTTS[_uiTextCount];
+                        _carWiperArrow.SetActive(false);
                         _timeCheck = false;
                         _timeOver = false;
                     }
@@ -436,14 +455,18 @@ public class StartStage : MonoBehaviour
                         _boolAudioPlayed = true;
                     }
                     if(_GC.m_GearState_Now == 3 && _CR.KPH > 30){
-                        //_uiTextCount++;
+                        _uiTextCount++;
                         _boolAudioPlayed = false;
                         _audioSource.Stop();
-                        _audioSource.clip = _audioTTS[_uiTextCount];
+                        //_audioSource.clip = _audioTTS[_uiTextCount];
                         _timeCheck = false;
                         _timeOver = false;
                     }
                 break;
+
+                case 19:
+                    _okUi.SetActive(true);
+                    break;
                 
                 // case 19: //왼쪽 회전
                 //     if(!_boolAudioPlayed){

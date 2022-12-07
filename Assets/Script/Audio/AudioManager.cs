@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     private static readonly string CarSoundPref = "CarSoundPref";
     private static readonly string TTSSoundPref = "TTSSoundPref";
     private int firstPlayInt;
-    public Slider backgroundSlider, soundEffectSlider, carSoundSlider, ttsSoundSlider; 
+    public Slider[] backgroundSlider, soundEffectSlider, carSoundSlider, ttsSoundSlider; 
     private float backgroundFloat, soundEffectFloat, carSoundFloat, ttsSoundFloat;
     public AudioSource backgroundAudio;
     public AudioSource[] soundEffectsAudio;
@@ -40,16 +40,21 @@ public class AudioManager : MonoBehaviour
         try{
             Debug.Log(PlayerPrefs.GetFloat(BackgroundPref));
             
-      
+            for(int i = 0; i < soundEffectsAudio.Length; i++)
+            {
+                backgroundFloat = PlayerPrefs.GetFloat(BackgroundPref);
+                backgroundSlider[i].value = backgroundFloat;
+
+                soundEffectFloat = PlayerPrefs.GetFloat(SoundEffectPref);
+                soundEffectSlider[i].value = soundEffectFloat;
+
+                carSoundFloat = PlayerPrefs.GetFloat(CarSoundPref);
+                carSoundSlider[i].value = carSoundFloat;
+
+                ttsSoundFloat = PlayerPrefs.GetFloat(TTSSoundPref);
+                ttsSoundSlider[i].value = ttsSoundFloat;
+            }
              
-            soundEffectFloat = PlayerPrefs.GetFloat(SoundEffectPref);
-            soundEffectSlider.value = soundEffectFloat;
-
-            carSoundFloat = PlayerPrefs.GetFloat(CarSoundPref);
-            carSoundSlider.value = carSoundFloat;
-
-            ttsSoundFloat = PlayerPrefs.GetFloat(TTSSoundPref);
-            ttsSoundSlider.value = ttsSoundFloat;
         }
         catch (System.Exception e)
         {
@@ -58,10 +63,13 @@ public class AudioManager : MonoBehaviour
             soundEffectFloat = .75f;
             carSoundFloat = .75f;
             ttsSoundFloat = .75f;
-            backgroundSlider.value = backgroundFloat;
-            soundEffectSlider.value = soundEffectFloat;
-            carSoundSlider.value = soundEffectFloat;
-            ttsSoundSlider.value = ttsSoundFloat;
+            for (int i = 0; i < soundEffectsAudio.Length; i++)
+            {
+                backgroundSlider[i].value = backgroundFloat;
+                soundEffectSlider[i].value = soundEffectFloat;
+                carSoundSlider[i].value = soundEffectFloat;
+                ttsSoundSlider[i].value = ttsSoundFloat;
+            }
             PlayerPrefs.SetFloat(BackgroundPref, backgroundFloat);
             PlayerPrefs.SetFloat(SoundEffectPref, soundEffectFloat);
             PlayerPrefs.SetFloat(CarSoundPref, carSoundFloat);
@@ -72,10 +80,14 @@ public class AudioManager : MonoBehaviour
 
     public void SaveSoundSettings()
     {
-        PlayerPrefs.SetFloat(BackgroundPref, backgroundSlider.value);
-        PlayerPrefs.SetFloat(SoundEffectPref, soundEffectSlider.value);
-        PlayerPrefs.SetFloat(CarSoundPref, carSoundSlider.value);
-        PlayerPrefs.SetFloat(TTSSoundPref, ttsSoundSlider.value);
+        for (int i = 0; i < soundEffectsAudio.Length; i++)
+        {
+            PlayerPrefs.SetFloat(BackgroundPref, backgroundSlider[i].value);
+            PlayerPrefs.SetFloat(SoundEffectPref, soundEffectSlider[i].value);
+            PlayerPrefs.SetFloat(CarSoundPref, carSoundSlider[i].value);
+            PlayerPrefs.SetFloat(TTSSoundPref, ttsSoundSlider[i].value);
+        }
+        UpdateSound();
     }
 
     private void OnApplicationFocus(bool inFocus)
@@ -88,19 +100,22 @@ public class AudioManager : MonoBehaviour
 
     public void UpdateSound()
     {
-        backgroundAudio.volume = backgroundSlider.value;
-        for(int i =0; i<soundEffectsAudio.Length; i++)
+        for (int j = 0; j < soundEffectsAudio.Length; j++)
         {
-            soundEffectsAudio[i].volume = soundEffectSlider.value;
-        }
-        backgroundAudio.volume = backgroundSlider.value;
-        for (int i = 0; i < carSoundAudio.Length; i++)
-        {
-            carSoundAudio[i].volume = carSoundSlider.value;
-        }      
-        for (int i = 0; i < ttsSoundAudio.Length; i++)
-        {
-            ttsSoundAudio[i].volume = ttsSoundSlider.value;
+            backgroundAudio.volume = backgroundSlider[j].value;
+            for (int i = 0; i < soundEffectsAudio.Length; i++)
+            {
+                soundEffectsAudio[i].volume = soundEffectSlider[j].value;
+            }
+            backgroundAudio.volume = backgroundSlider[j].value;
+            for (int i = 0; i < carSoundAudio.Length; i++)
+            {
+                carSoundAudio[i].volume = carSoundSlider[j].value;
+            }
+            for (int i = 0; i < ttsSoundAudio.Length; i++)
+            {
+                ttsSoundAudio[i].volume = ttsSoundSlider[j].value;
+            }
         }
     }
 
@@ -124,6 +139,14 @@ public class AudioManager : MonoBehaviour
         for (int i = 0; i < ttsSoundAudio.Length; i++)
         {
             ttsSoundAudio[i].volume = ttsSoundFloat;
+        }
+
+        for (int i = 0; i < soundEffectsAudio.Length; i++)
+        {
+            backgroundSlider[i].value = backgroundFloat;
+            soundEffectSlider[i].value = soundEffectFloat;
+            carSoundSlider[i].value = soundEffectFloat;
+            ttsSoundSlider[i].value = ttsSoundFloat;
         }
     }
     

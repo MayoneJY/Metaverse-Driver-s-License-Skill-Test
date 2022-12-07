@@ -67,6 +67,6 @@ public class UiButton : MonoBehaviour
 
     public void clickEngineStart(bool check)
     {
-        _OOO.GetComponent<OnOffObject>().OnTrigger(check);
+        _OOO.GetComponent<OnOffObject>().OnTrigger();
     }
 }

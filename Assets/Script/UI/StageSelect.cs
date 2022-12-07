@@ -10,10 +10,11 @@ public class StageSelect : MonoBehaviour
     [SerializeField] private GameObject[] guardrail;
     [SerializeField] private GameObject mainUi;
     [SerializeField] private Exam exam;
+    [SerializeField] private StartStage stage;
     //Defualt position rotation
     //-1.84, 1, -5.1, 0, -90, 0
     //Start
-    //0, 0, 0, 0, 0, 0, 0
+    //6, -1.84, 128.4, -5.1, 0, -90, 0
     //Warning
     //0, -1.84, 1, -5.1, 0, -90, 0
     //Hill
@@ -81,6 +82,10 @@ public class StageSelect : MonoBehaviour
         camera.transform.localEulerAngles = new Vector3(0, 0, 0);
         mainUi.SetActive(false);
         exam._stageMode = true;
+        if ((int)result[0] == 6)
+        {
+            stage.enabled = true;
+        }
 
     }
 

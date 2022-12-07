@@ -9,6 +9,7 @@ public class InGameSetting : MonoBehaviour
     [SerializeField] private Exam _exam;
     [SerializeField] private GameObject gameObject;
     [SerializeField] private GameObject mainUi;
+    [SerializeField] private StartStage stage;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +47,12 @@ public class InGameSetting : MonoBehaviour
     {
         _carObject.transform.position = new Vector3(0, 0, 0);
         _carObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+        if(PlayerPrefs.GetInt("Exam") == 6)
+        {
+            stage.enabled = false;
+            stage.enabled = true;
+
+        }
         _exam.ResetItem();
     }
 
@@ -56,6 +63,7 @@ public class InGameSetting : MonoBehaviour
         gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
         _oculusObject.transform.position = new Vector3(-34.308f, 0, 42.975f);
         _oculusObject.transform.localEulerAngles = new Vector3(0, -90, 0);
+        stage.enabled = false;
         mainUi.SetActive(true);
     }
 }
