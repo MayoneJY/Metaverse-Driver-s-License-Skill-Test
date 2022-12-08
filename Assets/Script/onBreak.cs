@@ -28,7 +28,6 @@ public class onBreak : MonoBehaviour
             if (nowTime < 5)
             {
                 Light.SetActive(true);
-                Debug.Log(Light.name);
                 if(audioStart == false)
                 {
                     audiosource.Play();
