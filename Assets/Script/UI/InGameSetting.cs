@@ -13,6 +13,8 @@ public class InGameSetting : MonoBehaviour
     [SerializeField] private StartStage stage;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private HandController _handController;
+    [SerializeField] private GameObject timer;
+    [SerializeField] private GameObject caption;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,9 @@ public class InGameSetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        timer.SetActive(false);
+        caption.SetActive(false);
     }
 
 
@@ -67,8 +71,11 @@ public class InGameSetting : MonoBehaviour
         _oculusObject.transform.position = new Vector3(-34.308f, 0, 42.975f);
         _oculusObject.transform.localEulerAngles = new Vector3(0, -90, 0);
         stage.enabled = false;
+        _exam.enabled = false;
         mainUi.SetActive(true);
         gameUi.SetActive(false);
+        timer.SetActive(false);
+        caption.SetActive(false);
         _audioSource.Play();
         _handController.ResetGear();
         _exam.ResetItem();

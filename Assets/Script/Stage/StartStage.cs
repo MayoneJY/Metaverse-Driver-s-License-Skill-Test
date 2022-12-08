@@ -56,6 +56,10 @@ public class StartStage : MonoBehaviour
     [SerializeField] private GameObject _carTopLightArrow;
     [SerializeField] private GameObject _carWiperArrow;
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private GameObject caption;
+    [SerializeField] private GameObject timer;
+    [SerializeField] private GameObject asd;
+    [SerializeField] private GameObject asdasd;
 
     private GearControl _GC;
     private TurnSignal _TS;
@@ -97,7 +101,10 @@ public class StartStage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_timeCheck){
+        if(_timeCheck)
+        {
+            caption.SetActive(true);
+            timer.SetActive(true);
             _timer += Time.deltaTime;
             if(_timeOver){
                 if(5.0f < _timer){

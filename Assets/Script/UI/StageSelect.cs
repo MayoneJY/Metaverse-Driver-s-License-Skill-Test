@@ -14,6 +14,9 @@ public class StageSelect : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private GameObject _replayUi; 
     [SerializeField] private TestMode test;
+    [SerializeField] private GameObject caption;
+    [SerializeField] private GameObject timer;
+
     //Defualt position rotation
     //-1.84, 1, -5.1, 0, -90, 0
     //Start
@@ -122,10 +125,19 @@ public class StageSelect : MonoBehaviour
         camera.transform.position = new Vector3(-0.3899994f, 0, 0.3f);
         camera.transform.localEulerAngles = new Vector3(0, 0, 0);
         mainUi.SetActive(false);
+        caption.SetActive(true);
+        timer.SetActive(true);
         exam._stageMode = true;
         if ((int)result[0] == 6)
         {
             stage.enabled = true;
+            exam.enabled = false;
+        }
+        else
+        {
+
+            stage.enabled = false;
+            exam.enabled = true;
         }
         _audioSource.Stop();
 
