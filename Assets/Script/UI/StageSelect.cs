@@ -12,7 +12,8 @@ public class StageSelect : MonoBehaviour
     [SerializeField] private Exam exam;
     [SerializeField] private StartStage stage;
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private GameObject _replayUi;
+    [SerializeField] private GameObject _replayUi; 
+    [SerializeField] private TestMode test;
     //Defualt position rotation
     //-1.84, 1, -5.1, 0, -90, 0
     //Start
@@ -29,10 +30,40 @@ public class StageSelect : MonoBehaviour
     //4, -37.08, 1, 34.5, 0, 90, 0
     //fast
     //5, -71.29, 1, 88.08, 0, 90, 0
+    //test
+    //9, -1.84, 1, -5.1, 0, -90, 0
 
     //VR -0.3899994 0 0.3 0 0 0
     //   -34.308 0 42.975 0 -90 0
     // select the HillCourse button
+    public void SelectExamTestButton()
+    {
+
+        GetComponent<WallManager>().enabled = false; GetComponent<WallManager>().enabled = false;
+        
+        for (int i = 0; i < guardrail.Length; i++)
+        {
+            for (int j = 0; j < guardrail[i].transform.childCount; j++)
+            {
+                if (guardrail[i].transform.GetChild(j).name == "Temp")
+                {
+                    guardrail[i].transform.GetChild(j).gameObject.SetActive(false);
+                }
+            }
+        }
+        _replayUi.SetActive(false);
+
+        gameObject.transform.position = new Vector3(-1.84f, 1, -5.1f);
+        gameObject.transform.rotation = Quaternion.Euler(0, -90, 0);
+
+        //gameObject.SetActive(false);
+        camera.transform.position = new Vector3(-0.3899994f, 0, 0.3f);
+        camera.transform.localEulerAngles = new Vector3(0, 0, 0);
+        test.enabled = true;
+        _audioSource.Stop();
+        mainUi.SetActive(false);
+    }
+
     public void SelectExamButton(string index)
     {
         GetComponent<WallManager>().enabled = false;
