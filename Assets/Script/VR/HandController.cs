@@ -33,7 +33,6 @@ public class HandController : MonoBehaviour
         {
             result = GEAR_MODE.PARK;
             _GC.m_GearState_Now = 0;
-            Debug.Log(0);
         }
         else if (intAngle < 80 && intAngle >= 60)
         {
@@ -71,6 +70,7 @@ public class HandController : MonoBehaviour
 
     public void ResetGear()
     {
+        _GC.m_GearState_Now = 0;
         var gearMode = GetGearMode(40.0f);
         Root.localRotation = Quaternion.AngleAxis(GetGearStickAngle(gearMode) - 90, Target.up);
     }

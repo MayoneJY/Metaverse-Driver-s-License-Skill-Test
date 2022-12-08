@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
         try{
             Debug.Log(PlayerPrefs.GetFloat(BackgroundPref));
             
-            for(int i = 0; i < soundEffectsAudio.Length; i++)
+            for(int i = 0; i < backgroundSlider.Length; i++)
             {
                 backgroundFloat = PlayerPrefs.GetFloat(BackgroundPref);
                 backgroundSlider[i].value = backgroundFloat;
@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
             soundEffectFloat = .75f;
             carSoundFloat = .75f;
             ttsSoundFloat = .75f;
-            for (int i = 0; i < soundEffectsAudio.Length; i++)
+            for (int i = 0; i < backgroundSlider.Length; i++)
             {
                 backgroundSlider[i].value = backgroundFloat;
                 soundEffectSlider[i].value = soundEffectFloat;
@@ -80,13 +80,10 @@ public class AudioManager : MonoBehaviour
 
     public void SaveSoundSettings()
     {
-        for (int i = 0; i < soundEffectsAudio.Length; i++)
-        {
-            PlayerPrefs.SetFloat(BackgroundPref, backgroundSlider[i].value);
-            PlayerPrefs.SetFloat(SoundEffectPref, soundEffectSlider[i].value);
-            PlayerPrefs.SetFloat(CarSoundPref, carSoundSlider[i].value);
-            PlayerPrefs.SetFloat(TTSSoundPref, ttsSoundSlider[i].value);
-        }
+        PlayerPrefs.SetFloat(BackgroundPref, backgroundSlider[0].value);
+        PlayerPrefs.SetFloat(SoundEffectPref, soundEffectSlider[0].value);
+        PlayerPrefs.SetFloat(CarSoundPref, carSoundSlider[0].value);
+        PlayerPrefs.SetFloat(TTSSoundPref, ttsSoundSlider[0].value);
         UpdateSound();
     }
 
@@ -100,7 +97,7 @@ public class AudioManager : MonoBehaviour
 
     public void UpdateSound()
     {
-        for (int j = 0; j < soundEffectsAudio.Length; j++)
+        for (int j = 0; j < backgroundSlider.Length; j++)
         {
             backgroundAudio.volume = backgroundSlider[j].value;
             for (int i = 0; i < soundEffectsAudio.Length; i++)
@@ -127,7 +124,7 @@ public class AudioManager : MonoBehaviour
         ttsSoundFloat = PlayerPrefs.GetFloat(TTSSoundPref);
          
         backgroundAudio.volume = backgroundFloat;
-        for (int i = 0; i < soundEffectsAudio.Length; i++)
+        for (int i = 0; i < backgroundSlider.Length; i++)
         {
             soundEffectsAudio[i].volume = soundEffectFloat;
         }
@@ -141,7 +138,7 @@ public class AudioManager : MonoBehaviour
             ttsSoundAudio[i].volume = ttsSoundFloat;
         }
 
-        for (int i = 0; i < soundEffectsAudio.Length; i++)
+        for (int i = 0; i < backgroundSlider.Length; i++)
         {
             backgroundSlider[i].value = backgroundFloat;
             soundEffectSlider[i].value = soundEffectFloat;

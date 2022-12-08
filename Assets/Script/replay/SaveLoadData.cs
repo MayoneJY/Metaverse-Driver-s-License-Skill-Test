@@ -38,12 +38,6 @@ public class SaveLoadData : MonoBehaviour
     {
         IM = _carBody.GetComponent<inputManager>();
 
-        _loadCheck = true;
-        IM.replayCheck = true;
-        _topCamera.SetActive(true);
-        string json = File.ReadAllText(Application.dataPath + "/data.json");
-        _loadRD = JsonUtility.FromJson<ReplayData>(json);
-        _time = 0.0f;
     }
 
     //json
@@ -126,5 +120,16 @@ public class SaveLoadData : MonoBehaviour
             }
             _time += Time.deltaTime;
         }
+
+    }
+    public void ShowReplay()
+    {
+
+        _loadCheck = true;
+        IM.replayCheck = true;
+        _topCamera.SetActive(true);
+        string json = File.ReadAllText(Application.dataPath + "/data.json");
+        _loadRD = JsonUtility.FromJson<ReplayData>(json);
+        _time = 0.0f;
     }
 }

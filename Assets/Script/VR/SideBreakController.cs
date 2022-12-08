@@ -42,7 +42,6 @@ public class SideBreakController : MonoBehaviour
             result = GEAR_MODE.PARK;
             inputManager.isParkingPress = true;
         }
-
         return result;
     }
 
@@ -76,7 +75,6 @@ public class SideBreakController : MonoBehaviour
         {
             var vector = transform.position - other.transform.position;
             var angle = Vector3.Angle(Target.forward, vector);
-            Debug.Log(angle);
 
             if (angle > a)
             {

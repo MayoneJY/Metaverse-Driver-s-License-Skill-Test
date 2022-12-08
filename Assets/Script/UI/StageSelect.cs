@@ -11,6 +11,8 @@ public class StageSelect : MonoBehaviour
     [SerializeField] private GameObject mainUi;
     [SerializeField] private Exam exam;
     [SerializeField] private StartStage stage;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private GameObject _replayUi;
     //Defualt position rotation
     //-1.84, 1, -5.1, 0, -90, 0
     //Start
@@ -62,6 +64,14 @@ public class StageSelect : MonoBehaviour
                 }
             }
         }
+        if ((int) result[0] == 4)
+        {
+            _replayUi.SetActive(true);
+        }
+        else
+        {
+            _replayUi.SetActive(false);
+        }
         // PlayerPrefs is input int
         PlayerPrefs.SetInt("Exam", (int) result[0]);
         PlayerPrefs.SetFloat("ExamX", result[1]);
@@ -86,6 +96,7 @@ public class StageSelect : MonoBehaviour
         {
             stage.enabled = true;
         }
+        _audioSource.Stop();
 
     }
 

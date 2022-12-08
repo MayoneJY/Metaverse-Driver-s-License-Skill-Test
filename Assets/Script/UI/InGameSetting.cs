@@ -9,7 +9,10 @@ public class InGameSetting : MonoBehaviour
     [SerializeField] private Exam _exam;
     [SerializeField] private GameObject gameObject;
     [SerializeField] private GameObject mainUi;
+    [SerializeField] private GameObject gameUi;
     [SerializeField] private StartStage stage;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private HandController _handController;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,5 +68,10 @@ public class InGameSetting : MonoBehaviour
         _oculusObject.transform.localEulerAngles = new Vector3(0, -90, 0);
         stage.enabled = false;
         mainUi.SetActive(true);
+        gameUi.SetActive(false);
+        _audioSource.Play();
+        _handController.ResetGear();
+        _exam.ResetItem();
+
     }
 }
